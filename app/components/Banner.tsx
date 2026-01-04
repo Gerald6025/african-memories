@@ -72,7 +72,7 @@ export default function Banner({ title, subtitle, backgroundImage = '/ban.jpg', 
       </div>
       
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
       
       {/* Content */}
       <div className="relative z-10 h-full container mx-auto px-6">

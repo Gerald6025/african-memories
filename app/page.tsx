@@ -2,6 +2,7 @@ import Navbar from './components/Navbar';
 import BannerCarousel from './components/BannerCarousel';
 import PopularActivities from './components/PopularActivities';
 import PopularHotelsAndLodges from './components/PopularHotelsAndLodges';
+import Footer from './components/Footer';
 
 
 
@@ -28,7 +29,7 @@ export default function Home() {
       backgroundImage: "/pool.png",
       backgroundVideo: "/vid.mp4",
       locationTag: "Top wildlife safaris",
-      locationName: "Wildeness Linkwasha Camp"
+      locationName: "Wilderness Linkwasha Camp"
     }
   ];
 
@@ -38,6 +39,7 @@ export default function Home() {
       <BannerCarousel banners={bannerData} />
       <PopularActivities />
       <PopularHotelsAndLodges/>
+      <Footer/>
       
      
     </div>

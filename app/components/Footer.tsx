@@ -1,0 +1,74 @@
+import Link from 'next/link';
+import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+
+const Footer = () => {
+  return (
+    <footer className="bg-gray-900 text-white relative overflow-hidden">
+      {/* Background pattern */}
+      <div className="absolute inset-0 bg-black  "></div>
+      
+      {/* Social Icons at the very top */}
+      <div className="relative z-10 bg-black">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-end space-x-6">
+          <a href="#" className="text-white hover:text-gray-300 transition-colors">
+            <FaInstagram className="w-5 h-5" />
+          </a>
+          <a href="#" className="text-white hover:text-gray-300 transition-colors">
+            <FaFacebook className="w-5 h-5" />
+          </a>
+          <a href="#" className="text-white hover:text-gray-300 transition-colors">
+            <FaWhatsapp className="w-5 h-5" />
+          </a>
+        </div>
+        {/* Separator line */}
+        <div className="border-t border-gray-700 w-full"></div>
+      </div>
+      
+      <div className="max-w-7xl mx-auto relative z-10 pt-8 pb-8 px-4 sm:px-6 lg:px-8">
+
+        {/* Main Content */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          {/* Logo and Description */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold">LOGO</h2>
+            <p className="text-gray-400">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+            </p>
+          </div>
+
+          {/* Links */}
+          <div className="md:pl-12">
+            <h3 className="text-lg font-semibold mb-4 ">Links</h3>
+            <ul className="space-y-2">
+              {['Home', 'About', 'Thing To Do', 'Places To Stay', 'Blog', 'Contact'].map((item) => (
+                <li key={item}>
+                  <Link href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} 
+                        className="text-white hover:text-orange-500 transition-colors">
+                    {item}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="text-lg font-semibold mb-4">Contact</h3>
+            <address className="not-italic space-y-2 text-gray-400">
+              <p>1234 Mountain View,<br />Cape Town, 8001</p>
+              <p>+27 12 345 6789</p>
+              <p>info@africanmemories.com</p>
+            </address>
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <div className="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+          <p>Copyright 2022 gman.com | All Right Reserved</p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

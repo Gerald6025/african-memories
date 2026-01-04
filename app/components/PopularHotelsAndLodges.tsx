@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import Image from 'next/image';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Link from 'next/link';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -14,32 +15,38 @@ interface AccommodationCardProps {
   type: string;
 }
 
-const AccommodationCard: React.FC<AccommodationCardProps> = ({
+const AccommodationCard: React.FC<AccommodationCardProps & { id: number }> = ({
+  id,
   title,
   description,
   imageUrl,
   type,
 }) => {
   return (
-    <div className="bg-gray-200 rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col h-full">
-      <div className="relative h-64 w-full">
-        <Image
-          src={imageUrl}
-          alt={title}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          priority
-        />
-        <span className="absolute bottom-4 left-4 bg-orange-500 text-white text-xs font-medium px-3 py-1 rounded-full">
-          {type}
-        </span>
+    <Link 
+      href={`/accommodations/${id}`}
+      className="block h-full"
+    >
+      <div className="bg-gray-200 rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col h-full cursor-pointer">
+        <div className="relative h-64 w-full">
+          <Image
+            src={imageUrl}
+            alt={title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority
+          />
+          <span className="absolute bottom-4 left-4 bg-orange-500 text-white text-xs font-medium px-3 py-1 rounded-full">
+            {type}
+          </span>
+        </div>
+        <div className="p-5 flex-1 flex flex-col">
+          <h3 className="font-bold text-lg mb-2">{title}</h3>
+          <p className="text-gray-600 text-sm flex-1">{description}</p>
+        </div>
       </div>
-      <div className="p-5 flex-1 flex flex-col">
-        <h3 className="font-bold text-lg mb-2">{title}</h3>
-        <p className="text-gray-600 text-sm flex-1">{description}</p>
-      </div>
-    </div>
+    </Link>
   );
 };
 
@@ -54,37 +61,67 @@ const PopularHotelsAndLodges: React.FC = () => {
     },
     {
       id: 2,
-      title: 'Pioneers Camp',
+      title: 'The Palm River Hotel',
       description: 'A unique blend of comfort and adventure in the African wilderness with guided safaris.',
-      imageUrl: '/pioneers-camp.jpg',
-      type: 'Safari',
+      imageUrl: '/pal4.jpeg',
+      type: 'Luxury',
     },
     {
       id: 3,
-      title: 'Victoria Falls Hotel',
+      title: 'Mbano Mano Hotel ',
       description: 'Historic colonial-style hotel offering elegant rooms and views of the Victoria Falls.',
-      imageUrl: '/victoria-falls-hotel.jpg',
+      imageUrl: '/Sig.jpg',
       type: 'Luxury',
     },
      {
       id: 4,
       title: 'Chundu Island',
       description: 'Experience luxury in the heart of the Zambezi River with stunning views and world-class amenities.',
-      imageUrl: '/chundu-island.jpg',
-      type: 'Luxury',
+      imageUrl: '/chundu-island.png',
+      type: 'Safari',
     },
     {
       id: 5,
-      title: 'Mbano Mano Hotel',
+      title: 'Victoria Falls Hotel',
       description: 'A unique blend of comfort and adventure in the African wilderness with guided safaris.',
-      imageUrl: '/pioneers-camp.jpg',
+      imageUrl: '/hotel.jpg',
       type: 'Luxury',
     },
     {
       id: 6,
-      title: 'Dzimbawe Guest Lodge',
+      title: 'Dzimbahwe Guest Lodge',
       description: 'Historic colonial-style hotel offering elegant rooms and views of the Victoria Falls.',
-      imageUrl: '/victoria-falls-hotel.jpg',
+      imageUrl: '/202.png',
+      type: 'Luxury',
+    },
+     {
+      id: 7,
+      title: 'Pioneer Camp',
+      description: 'Historic colonial-style hotel offering elegant rooms and views of the Victoria Falls.',
+      imageUrl: '/pioneer.png',
+      type: 'Luxury',
+    },
+    {
+      id: 8,
+      title: 'Ilala Lodge Hotel',
+      description: 'Historic colonial-style hotel offering elegant rooms and views of the Victoria Falls.',
+      imageUrl: '/ilala.jpg',
+      type: 'Luxury',
+    },
+
+    {
+      id: 9,
+      title: 'Old Drift Lodge',
+      description: 'Historic colonial-style hotel offering elegant rooms and views of the Victoria Falls.',
+      imageUrl: '/ODL-1.jpg',
+      type: 'Luxury',
+    },
+
+    {
+      id: 10,
+      title: 'Elephant Hills ',
+      description: 'Historic colonial-style hotel offering elegant rooms and views of the Victoria Falls.',
+      imageUrl: '/ele.png',
       type: 'Luxury',
     },
   ];
@@ -95,7 +132,7 @@ const PopularHotelsAndLodges: React.FC = () => {
 
   return (
     <section className="bg-white py-16 w-full">
-      <div className="px-4 sm:px-4 lg:px-6 mx-auto max-w-[1440px]">
+      <div className="px-4 sm:px-4 lg:px-6 mx-auto max-w-[1540px]">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-10">
           <div className="mb-4 md:mb-0">
             <span className="text-orange-500 text-sm font-medium uppercase tracking-wider">
@@ -158,6 +195,7 @@ const PopularHotelsAndLodges: React.FC = () => {
             {accommodations.map((item) => (
               <SwiperSlide key={item.id}>
                 <AccommodationCard
+                  id={item.id}
                   title={item.title}
                   description={item.description}
                   imageUrl={item.imageUrl}
