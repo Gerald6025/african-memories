@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
-import { FaMapMarker, FaMapMarkerAlt } from 'react-icons/fa'
+import {  FaMapMarkerAlt } from 'react-icons/fa'
 import { RiFacebookFill, RiWhatsappFill, RiInstagramFill } from 'react-icons/ri'
-import  {FaFacebook} from 'react-icons/fa6'
+
 
 interface BannerProps {
   title: string;
@@ -72,7 +72,7 @@ export default function Banner({ title, subtitle, backgroundImage = '/ban.jpg', 
       </div>
       
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent" />
       
       {/* Content */}
       <div className="relative z-10 h-full container mx-auto px-6">
@@ -104,7 +104,7 @@ export default function Banner({ title, subtitle, backgroundImage = '/ban.jpg', 
               {subtitle}
             </p>
             <div className="flex flex-wrap gap-4">
-              <button className="bg-orange-400 text-white w-[193px] h-[50px]  rounded-lg px-8 py-3   font-medium hover:opacity-90 transition-opacity">
+              <button className="bg-orange-500 text-white w-[193px] h-[50px]  rounded-lg px-8 py-3   font-medium hover:opacity-90 transition-opacity">
                 Explore
               </button>
               <button className="border-2 border-white text-white  w-[193px] h-[50px]  rounded-lg px-8 py-3 font-medium hover:bg-white/10 transition-colors">
@@ -118,7 +118,7 @@ export default function Banner({ title, subtitle, backgroundImage = '/ban.jpg', 
             <div className="flex items-center   p-4 rounded-lg mb-4 md:mb-0">
               <div className="p-2 rounded-full mr-3"><FaMapMarkerAlt className="text-white text-5xl" /></div>
               <div>
-                <p className="text-lg text-orange-400">{locationTag}</p>
+                <p className="text-lg text-orange-500">{locationTag}</p>
                 <p className="text-white font-medium text-2xl">{locationName}</p>
               </div>
             </div>
@@ -138,7 +138,7 @@ export default function Banner({ title, subtitle, backgroundImage = '/ban.jpg', 
                       />
                     </div>
                   </div>
-                  <span className="text-sm text-white group-hover:text-orange-400 transition-colors">{activity.name}</span>
+                  <span className="text-sm text-white group-hover:text-orange-500 transition-colors">{activity.name}</span>
                 </div>
               ))}
             </div>

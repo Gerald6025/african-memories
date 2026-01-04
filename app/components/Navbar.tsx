@@ -28,14 +28,14 @@ export default function Navbar() {
   return (
     <div className="relative">
       <div 
-        className="fixed w-full h-px bg-white z-50"
+        className="absolute w-full h-px bg-white z-50"
         style={{
           top: isScrolled ? '74px' : '98px',
           boxShadow: '0 1px 2px rgba(0, 0, 0, 0.1)'
         }}
       />
       <nav 
-        className={`fixed w-full z-50 transition-all duration-300 ${
+        className={`absolute top-0 left-0 w-full z-50 transition-all duration-300 ${
           isScrolled ? 'bg-white shadow-md py-4' : 'bg-transparent py-6'
         }`}
       >
