@@ -78,11 +78,17 @@ const PopularActivities = () => {
         </div>
         <div className="flex items-center space-x-4">
           <a href="#" className="text-orange-500 hover:underline">View All Activities</a>
-          <div className="flex space-x-2">
-            <button className="p-2 rounded-full border border-gray-300 hover:bg-gray-100">
+          <div className="flex items-center space-x-2 border-l border-gray-200 pl-4">
+            <button
+              className="p-2.5 rounded-full bg-white hover:bg-gray-100 transition-colors text-orange-600 border border-orange-600"
+              aria-label="Previous slide"
+            >
               <ArrowLeft className="w-5 h-5" />
             </button>
-            <button className="p-2 rounded-full border border-gray-300 hover:bg-gray-100">
+            <button
+              className="p-2.5 rounded-full bg-orange-600 hover:bg-orange-700 transition-colors text-white"
+              aria-label="Next slide"
+            >
               <ArrowRight className="w-5 h-5" />
             </button>
           </div>

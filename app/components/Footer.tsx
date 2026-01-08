@@ -1,4 +1,6 @@
+
 import Link from 'next/link';
+import Image from 'next/image';
 import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 
 const Footer = () => {
@@ -27,17 +29,26 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto relative z-10 pt-8 pb-8 px-4 sm:px-6 lg:px-8">
 
         {/* Main Content */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+        <div className="flex flex-col md:flex-row md:gap-90 gap-12 mb-12">
           {/* Logo and Description */}
-          <div className="space-y-4">
-            <h2 className="text-2xl font-bold">LOGO</h2>
+          <div className="md:w-1/3 space-y-4">
+            <div className="relative w-60 h-16 right-15">
+              <Image 
+                src="/logo.png" 
+                alt="African Memories Logo" 
+                fill 
+                className="object-contain "
+                priority
+              />
+            </div>
             <p className="text-gray-400">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
             </p>
           </div>
 
-          {/* Links */}
-          <div className="md:pl-12">
+          <div className='flex gap-20 md:pl-16'>
+            {/* Links */}
+            <div>
             <h3 className="text-lg font-semibold mb-4 ">Links</h3>
             <ul className="space-y-2">
               {['Home', 'About', 'Thing To Do', 'Places To Stay', 'Blog', 'Contact'].map((item) => (
@@ -49,16 +60,17 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+            </div>
 
-          {/* Contact */}
-          <div>
+            {/* Contact */}
+            <div>
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <address className="not-italic space-y-2 text-gray-400">
               <p>1234 Mountain View,<br />Cape Town, 8001</p>
               <p>+27 12 345 6789</p>
               <p>info@africanmemories.com</p>
             </address>
+            </div>
           </div>
         </div>
 

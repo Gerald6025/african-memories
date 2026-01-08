@@ -3,6 +3,8 @@ import BannerCarousel from './components/BannerCarousel';
 import PopularActivities from './components/PopularActivities';
 import PopularHotelsAndLodges from './components/PopularHotelsAndLodges';
 import Footer from './components/Footer';
+import Welcome from './components/Welcome';
+
 
 
 
@@ -37,6 +39,7 @@ export default function Home() {
     <div className="min-h-screen bg-black">
       <Navbar />
       <BannerCarousel banners={bannerData} />
+      <Welcome/>
       <PopularActivities />
       <PopularHotelsAndLodges/>
       <Footer/>

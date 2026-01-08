@@ -1,19 +1,34 @@
 "use client"
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import { ArrowRight, ArrowLeft } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Wifi, Utensils, Martini, Waves, Coffee, HeartPulse } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Link from 'next/link';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
+interface Amenity {
+  name: string;
+  icon: React.ReactNode;
+}
+
 interface AccommodationCardProps {
   title: string;
   description: string;
   imageUrl: string;
   type: string;
+  amenities: string[];
 }
+
+const amenityIcons: Record<string, string> = {
+  'Pool': '🏊',
+  'Free WiFi': '📶',
+  'Breakfast': '☕',
+  'Spa': '💆',
+  'Restaurant': '🍽️',
+  'Bar': '🍸'
+};
 
 const AccommodationCard: React.FC<AccommodationCardProps & { id: number }> = ({
   id,
@@ -21,6 +36,7 @@ const AccommodationCard: React.FC<AccommodationCardProps & { id: number }> = ({
   description,
   imageUrl,
   type,
+  amenities = [],
 }) => {
   return (
     <Link 
@@ -41,9 +57,9 @@ const AccommodationCard: React.FC<AccommodationCardProps & { id: number }> = ({
             {type}
           </span>
         </div>
-        <div className="p-5 flex-1 flex flex-col">
-          <h3 className="font-bold text-lg mb-2">{title}</h3>
-          <p className="text-gray-600 text-sm flex-1">{description}</p>
+        <div className="p-5 flex flex-col">
+          <h3 className="font-bold text-lg mb-2 line-clamp-2">{title}</h3>
+          <p className="text-gray-600 text-sm line-clamp-4">{description}</p>
         </div>
       </div>
     </Link>
@@ -55,74 +71,84 @@ const PopularHotelsAndLodges: React.FC = () => {
     {
       id: 1,
       title: 'Shearwaters Explorers Village',
-      description: 'Experience luxury in the heart of the Zambezi River with stunning views and world-class amenities.',
+      description: 'Shearwater Explorers Village, near Victoria Falls, offers a peaceful garden setting with international cuisine at Explorer Bar and Grill, spa treatments, WiFi, and laundry facilities. Features include two outdoor pools, cycling opportunities, and access to a nearby nature reserve.',
       imageUrl: '/night-shots.jpg',
       type: 'Luxury',
+      amenities: ['Pool', 'Free WiFi', 'Spa', 'Restaurant', 'Bar'],
     },
     {
       id: 2,
       title: 'The Palm River Hotel',
-      description: 'A unique blend of comfort and adventure in the African wilderness with guided safaris.',
+      description: 'The Palm River Hotel offers a tranquil retreat near Victoria Falls with a full breakfast and daily managers reception. Guests enjoy the outdoor pool, spa services like manicures and massages, and free WiFi to stay connected throughout their stay.',
       imageUrl: '/pal4.jpeg',
       type: 'Luxury',
+      amenities: ['Pool', 'Free WiFi', 'Spa', 'Breakfast', 'Restaurant'],
     },
     {
       id: 3,
-      title: 'Mbano Mano Hotel ',
-      description: 'Historic colonial-style hotel offering elegant rooms and views of the Victoria Falls.',
+      title: 'Mbano Mano Hotel',
+      description: 'Near Victoria Falls, Mbano Manor Hotel Victoria Falls By Mantis provides everything you need.',
       imageUrl: '/Sig.jpg',
       type: 'Luxury',
+      amenities: ['Pool', 'Free WiFi', 'Spa', 'Restaurant', 'Bar'],
     },
      {
       id: 4,
       title: 'Chundu Island',
-      description: 'Experience luxury in the heart of the Zambezi River with stunning views and world-class amenities.',
+      description: 'Escape to the serene surroundings of Chundu Island, where a cooked-to-order breakfast awaits on the picturesque terrace overlooking the garden. Relax by the pool with sun loungers or treat yourself to rejuvenating spa services and enjoy free WiFi.',
       imageUrl: '/chundu-island.png',
       type: 'Safari',
+      amenities: ['Pool', 'Free WiFi', 'Spa', 'Breakfast'],
     },
     {
       id: 5,
       title: 'Victoria Falls Hotel',
-      description: 'A unique blend of comfort and adventure in the African wilderness with guided safaris.',
+      description: 'The Victoria Falls Hotel offers a tranquil retreat with its lush gardens and inviting outdoor pool. Guests savor international cuisine across four distinct restaurants, while the property s mini golf course provides entertainment and the spa delivers restorative treatments.',
       imageUrl: '/hotel.jpg',
       type: 'Luxury',
+      amenities: ['Pool', 'Free WiFi', 'Spa', 'Restaurant', 'Bar'],
     },
     {
       id: 6,
       title: 'Dzimbahwe Guest Lodge',
-      description: 'Historic colonial-style hotel offering elegant rooms and views of the Victoria Falls.',
+      description: 'Dzimbahwe Guest Lodge offers a peaceful garden setting where travelers can relax with a drink while taking in the scenery. The property features two outdoor swimming pools, barbecue facilities, and concierge services, with staff that guests consistently find helpful.',
       imageUrl: '/202.png',
       type: 'Luxury',
+      amenities: ['Pool', 'Free WiFi', 'Bar'],
     },
      {
       id: 7,
       title: 'Pioneer Camp',
-      description: 'Historic colonial-style hotel offering elegant rooms and views of the Victoria Falls.',
+      description: 'Pioneers Lodge offers a peaceful escape with a serene setting. Guests enjoy continental breakfast, then relax in the garden or spa. Two outdoor pools provide relaxation, and free WiFi keeps everyone connected. The 24/7 front desk team ensures a smooth stay.',
       imageUrl: '/pioneer.png',
       type: 'Luxury',
+      amenities: ['Pool', 'Free WiFi', 'Breakfast', 'Spa'],
     },
     {
       id: 8,
       title: 'Ilala Lodge Hotel',
-      description: 'Historic colonial-style hotel offering elegant rooms and views of the Victoria Falls.',
+      description: 'Ilala Lodge Hotel sits close to Victoria Falls, where guests can cool off at the poolside bar or book aromatherapy sessions and manicures at Ilala Spa. The restaurant serves Modern European cuisine, while practical amenities include free in-room WiFi and self parking.',
       imageUrl: '/ilala.jpg',
       type: 'Luxury',
+      amenities: ['Pool', 'Free WiFi', 'Spa', 'Restaurant', 'Bar'],
     },
 
     {
       id: 9,
       title: 'Old Drift Lodge',
-      description: 'Historic colonial-style hotel offering elegant rooms and views of the Victoria Falls.',
+      description: 'Old Drift Lodge offers a peaceful escape in Victoria Falls with beautiful gardens. The on-site restaurant serves daily meals, and guest rooms include WiFi. Explore nearby attractions by day and relax at the welcoming bar in the evening.',
       imageUrl: '/ODL-1.jpg',
       type: 'Luxury',
+      amenities: ['Free WiFi', 'Restaurant', 'Bar'],
     },
 
     {
       id: 10,
-      title: 'Elephant Hills ',
-      description: 'Historic colonial-style hotel offering elegant rooms and views of the Victoria Falls.',
+      title: 'Elephant Hills',
+      description: 'Elephant Hills Resort welcomes families with a riverfront view, 18-hole golf course, casino, and bowling alley. Enjoy facials and massages at the spa, a gym with racquetball and squash courts, three restaurants, and a poolside bar by three outdoor pools.',
       imageUrl: '/ele.png',
       type: 'Luxury',
+      amenities: ['Pool', 'Free WiFi', 'Spa', 'Restaurant', 'Bar'],
     },
   ];
 
