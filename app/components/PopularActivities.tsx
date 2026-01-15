@@ -159,14 +159,14 @@ const PopularActivities = () => {
           </div>
           
           {/* Large bottom section with features */}
-          <div className="bg-amber-900 text-white p-8 rounded-lg h-96 flex flex-col justify-center">
+          <div className="bg-amber-900 text-white p-8 rounded-lg h-96 flex items-center md:flex-row   flex-col justify-center">
             {activities.right.bottom.features.map((feature, index) => (
-              <div key={index} className="mb-6 last:mb-0">
+              <div key={index} className="mb-6 ">
                 <div className="flex items-center mb-2">
                   <span className="text-2xl mr-3">{feature.icon}</span>
-                  <h3 className="text-lg font-semibold">{feature.title}</h3>
+                  <h3 className="text-lg font-semibold text-center">{feature.title}</h3>
                 </div>
-                <p className="text-sm text-amber-100 pl-11">{feature.description}</p>
+                <p className="text-sm text-amber-100  text-center">{feature.description}</p>
               </div>
             ))}
           </div>

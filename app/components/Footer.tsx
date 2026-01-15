@@ -29,7 +29,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto relative z-10 pt-8 pb-8 px-4 sm:px-6 lg:px-8">
 
         {/* Main Content */}
-        <div className="flex flex-col md:flex-row md:gap-90 gap-12 mb-12">
+        <div className="flex flex-col md:flex-row md:gap-100 gap-12 mb-12">
           {/* Logo and Description */}
           <div className="md:w-1/3 space-y-4">
             <div className="relative w-60 h-16 right-15">
@@ -66,8 +66,8 @@ const Footer = () => {
             <div>
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <address className="not-italic space-y-2 text-gray-400">
-              <p>1234 Mountain View,<br />Cape Town, 8001</p>
-              <p>+27 12 345 6789</p>
+              <p>4920 Chinotimba,<br />Victoria Falls</p>
+              <p>+263 772 260 839</p>
               <p>info@africanmemories.com</p>
             </address>
             </div>
@@ -76,7 +76,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-          <p>Copyright 2022 gman.com | All Right Reserved</p>
+          <p>Copyright 2026 africanmemories.com | All Right Reserved</p>
         </div>
       </div>
     </footer>

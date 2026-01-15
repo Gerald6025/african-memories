@@ -225,8 +225,7 @@ const PopularHotelsAndLodges: React.FC = () => {
                   title={item.title}
                   description={item.description}
                   imageUrl={item.imageUrl}
-                  type={item.type}
-                />
+                  type={item.type} amenities={[]}                />
               </SwiperSlide>
             ))}
           </Swiper>

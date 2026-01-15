@@ -25,7 +25,7 @@ const AnimatedCounter = ({ target, duration = 2000 }: { target: string; duration
 
 const Welcome: React.FC = () => {
   return (
-    <section className="min-h-screen grid grid-cols-1 lg:grid-cols-2 relative">
+    <section className="min-h-screen grid grid-cols-1 lg:grid-cols-2 relative bg-white">
       {/* Left Image */}
       <div className="relative z-0">
         <img
@@ -36,7 +36,7 @@ const Welcome: React.FC = () => {
       </div>
 
       {/* Right Content */}
-      <div className="flex flex-col justify-center px-8 lg:px-16 bg-white z-10 lg:ml-[-50px] lg:pl-[70px]">
+      <div className="flex flex-col justify-center px-8 lg:px-16 bg-gray-200 relative top-5 -ml-5 z-10">
         <span className="text-orange-500 font-medium mb-4">
           Welcome To African Memories
         </span>
@@ -53,9 +53,9 @@ const Welcome: React.FC = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-6 mb-12">
-          <Stat value="350+" label="Projects Completed" />
-          <Stat value="120+" label="Work Employed" />
-          <Stat value="30+" label="Years Experience" />
+          <Stat value="35+" label="Successful Bookings" />
+          <Stat value="20+" label="Unique Itenaries created" />
+          <Stat value="5+" label="Years Experience" />
         </div>
 
         {/* Buttons */}
