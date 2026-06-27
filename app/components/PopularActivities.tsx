@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
+import { imagekitUrl } from '../../lib/imagekit';
 
 const PopularActivities = () => {
   const activities = {
@@ -103,7 +104,7 @@ const PopularActivities = () => {
           <div className="relative rounded-lg overflow-hidden h-96 group">
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
             <Image 
-              src={activities.left.top.image}
+              src={imagekitUrl(activities.left.top.image)}
               alt={activities.left.top.title}
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -121,7 +122,7 @@ const PopularActivities = () => {
               <div key={activity.id} className="relative rounded-lg overflow-hidden h-64 group">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10"></div>
                 <Image 
-                  src={activity.image}
+                  src={imagekitUrl(activity.image)}
                   alt={activity.title}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -144,7 +145,7 @@ const PopularActivities = () => {
               <div key={activity.id} className="relative rounded-lg overflow-hidden h-64 group">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10"></div>
                 <Image 
-                  src={activity.image}
+                  src={imagekitUrl(activity.image)}
                   alt={activity.title}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"

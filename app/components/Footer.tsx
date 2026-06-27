@@ -1,82 +1,132 @@
+import React from "react";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaArrowRight,
+} from "react-icons/fa";
+import { SiTripadvisor } from "react-icons/si";
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa';
-
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-900 text-white relative overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 bg-black  "></div>
-      
-      {/* Social Icons at the very top */}
-      <div className="relative z-10 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-end space-x-6">
-          <a href="#" className="text-white hover:text-gray-300 transition-colors">
-            <FaInstagram className="w-5 h-5" />
-          </a>
-          <a href="#" className="text-white hover:text-gray-300 transition-colors">
-            <FaFacebook className="w-5 h-5" />
-          </a>
-          <a href="#" className="text-white hover:text-gray-300 transition-colors">
-            <FaWhatsapp className="w-5 h-5" />
-          </a>
-        </div>
-        {/* Separator line */}
-        <div className="border-t border-gray-700 w-full"></div>
-      </div>
-      
-      <div className="max-w-7xl mx-auto relative z-10 pt-8 pb-8 px-4 sm:px-6 lg:px-8">
+    <footer className="bg-[#3b2b18] text-white">
+      <div className="mx-auto max-w-7xl px-6 lg:px-16 py-20">
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_1.5fr_1fr]">
+          {/* CONTACT */}
+          <div>
+            <h3 className="mb-8 text-sm font-semibold uppercase tracking-[4px] text-[#f7ede0]">
+              Contact Us
+            </h3>
 
-        {/* Main Content */}
-        <div className="flex flex-col md:flex-row md:gap-100 gap-12 mb-12">
-          {/* Logo and Description */}
-          <div className="md:w-1/3 space-y-4">
-            <div className="relative w-60 h-16 right-15">
-              <Image 
-                src="/logo.png" 
-                alt="African Memories Logo" 
-                fill 
-                className="object-contain "
-                priority
+            <div className="space-y-3 text-lg">
+              <p>African Memories Safaris</p>
+              <p>4920 Chinotimba Victoria Falls</p>
+
+              <p className="pt-3">+263 772 260 839</p>
+
+              <p>info@africanmemories.com</p>
+            </div>
+
+            <div className="mt-14 flex items-center gap-5 text-[30px] text-[#f7ede0]">
+              <a
+                href="#"
+                className="transition hover:text-white"
+                aria-label="Facebook"
+              >
+                <FaFacebookF />
+              </a>
+
+              <a
+                href="#"
+                className="transition hover:text-white"
+                aria-label="Instagram"
+              >
+                <FaInstagram />
+              </a>
+
+              <a
+                href="#"
+                className="transition hover:text-white"
+                aria-label="TripAdvisor"
+              >
+                <SiTripadvisor />
+              </a>
+            </div>
+          </div>
+
+          {/* QUICK LINKS */}
+          <div>
+            <h3 className="mb-8 text-sm font-semibold uppercase tracking-[4px] text-[#f7ede0]">
+              Quick Links
+            </h3>
+
+            <div className="grid grid-cols-1 gap-y-4 md:grid-cols-2 md:gap-x-20 text-lg">
+              <a href="#" className="hover:text-[#C7A27C] transition">
+                Home
+              </a>
+
+              <a href="#" className="hover:text-[#C7A27C] transition">
+                Things To Do
+              </a>
+
+              <a href="/places-to-stay" className="hover:text-[#C7A27C] transition">
+                Places To Stay
+              </a>
+
+              
+              <a href="#" className="hover:text-[#C7A27C] transition">
+                Gallery
+              </a>
+
+              <a href="#" className="hover:text-[#C7A27C] transition">
+                About
+              </a>
+
+              <a href="#" className="hover:text-[#C7A27C] transition">
+                Contact
+              </a>
+
+             
+            </div>
+
+          </div>
+
+          {/* NEWSLETTER */}
+          <div>
+            <h3 className="mb-8 text-sm font-semibold uppercase tracking-[4px] text-[#f7ede0]">
+              Sign Up To Our Newsletter
+            </h3>
+
+            <div className="relative">
+              <input
+                type="email"
+                placeholder="Email address"
+                className="w-full bg-[#3A3434] px-4 py-3 text-white placeholder:text-gray-300 outline-none"
+              />
+
+              <button
+                type="button"
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-white"
+              >
+                <FaArrowRight />
+              </button>
+            </div>
+
+            {/* LOGO */}
+            <div className="mt-16 flex justify-center">
+              <img
+                src="https://ik.imagekit.io/c0x52ylk1/African%20Memories%20Resources/logo.png?updatedAt=1778267349365"
+                alt="African Memories"
+                className="h-28 w-auto object-contain opacity-90"
               />
             </div>
-            <p className="text-gray-400">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
-            </p>
-          </div>
-
-          <div className='flex gap-20 md:pl-16'>
-            {/* Links */}
-            <div>
-            <h3 className="text-lg font-semibold mb-4 ">Links</h3>
-            <ul className="space-y-2">
-              {['Home', 'About', 'Thing To Do', 'Places To Stay', 'Blog', 'Contact'].map((item) => (
-                <li key={item}>
-                  <Link href={`#${item.toLowerCase().replace(/\s+/g, '-')}`} 
-                        className="text-white hover:text-orange-500 transition-colors">
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
-            <address className="not-italic space-y-2 text-gray-400">
-              <p>4920 Chinotimba,<br />Victoria Falls</p>
-              <p>+263 772 260 839</p>
-              <p>info@africanmemories.com</p>
-            </address>
-            </div>
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
-          <p>Copyright 2026 africanmemories.com | All Right Reserved</p>
+        {/* COPYRIGHT */}
+        <div className="border-t border-[#f7ede0]/20 pt-6 mt-8">
+          <p className="text-center text-sm text-[#f7ede0]">
+            &copy; {new Date().getFullYear()} African Memories Safaris. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { imagekitUrl } from '../../lib/imagekit';
 import { useEffect, useRef } from 'react';
 import {  FaMapMarkerAlt } from 'react-icons/fa'
 import { RiFacebookFill, RiWhatsappFill, RiInstagramFill } from 'react-icons/ri'
@@ -34,11 +35,11 @@ export default function Banner({ title, subtitle, backgroundImage = '/ban.jpg', 
   }, [isActive, backgroundVideo]);
 
   const activities = [
-    { id: 1, name: 'Wildlife And Safari', image: '/wildlife and safari.jpg' },
-    { id: 2, name: 'Special Tours', image: '/special tours.jpg' },
-    { id: 3, name: 'Scenic', image: '/scenic.jpg' },
-    { id: 4, name: 'Cultural', image: '/cultural.jpg' },
-    { id: 5, name: 'Adrenaline', image: '/adrenaline.jpg' },
+    { id: 1, name: 'Wildlife And Safari', image: 'https://ik.imagekit.io/c0x52ylk1/New%20folder/wildlife%20and%20safari.jpg' },
+    { id: 2, name: 'Special Tours', image: 'https://ik.imagekit.io/c0x52ylk1/New%20folder/special%20tours.jpg' },
+    { id: 3, name: 'Scenic', image: 'https://ik.imagekit.io/c0x52ylk1/New%20folder/scenic.jpg' },
+    { id: 4, name: 'Cultural', image: 'https://ik.imagekit.io/c0x52ylk1/New%20folder/cultural.jpg' },
+    { id: 5, name: 'Adrenaline', image: 'https://ik.imagekit.io/c0x52ylk1/New%20folder/adrenaline.jpg' },
   ];
 
   return (
@@ -62,7 +63,7 @@ export default function Banner({ title, subtitle, backgroundImage = '/ban.jpg', 
           />
         ) : (
           <Image
-            src={backgroundImage}
+            src={imagekitUrl(backgroundImage)}
             alt="Safari Adventure"
             fill
             className="object-cover"
@@ -149,7 +150,7 @@ export default function Banner({ title, subtitle, backgroundImage = '/ban.jpg', 
                   <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-[136px] lg:h-[146px] rounded-lg lg:rounded-none bg-white/10 backdrop-blur-sm flex items-center justify-center mb-1 sm:mb-2 group-hover:bg-amber-500 transition-colors overflow-hidden">
                     <div className="w-full h-full rounded-lg lg:rounded-none overflow-hidden">
                       <Image 
-                        src={activity.image} 
+                        src={imagekitUrl(activity.image)} 
                         alt={activity.name}
                         width={136}
                         height={146}

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { imagekitUrl } from '../../lib/imagekit';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,6 +26,10 @@ export default function Navbar() {
     setIsMenuOpen(false);
   };
 
+  const logoSrc = process.env.NEXT_PUBLIC_IMAGEKIT_URL
+    ? imagekitUrl('/logo.png')
+    : '/logo.png';
+
   return (
     <div className="relative">
       <div 
@@ -42,14 +47,14 @@ export default function Navbar() {
       <div className="container mx-auto px-6 flex justify-between items-center">
         
         <Link href="/" className="text-2xl font-bold text-white">
-          <Image src="/logo.png" alt="Logo" width={200} height={50} />
+          <Image src={logoSrc} alt="Logo" width={200} height={50} />
         </Link>
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-8">
           <NavLink href="#" onClick={closeMenu}>Home</NavLink>
           <NavLink href="#" onClick={closeMenu}>Things To Do</NavLink>
-          <NavLink href="#" onClick={closeMenu}>Places To Stay</NavLink>
+          <NavLink href="/places-to-stay" onClick={closeMenu}>Places To Stay</NavLink>
           <NavLink href="#" onClick={closeMenu}>About</NavLink>
           <NavLink href="#" onClick={closeMenu}>Blog</NavLink>
           <NavLink href="#" onClick={closeMenu}>Contact</NavLink>
@@ -104,9 +109,9 @@ export default function Navbar() {
           <div className={`absolute top-8 transform transition-all duration-500 ${
             isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
           }`}>
-            <Link href="/" onClick={closeMenu} className="block">
+              <Link href="/" onClick={closeMenu} className="block">
               <Image 
-                src="/logo.png" 
+                src={logoSrc} 
                 alt="Logo" 
                 width={160} 
                 height={40} 
@@ -147,7 +152,7 @@ export default function Navbar() {
           }`}>
             <NavLink href="#" onClick={closeMenu}>Home</NavLink>
             <NavLink href="#" onClick={closeMenu}>Things To Do</NavLink>
-            <NavLink href="#" onClick={closeMenu}>Places To Stay</NavLink>
+            <NavLink href="/places-to-stay" onClick={closeMenu}>Places To Stay</NavLink>
             <NavLink href="#" onClick={closeMenu}>About</NavLink>
             <NavLink href="#" onClick={closeMenu}>Blog</NavLink>
             <NavLink href="#" onClick={closeMenu}>Contact</NavLink>

@@ -1,5 +1,6 @@
 "use client"
 import React, { useEffect, useState } from "react";
+import { imagekitUrl } from '../../lib/imagekit';
 
 const AnimatedCounter = ({ target, duration = 2000 }: { target: string; duration?: number }) => {
   const [count, setCount] = useState(0);
@@ -29,7 +30,7 @@ const Welcome: React.FC = () => {
       {/* Left Image */}
       <div className="relative z-0">
         <img
-          src="/unnamed.png"
+          src={imagekitUrl('/unnamed.png')}
           alt="Chameleon on leaves"
           className="h-full w-full object-cover"
         />

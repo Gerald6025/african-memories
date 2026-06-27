@@ -1,6 +1,7 @@
 "use client"
 import React, { useRef } from 'react';
 import Image from 'next/image';
+import { imagekitUrl } from '../../lib/imagekit';
 import { ArrowRight, ArrowLeft, Wifi, Utensils, Martini, Waves, Coffee, HeartPulse } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Link from 'next/link';
@@ -46,7 +47,7 @@ const AccommodationCard: React.FC<AccommodationCardProps & { id: number }> = ({
       <div className="bg-gray-200 rounded-xl shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300 flex flex-col h-full cursor-pointer">
         <div className="relative h-64 w-full">
           <Image
-            src={imageUrl}
+            src={imagekitUrl(imageUrl)}
             alt={title}
             fill
             className="object-cover"
