@@ -26,7 +26,7 @@ export default function Destinations() {
       alt: "Lion in Kruger National Park",
     },
     {
-      name: "Inyanga",
+      name: "Nyanga",
       location: "Sossusvlei",
       image:
         "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/f7/12/a6/aberfoyle-lodge.jpg?w=1200&h=-1&s=1",
