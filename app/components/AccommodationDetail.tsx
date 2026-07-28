@@ -1,9 +1,23 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
-import { useState, type ChangeEvent, type FormEvent } from 'react';
-import { ArrowLeft, MapPin, Waves, Sparkles, Utensils, Wifi, BedDouble, Compass, ShieldCheck, CalendarDays, Star, X } from 'lucide-react';
-import Navbar from './Navbar';
+import Image from 'next/image';
+import {
+  ArrowLeft,
+  MapPin,
+  Sparkles,
+  Compass,
+  ShieldCheck,
+  Star,
+  X,
+  Home,
+  ArrowRight,
+  Phone,
+  Mail,
+  Clock,
+  Users,
+} from 'lucide-react';
 import { accommodations as accommodationCatalog } from '../data/accommodations';
 
 const galleryBase = [
@@ -22,80 +36,118 @@ const initialBookingForm = {
   notes: '',
 };
 
-const getStayDetails = (type: string) => {
+const getLodgeSections = (type: string) => {
+  const safari = [
+    {
+      title: 'A private sanctuary',
+      text: 'This tranquil retreat, sheltered by ancient trees, is a peaceful space for families and couples to come together. Connecting with nature in this intimate woodland setting comes naturally, while quiet moments of reflection are enriched by the soundtrack of the surrounding wilderness.',
+      image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      title: 'Sheltered and shaded',
+      text: 'With its balance of social and tucked-away outdoor areas, the lodge offers spaces that are secluded yet not separate. A private outdoor boma invites fireside vigils and the sharing of stories as old as time.',
+      image: 'https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      title: 'A sought-after wilderness setting',
+      text: 'Located in the heart of Africa\'s most breathtaking landscapes, the lodge gives guests access to pristine wilderness areas renowned for their high concentrations of wildlife and unforgettable scenery.',
+      image: 'https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?auto=format&fit=crop&w=1200&q=80',
+    },
+  ];
+
+  const beach = [
+    {
+      title: 'Oceanfront serenity',
+      text: 'Soft light, sea air, and a calm rhythm that turns every hour into a little escape. The atmosphere leans into barefoot luxury, ocean views, and a slower pace that feels effortless from arrival to departure.',
+      image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      title: 'Tropical relaxation',
+      text: 'Choose between spa time, beach lounging, or a local outing. The days are designed around your pace, with gentle mornings, lazy afternoons, and evenings painted in gold.',
+      image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      title: 'Island escape',
+      text: 'White sands, crystal-clear water, and gentle luxury come together in this beachfront retreat designed for pure relaxation and unforgettable sunsets.',
+      image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80',
+    },
+  ];
+
+  const mountain = [
+    {
+      title: 'Highland retreat',
+      text: 'Cool air, thoughtful details, and a feeling of being tucked gently into nature. This is a place for lingering over views, taking long walks, and savoring calm between the day\'s little adventures.',
+      image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      title: 'Garden sanctuary',
+      text: 'Take time for a walk, a garden pause, or a long lunch in comfort. The estate grounds offer plenty of quiet corners and scenic lookouts.',
+      image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4aaae?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      title: 'Panoramic views',
+      text: 'Settle in with stargazing, a drink, and a quiet night ahead. The mountain setting provides a dramatic backdrop for every moment of your stay.',
+      image: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=1200&q=80',
+    },
+  ];
+
+  const default_sections = [
+    {
+      title: 'A refined retreat',
+      text: 'The experience is designed for ease, elegance, and a sense of being looked after from the first arrival to the last goodbye. Every detail feels carefully chosen.',
+      image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      title: 'Thoughtful design',
+      text: 'Thoughtful design, easy access to local highlights, and a warm, welcoming atmosphere make this stay truly special.',
+      image: 'https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=1200&q=80',
+    },
+    {
+      title: 'Local flavor',
+      text: 'A balance of comfort, character, and scenery that feels both luxurious and deeply personal. Discover the unique charm of the region.',
+      image: 'https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=80',
+    },
+  ];
+
+  if (/Safari|Camp|Migration/i.test(type)) return safari;
+  if (/Beach|Island/i.test(type)) return beach;
+  if (/Mountain|Coffee|Estate/i.test(type)) return mountain;
+  return default_sections;
+};
+
+const getLodgeActivities = (type: string) => {
+  const all = [
+    { name: 'Game Drives', image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Guided Walks', image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Wellness', image: 'https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Dining', image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Swimming Pool', image: 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=600&q=80' },
+    { name: 'Stargazing', image: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=600&q=80' },
+  ];
+
   if (/Safari|Camp|Migration/i.test(type)) {
-    return {
-      mood: 'A grounded luxury experience shaped by open skies, warm service, and the hush of the wild.',
-      intro: 'Each day is paced around sunrise, slow afternoons, and candlelit evenings so the stay feels both restorative and deeply immersive.',
-      bullets: ['Private wildlife moments', 'Guided local experiences', 'Quiet luxury at every turn'],
-      itinerary: [
-        { title: 'Golden mornings', text: 'Wake to a fresh coffee service and a gentle start before the first adventure.' },
-        { title: 'Wild afternoons', text: 'Return for a long lunch, pool time, and a few hours to simply unwind.' },
-        { title: 'Starlit evenings', text: 'End the day with dinner, fireside conversation, and an unhurried night sky.' },
-      ],
-      bestFor: 'Travelers who want a blend of comfort, movement, and unforgettable scenery.',
-      pace: 'Slow and cinematic',
-    };
+    return [all[0], all[1], all[4], all[5], all[2], all[3]];
   }
-
   if (/Beach|Island/i.test(type)) {
-    return {
-      mood: 'Soft light, sea air, and a calm rhythm that turns every hour into a little escape.',
-      intro: 'The atmosphere leans into barefoot luxury, ocean views, and a slower pace that feels effortless from arrival to departure.',
-      bullets: ['Ocean-facing comfort', 'Relaxed island dining', 'Flexible days with space to breathe'],
-      itinerary: [
-        { title: 'Morning breeze', text: 'Start with breakfast by the water and time for a swim before the heat rises.' },
-        { title: 'Tropical afternoons', text: 'Choose between spa time, beach lounging, or a local outing.' },
-        { title: 'Evening glow', text: 'Watch the shoreline change color while dinner is served with the sea nearby.' },
-      ],
-      bestFor: 'Couples and families looking for a bright, restorative coastal stay.',
-      pace: 'Bright and breezy',
-    };
+    return [all[4], all[3], all[2], all[5], all[1], all[0]];
   }
-
   if (/Mountain|Coffee|Estate/i.test(type)) {
-    return {
-      mood: 'Cool air, thoughtful details, and a feeling of being tucked gently into nature.',
-      intro: 'This is a place for lingering over views, taking long walks, and savoring calm between the day’s little adventures.',
-      bullets: ['Scenic landscapes', 'Warm hospitality', 'Plenty of quiet corners'],
-      itinerary: [
-        { title: 'Highland mornings', text: 'Enjoy slow breakfasts with fresh air and wide views before the day begins.' },
-        { title: 'Afternoon reset', text: 'Take time for a walk, a garden pause, or a long lunch in comfort.' },
-        { title: 'Golden evenings', text: 'Settle in with stargazing, a drink, and a quiet night ahead.' },
-      ],
-      bestFor: 'Guests wanting a calm, scenic stay with character and comfort.',
-      pace: 'Gentle and restorative',
-    };
+    return [all[1], all[5], all[2], all[3], all[4], all[0]];
   }
-
-  return {
-    mood: 'A polished stay where comfort meets character and every detail feels carefully chosen.',
-    intro: 'The experience is designed for ease, elegance, and a sense of being looked after from the first arrival to the last goodbye.',
-    bullets: ['Thoughtful design', 'Easy access to local highlights', 'A warm, welcoming atmosphere'],
-    itinerary: [
-      { title: 'Arrival ease', text: 'Step in and settle into a calm, beautifully styled space with everything ready for you.' },
-      { title: 'Slow discovery', text: 'Spend the afternoon exploring the property or simply relaxing at your own pace.' },
-      { title: 'Evening comfort', text: 'Enjoy a relaxed dinner and a restful night in a space full of quiet luxury.' },
-    ],
-    bestFor: 'Guests seeking a refined stay with comfort, convenience, and local flavor.',
-    pace: 'Elegant and unhurried',
-  };
+  return all;
 };
 
 export default function AccommodationDetail({ accommodationId }: { accommodationId: number }) {
   const accommodation = accommodationCatalog.find((item) => item.id === accommodationId);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [bookingForm, setBookingForm] = useState(initialBookingForm);
-  const [bookingMessage, setBookingMessage] = useState('');
 
-  const handleBookingChange = (
-    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
+  const handleBookingChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = event.target;
     setBookingForm((current) => ({ ...current, [name]: value }));
   };
 
-  const handleBookingSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleBookingSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const subject = encodeURIComponent(`Booking request for ${accommodation?.title ?? 'selected hotel'}`);
@@ -118,7 +170,6 @@ export default function AccommodationDetail({ accommodationId }: { accommodation
     ].join('\n'));
 
     window.location.href = `mailto:geralldgchibanda6025@gmail.com?subject=${subject}&body=${body}`;
-    setBookingMessage('Your booking request is ready. Please send it from your email app to complete the request.');
     setBookingForm(initialBookingForm);
     setIsBookingOpen(false);
   };
@@ -136,198 +187,342 @@ export default function AccommodationDetail({ accommodationId }: { accommodation
     );
   }
 
-  const stayDetails = getStayDetails(accommodation.type);
+  const sections = getLodgeSections(accommodation.type);
+  const activities = getLodgeActivities(accommodation.type);
   const gallery = [accommodation.image, ...galleryBase];
+  const relatedLodges = accommodationCatalog
+    .filter((item) => item.id !== accommodation.id && item.location === accommodation.location)
+    .slice(0, 3);
 
   return (
-    <main className="min-h-screen bg-[#f7efe4] text-stone-800">
-      <section className="relative flex min-h-screen w-full flex-col overflow-hidden border-b border-stone-200 bg-white shadow-[0_25px_80px_rgba(59,43,24,0.12)]">
-        <img src={accommodation.image} alt={accommodation.title} className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/20" />
+    <main className="min-h-screen bg-white text-stone-800">
+      {/* Hero Section */}
+      <section className="relative h-[85vh] min-h-[600px] w-full overflow-hidden">
+        <Image
+          src={accommodation.image}
+          alt={accommodation.title}
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
 
-        <div className="relative z-10 flex flex-1 flex-col">
-          <div className="w-full">
-            <Navbar />
-          </div>
-
-          <div className="mx-auto flex w-full max-w-7xl flex-1 items-center justify-start px-6 py-10 pr-10 sm:py-12 sm:pr-14 lg:px-8 lg:py-16 lg:pr-20">
-            <div className="max-w-3xl text-left text-white">
-              <h1 className="text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">{accommodation.title}</h1>
-              <p className="mt-5 max-w-2xl text-base leading-8 text-stone-200 sm:text-lg">{accommodation.description}</p>
-              <div className="mt-8 flex flex-wrap items-center gap-3">
-                <span className="rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-medium text-stone-100">
+        <div className="absolute inset-0 z-10 flex flex-col justify-end pb-16 sm:pb-24">
+          <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
+            <div className="max-w-2xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-orange-300">
+                {accommodation.type}
+              </p>
+              <h1 className="mt-4 text-5xl font-semibold text-white sm:text-6xl lg:text-7xl">
+                {accommodation.title}
+              </h1>
+              <div className="mt-6 flex flex-wrap items-center gap-4 text-stone-200">
+                <span className="flex items-center gap-2 text-sm uppercase tracking-widest">
+                  <MapPin size={16} />
                   {accommodation.location}
                 </span>
-                <span className="rounded-full border border-white/25 bg-white/10 px-4 py-2 text-sm font-medium text-stone-100">
-                  {accommodation.price}
-                </span>
-                <button
-                  onClick={() => setIsBookingOpen(true)}
-                  className="group relative overflow-hidden rounded-full border border-white/60 bg-transparent px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-white transition-colors duration-300 hover:text-white"
-                >
-                  <span className="absolute inset-x-0 bottom-0 h-0 bg-orange-600 transition-all duration-300 group-hover:h-full" />
-                  <span className="relative z-10">Book now</span>
-                </button>
+                <span className="hidden sm:inline text-stone-500">|</span>
+                <span className="text-sm uppercase tracking-widest">{accommodation.price}</span>
               </div>
+              <button
+                onClick={() => setIsBookingOpen(true)}
+                className="mt-8 inline-flex items-center gap-3 rounded-full bg-white px-8 py-4 text-sm font-semibold uppercase tracking-[0.25em] text-stone-900 transition hover:bg-orange-500 hover:text-white"
+              >
+                Check availability
+                <ArrowRight size={16} />
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="mx-auto max-w-7xl px-6 py-8 lg:px-8 lg:py-10">
-
-        {bookingMessage && (
-          <div className="mb-6 w-full border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700">
-            {bookingMessage}
+      {/* Lodge Menu */}
+      <nav className="sticky top-0 z-40 border-b border-stone-200 bg-white/95 backdrop-blur-sm">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="flex items-center gap-8 overflow-x-auto py-4">
+            <Link href="/places-to-stay" className="flex items-center gap-2 text-sm font-medium text-stone-600 transition hover:text-orange-600">
+              <ArrowLeft size={16} />
+              Back
+            </Link>
+            <div className="hidden sm:block h-6 w-px bg-stone-200" />
+            <div className="flex items-center gap-6">
+              <a href="#overview" className="flex items-center gap-2 text-sm font-medium text-stone-600 transition hover:text-orange-600">
+                <Home size={16} />
+                Overview
+              </a>
+              <a href="#experience" className="flex items-center gap-2 text-sm font-medium text-stone-600 transition hover:text-orange-600">
+                <Sparkles size={16} />
+                Experience
+              </a>
+              <a href="#activities" className="flex items-center gap-2 text-sm font-medium text-stone-600 transition hover:text-orange-600">
+                <Compass size={16} />
+                Activities
+              </a>
+              <a href="#information" className="flex items-center gap-2 text-sm font-medium text-stone-600 transition hover:text-orange-600">
+                <ShieldCheck size={16} />
+                Information
+              </a>
+            </div>
           </div>
-        )}
+        </div>
+      </nav>
 
-        <section className="w-full overflow-hidden border border-stone-200 bg-white shadow-[0_25px_80px_rgba(59,43,24,0.12)]">
-          <div className="grid gap-6 border-t border-stone-200 bg-[#fcf4e9] p-6 lg:grid-cols-[1.15fr_0.85fr] lg:p-8">
+      {/* Overview Section */}
+      <section id="overview" className="py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-orange-500">Overview</p>
-              <h2 className="mt-3 max-w-2xl text-3xl font-semibold leading-tight text-stone-800 sm:text-4xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-orange-600">Overview</p>
+              <h2 className="mt-4 text-4xl font-semibold text-stone-800 sm:text-5xl">
                 A stay shaped around calm, comfort and discovery
               </h2>
-              <p className="mt-5 text-base leading-8 text-stone-700">{stayDetails.mood}</p>
-              <p className="mt-4 text-base leading-8 text-stone-700">{stayDetails.intro}</p>
-              <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                {stayDetails.bullets.map((item) => (
-                  <div key={item} className="flex w-full items-center gap-3 border border-stone-200 bg-white px-4 py-3 text-sm text-stone-700 shadow-sm">
-                    <Sparkles size={15} className="text-orange-500" />
+              <p className="mt-6 text-lg leading-8 text-stone-600">
+                {accommodation.description}
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                {accommodation.highlights.map((item) => (
+                  <span key={item} className="rounded-full border border-stone-200 bg-stone-50 px-4 py-2 text-sm text-stone-700">
                     {item}
-                  </div>
+                  </span>
                 ))}
               </div>
             </div>
-
-            <aside className="w-full border border-stone-200 bg-white p-6 shadow-sm">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-orange-500">Reserve now</p>
-              <p className="mt-4 text-sm uppercase tracking-[0.3em] text-stone-500">From</p>
-              <p className="mt-2 text-2xl font-semibold text-stone-800">{accommodation.price}</p>
-              <button
-                onClick={() => setIsBookingOpen(true)}
-                className="mt-6 inline-flex items-center justify-center rounded-full bg-[#3b2b18] px-6 py-3 text-sm font-semibold uppercase tracking-[0.25em] text-white transition hover:bg-orange-600"
-              >
-                Book now
-              </button>
-              <div className="mt-6 space-y-3 border-t border-stone-200 pt-5 text-sm text-stone-600">
-                <div className="flex items-center justify-between gap-4">
-                  <span>Location</span>
-                  <span className="font-semibold text-stone-800">{accommodation.location}</span>
-                </div>
-                <div className="flex items-center justify-between gap-4">
-                  <span>Stay type</span>
-                  <span className="font-semibold text-stone-800">{accommodation.type}</span>
-                </div>
-                <div className="flex items-center justify-between gap-4">
-                  <span>Best for</span>
-                  <span className="font-semibold text-stone-800">{stayDetails.bestFor}</span>
-                </div>
-              </div>
-              <div className="mt-6 w-full border border-stone-200 bg-[#fcf4e9] p-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-orange-500">The rhythm</p>
-                <p className="mt-2 text-sm leading-7 text-stone-700">{stayDetails.pace}</p>
-              </div>
-            </aside>
+            <div className="relative aspect-[4/3] overflow-hidden">
+              <Image
+                src={gallery[1]}
+                alt={accommodation.title}
+                fill
+                className="object-cover"
+              />
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div className="border-t border-stone-200 bg-white p-6 lg:p-8">
-            <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-orange-500">The experience</p>
-                <h3 className="mt-3 text-2xl font-semibold text-stone-800">A carefully paced stay</h3>
-                <div className="mt-5 space-y-4">
-                  {stayDetails.itinerary.map((item) => (
-                    <div key={item.title} className="w-full border border-stone-200 bg-stone-50 p-4">
-                      <div className="flex items-center gap-2 text-sm font-semibold text-stone-800">
-                        <CalendarDays size={15} className="text-orange-500" />
-                        {item.title}
-                      </div>
-                      <p className="mt-2 text-sm leading-7 text-stone-600">{item.text}</p>
+      {/* Experience Sections */}
+      <section id="experience" className="space-y-0">
+        {sections.map((section, index) => (
+          <div
+            key={section.title}
+            className={`border-t border-stone-200 ${
+              index % 2 === 0 ? 'bg-white' : 'bg-stone-50'
+            }`}
+          >
+            <div className="mx-auto max-w-7xl px-6 lg:px-8">
+              <div className={`grid gap-8 py-16 sm:gap-12 sm:py-24 lg:grid-cols-2 lg:gap-16`}>
+                <div className={`relative aspect-[4/3] overflow-hidden ${index % 2 !== 0 ? 'lg:order-2' : ''}`}>
+                  <Image
+                    src={section.image}
+                    alt={section.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className={`flex flex-col justify-center ${index % 2 !== 0 ? 'lg:order-1' : ''}`}>
+                  <p className="text-sm font-semibold uppercase tracking-[0.3em] text-orange-600">
+                    {index === 0 ? 'The setting' : index === 1 ? 'The atmosphere' : 'The location'}
+                  </p>
+                  <h3 className="mt-4 text-3xl font-semibold text-stone-800 sm:text-4xl">
+                    {section.title}
+                  </h3>
+                  <p className="mt-6 text-lg leading-8 text-stone-600">
+                    {section.text}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* Gallery Strip */}
+      <section className="border-t border-stone-200 bg-white py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-orange-600">Gallery</p>
+          <h2 className="mt-4 text-3xl font-semibold text-stone-800 sm:text-4xl">A closer look</h2>
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {gallery.map((image, index) => (
+              <div key={index} className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={image}
+                  alt={`${accommodation.title} view ${index + 1}`}
+                  fill
+                  className="object-cover transition duration-500 hover:scale-105"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Activities */}
+      <section id="activities" className="border-t border-stone-200 bg-stone-50 py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mb-12">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-orange-600">Experiences</p>
+            <h2 className="mt-4 text-3xl font-semibold text-stone-800 sm:text-4xl">What to see and do</h2>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {activities.map((activity) => (
+              <div key={activity.name} className="group relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src={activity.image}
+                  alt={activity.name}
+                  fill
+                  className="object-cover transition duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-6">
+                  <h3 className="text-xl font-semibold text-white">{activity.name}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Information */}
+      <section id="information" className="border-t border-stone-200 bg-white py-16 sm:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mb-12">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-orange-600">Lodge Information</p>
+            <h2 className="mt-4 text-3xl font-semibold text-stone-800 sm:text-4xl">Everything you need to know</h2>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="border border-stone-200 bg-stone-50 p-8 transition hover:border-orange-300 hover:shadow-sm">
+              <Home size={24} className="text-orange-600" />
+              <h3 className="mt-4 text-lg font-semibold text-stone-800">Accommodation & Amenities</h3>
+              <p className="mt-2 text-sm leading-7 text-stone-600">
+                {accommodation.amenities.join(', ')}
+              </p>
+            </div>
+            <div className="border border-stone-200 bg-stone-50 p-8 transition hover:border-orange-300 hover:shadow-sm">
+              <Star size={24} className="text-orange-600" />
+              <h3 className="mt-4 text-lg font-semibold text-stone-800">Rates</h3>
+              <p className="mt-2 text-sm leading-7 text-stone-600">
+                {accommodation.price}. Enquire for seasonal variations and special offers.
+              </p>
+            </div>
+            <div className="border border-stone-200 bg-stone-50 p-8 transition hover:border-orange-300 hover:shadow-sm">
+              <Clock size={24} className="text-orange-600" />
+              <h3 className="mt-4 text-lg font-semibold text-stone-800">Check-in / Check-out</h3>
+              <p className="mt-2 text-sm leading-7 text-stone-600">
+                Flexible timing available. Early arrivals and late departures can be arranged upon request.
+              </p>
+            </div>
+            <div className="border border-stone-200 bg-stone-50 p-8 transition hover:border-orange-300 hover:shadow-sm">
+              <Users size={24} className="text-orange-600" />
+              <h3 className="mt-4 text-lg font-semibold text-stone-800">Children</h3>
+              <p className="mt-2 text-sm leading-7 text-stone-600">
+                Family-friendly environment with activities and amenities suited for all ages.
+              </p>
+            </div>
+            <div className="border border-stone-200 bg-stone-50 p-8 transition hover:border-orange-300 hover:shadow-sm">
+              <Phone size={24} className="text-orange-600" />
+              <h3 className="mt-4 text-lg font-semibold text-stone-800">Contact Info</h3>
+              <p className="mt-2 text-sm leading-7 text-stone-600">
+                Direct line for bookings and inquiries. Our team is available to assist with your plans.
+              </p>
+            </div>
+            <div className="border border-stone-200 bg-stone-50 p-8 transition hover:border-orange-300 hover:shadow-sm">
+              <ShieldCheck size={24} className="text-orange-600" />
+              <h3 className="mt-4 text-lg font-semibold text-stone-800">Health & Travel</h3>
+              <p className="mt-2 text-sm leading-7 text-stone-600">
+                All travel requirements and health advisories are covered. We assist with every detail.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Related Collection */}
+      {relatedLodges.length > 0 && (
+        <section className="border-t border-stone-200 bg-stone-50 py-16 sm:py-24">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mb-12">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-orange-600">Our Collection</p>
+              <h2 className="mt-4 text-3xl font-semibold text-stone-800 sm:text-4xl">More places to stay</h2>
+            </div>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {relatedLodges.map((lodge) => (
+                <Link
+                  key={lodge.id}
+                  href={`/places-to-stay/${lodge.id}`}
+                  className="group flex flex-col bg-white"
+                >
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={lodge.image}
+                      alt={lodge.title}
+                      fill
+                      className="object-cover transition duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-6">
+                    <h3 className="text-xl font-semibold text-stone-800">{lodge.title}</h3>
+                    <p className="mt-2 flex items-center gap-2 text-sm text-stone-500">
+                      <MapPin size={14} />
+                      {lodge.location}
+                    </p>
+                    <p className="mt-4 text-sm text-orange-600">{lodge.price}</p>
+                    <div className="mt-auto flex items-center gap-2 pt-4 text-sm font-medium text-stone-700 group-hover:text-orange-600">
+                      Discover
+                      <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
                     </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="w-full bg-[#3b2b18] p-6 text-white">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-orange-300">Highlights</p>
-                <h2 className="mt-3 text-2xl font-semibold">What makes this stay shine</h2>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  {accommodation.highlights.map((item) => (
-                    <span key={item} className="rounded-full border border-white/20 bg-white/10 px-3 py-2 text-sm text-stone-100">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="mt-8 w-full border border-white/10 bg-white/10 p-4">
-                  <h3 className="text-lg font-semibold">Amenities</h3>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {accommodation.amenities.map((item) => (
-                      <span key={item} className="flex items-center gap-2 rounded-full bg-white/10 px-3 py-2 text-sm text-stone-100">
-                        {item === 'Pool' && <Waves size={14} />}
-                        {item === 'Free WiFi' && <Wifi size={14} />}
-                        {item === 'Breakfast' && <Utensils size={14} />}
-                        {item === 'Spa' && <Sparkles size={14} />}
-                        {item === 'Restaurant' && <Utensils size={14} />}
-                        {item === 'Bar' && <Utensils size={14} />}
-                        {item === 'Game Drives' && <BedDouble size={14} />}
-                        {item}
-                      </span>
-                    ))}
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-stone-200 bg-white p-6 lg:p-8">
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-orange-500">Gallery</p>
-                <h2 className="mt-2 text-2xl font-semibold text-stone-800">A closer look at the stay</h2>
-              </div>
-              <p className="text-sm text-stone-500">{stayDetails.pace}</p>
-            </div>
-
-            <div className="mt-6 grid gap-4 md:grid-cols-3">
-              {gallery.map((image, index) => (
-                <div key={`${image}-${index}`} className="w-full overflow-hidden border border-stone-200 bg-stone-50">
-                  <img src={image} alt={`${accommodation.title} view ${index + 1}`} className="h-56 w-full object-cover" />
-                  <div className="p-4 text-sm text-stone-600">
-                    {index === 0 && 'Main view'}
-                    {index === 1 && 'Arrival experience'}
-                    {index === 2 && 'Comfort and detail'}
-                    {index === 3 && 'Atmosphere at dusk'}
-                  </div>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
+        </section>
+      )}
 
-          <div className="border-t border-stone-200 bg-[#fcf6eb] p-6 lg:p-8">
-            <div className="grid gap-6 lg:grid-cols-3">
-              <div className="w-full border border-stone-200 bg-white p-5">
-                <Compass size={18} className="text-orange-500" />
-                <h3 className="mt-3 text-lg font-semibold text-stone-800">Best for</h3>
-                <p className="mt-2 text-sm leading-7 text-stone-600">{stayDetails.bestFor}</p>
-              </div>
-              <div className="w-full border border-stone-200 bg-white p-5">
-                <ShieldCheck size={18} className="text-orange-500" />
-                <h3 className="mt-3 text-lg font-semibold text-stone-800">Comfort promise</h3>
-                <p className="mt-2 text-sm leading-7 text-stone-600">Every stay is shaped around ease, thoughtful service, and a restful atmosphere.</p>
-              </div>
-              <div className="w-full border border-stone-200 bg-white p-5">
-                <Star size={18} className="text-orange-500" />
-                <h3 className="mt-3 text-lg font-semibold text-stone-800">Guest favorite</h3>
-                <p className="mt-2 text-sm leading-7 text-stone-600">A balance of comfort, character, and scenery that feels both luxurious and deeply personal.</p>
+      {/* Footer */}
+      <footer className="border-t border-stone-200 bg-stone-900 py-16 text-stone-300">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-4">
+            <div className="lg:col-span-2">
+              <h3 className="text-2xl font-semibold text-white">{accommodation.title}</h3>
+              <p className="mt-4 max-w-md text-sm leading-7 text-stone-400">
+                {accommodation.description}
+              </p>
+              <div className="mt-6 flex items-center gap-4">
+                <a href="mailto:geralldgchibanda6025@gmail.com" className="flex items-center gap-2 text-sm text-stone-400 transition hover:text-white">
+                  <Mail size={16} />
+                  geralldgchibanda6025@gmail.com
+                </a>
               </div>
             </div>
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-widest text-stone-500">Explore</h4>
+              <ul className="mt-4 space-y-3">
+                <li><Link href="/" className="text-sm text-stone-400 transition hover:text-white">Home</Link></li>
+                <li><Link href="/places-to-stay" className="text-sm text-stone-400 transition hover:text-white">Places to Stay</Link></li>
+                <li><Link href="/safaris" className="text-sm text-stone-400 transition hover:text-white">Safaris</Link></li>
+                <li><Link href="/activities" className="text-sm text-stone-400 transition hover:text-white">Activities</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-sm font-semibold uppercase tracking-widest text-stone-500">Contact</h4>
+              <ul className="mt-4 space-y-3">
+                <li className="flex items-center gap-2 text-sm text-stone-400">
+                  <MapPin size={16} />
+                  {accommodation.location}
+                </li>
+                <li className="flex items-center gap-2 text-sm text-stone-400">
+                  <Phone size={16} />
+                  +263 ...
+                </li>
+              </ul>
+            </div>
           </div>
-        </section>
-      </div>
+          <div className="mt-16 border-t border-stone-800 pt-8 text-center text-xs text-stone-500">
+            © {new Date().getFullYear()} African Memories. All rights reserved.
+          </div>
+        </div>
+      </footer>
 
+      {/* Booking Modal */}
       {isBookingOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/65 px-4 py-4">
           <div className="w-full max-w-2xl bg-white p-5 shadow-2xl sm:p-6">

@@ -55,7 +55,7 @@ export default function GallerySection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="col-span-12 md:col-span-4 overflow-hidden relative"
+            className="col-span-12 md:col-span-4 overflow-hidden relative mt-[50px]"
             whileHover={{ scale: 1.02 }}
           >
             <Image src={galleryImages[0]} alt="Gallery image 1" fill className="object-cover" />
@@ -64,7 +64,7 @@ export default function GallerySection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="col-span-12 md:col-span-3 overflow-hidden relative"
+            className="col-span-12 md:col-span-3 overflow-hidden relative mt-[50px]"
             whileHover={{ scale: 1.02 }}
           >
             <Image src={galleryImages[1]} alt="Gallery image 2" fill className="object-cover" />
@@ -73,7 +73,7 @@ export default function GallerySection() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="col-span-12 md:col-span-5 overflow-hidden relative"
+            className="col-span-12 md:col-span-5 overflow-hidden relative mt-[50px]"
             whileHover={{ scale: 1.02 }}
           >
             <Image src={galleryImages[2]} alt="Gallery image 3" fill className="object-cover" />

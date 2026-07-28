@@ -1,5 +1,6 @@
 "use client"
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { imagekitUrl } from '../../lib/imagekit';
 
 const AnimatedCounter = ({ target, duration = 2000 }: { target: string; duration?: number }) => {
@@ -61,9 +62,9 @@ const Welcome: React.FC = () => {
 
         {/* Buttons */}
         <div className="flex gap-4">
-          <button className="bg-orange-500 text-white px-6 py-3 rounded-md font-medium shadow hover:bg-orange-600 transition">
+          <Link href="/about" className="bg-orange-500 text-white px-6 py-3 rounded-md font-medium shadow hover:bg-orange-600 transition">
             More About Us
-          </button>
+          </Link>
           <button className="border border-gray-900 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition">
             Contact Us
           </button>

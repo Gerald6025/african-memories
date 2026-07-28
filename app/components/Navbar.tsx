@@ -55,7 +55,7 @@ export default function Navbar() {
           <NavLink href="#" onClick={closeMenu}>Home</NavLink>
           <NavLink href="#" onClick={closeMenu}>Things To Do</NavLink>
           <NavLink href="/places-to-stay" onClick={closeMenu}>Places To Stay</NavLink>
-          <NavLink href="#" onClick={closeMenu}>About</NavLink>
+             <NavLink href="/about" onClick={closeMenu}>About</NavLink>
           <NavLink href="#" onClick={closeMenu}>Blog</NavLink>
           <NavLink href="#" onClick={closeMenu}>Contact</NavLink>
         </div>
@@ -153,7 +153,7 @@ export default function Navbar() {
             <NavLink href="#" onClick={closeMenu}>Home</NavLink>
             <NavLink href="#" onClick={closeMenu}>Things To Do</NavLink>
             <NavLink href="/places-to-stay" onClick={closeMenu}>Places To Stay</NavLink>
-            <NavLink href="#" onClick={closeMenu}>About</NavLink>
+          <NavLink href="/about" onClick={closeMenu}>About</NavLink>
             <NavLink href="#" onClick={closeMenu}>Blog</NavLink>
             <NavLink href="#" onClick={closeMenu}>Contact</NavLink>
           </div>

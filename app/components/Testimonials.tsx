@@ -91,10 +91,11 @@ export default function Testimonials() {
 
   return (
     <section
-      className="relative py-20 sm:py-28 bg-cover bg-center bg-no-repeat"
+      className="relative overflow-hidden py-20 sm:py-28 bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage:
           "url(https://images.pexels.com/photos/33650538/pexels-photo-33650538.jpeg)",
+        backgroundAttachment: "fixed",
       }}
     >
       <div className="absolute inset-0 bg-black/60" />

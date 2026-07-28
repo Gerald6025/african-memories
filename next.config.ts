@@ -8,6 +8,21 @@ const nextConfig: NextConfig = {
         hostname: 'ik.imagekit.io',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'dynamic-media-cdn.tripadvisor.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.ilalalodge.com',
+        pathname: '/**',
+      },
     ],
   },
 };

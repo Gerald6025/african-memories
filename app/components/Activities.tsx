@@ -46,7 +46,7 @@ export default function Activities() {
       name: "White Water Rafting",
       location: "Victoria Falls",
       image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcj-KPZsqeScw0cLFOcZGaTooDz_6LOFDHZw&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCTv84Aweoc6ITAdCi38xfK4p-iD7HpcTRlVmzzhuGeA&s=10",
       alt: "Walking safari guide tracking",
       carImage:
         "https://images.unsplash.com/photo-1544551763-46a0d32945f6?q=80&w=800&auto=format&fit=crop",

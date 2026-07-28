@@ -176,7 +176,7 @@ export default function Places() {
         </p>
 
         <Link
-          href="/accommodations/chem-chem-lodge"
+          href="/places-to-stay/1"
           className="group mt-8 inline-flex items-center gap-3 uppercase tracking-[0.3em] text-sm text-[#3b2b18]"
         >
           Discover
@@ -197,7 +197,7 @@ export default function Places() {
         </p>
 
         <Link
-          href="/accommodations/chem-chem-lodge"
+          href="/places-to-stay/1"
           className="group mt-6 inline-flex items-center gap-3 uppercase tracking-[0.3em] text-sm text-[#3b2b18]"
         >
           Discover
@@ -222,7 +222,7 @@ export default function Places() {
         </p>
 
         <Link
-          href="/accommodations/kings-pool"
+          href="/places-to-stay/5"
           className="group mt-8 inline-flex items-center gap-3 uppercase tracking-[0.3em] text-sm text-[#3b2b18]"
         >
           Discover
@@ -243,7 +243,7 @@ export default function Places() {
         </p>
 
         <Link
-          href="/accommodations/kings-pool"
+          href="/places-to-stay/5"
           className="group mt-6 inline-flex items-center gap-3 uppercase tracking-[0.3em] text-sm text-[#3b2b18]"
         >
           Discover
@@ -269,7 +269,7 @@ export default function Places() {
         </p>
 
         <Link
-          href="/accommodations/chem-chem-lodge"
+          href="/places-to-stay/2"
           className="group mt-8 inline-flex items-center gap-3 uppercase tracking-[0.3em] text-sm text-[#3b2b18]"
         >
           Discover
@@ -290,7 +290,7 @@ export default function Places() {
         </p>
 
         <Link
-          href="/accommodations/chem-chem-lodge"
+          href="/places-to-stay/2"
           className="group mt-6 inline-flex items-center gap-3 uppercase tracking-[0.3em] text-sm text-[#3b2b18]"
         >
           Discover
