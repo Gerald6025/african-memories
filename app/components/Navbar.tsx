@@ -57,7 +57,7 @@ export default function Navbar() {
           <NavLink href="/places-to-stay" onClick={closeMenu}>Places To Stay</NavLink>
              <NavLink href="/about" onClick={closeMenu}>About</NavLink>
           <NavLink href="#" onClick={closeMenu}>Blog</NavLink>
-          <NavLink href="#" onClick={closeMenu}>Contact</NavLink>
+          <NavLink href="/contact" onClick={closeMenu}>Contact</NavLink>
         </div>
 
         {/* Mobile menu button */}
@@ -155,7 +155,7 @@ export default function Navbar() {
             <NavLink href="/places-to-stay" onClick={closeMenu}>Places To Stay</NavLink>
           <NavLink href="/about" onClick={closeMenu}>About</NavLink>
             <NavLink href="#" onClick={closeMenu}>Blog</NavLink>
-            <NavLink href="#" onClick={closeMenu}>Contact</NavLink>
+            <NavLink href="/contact" onClick={closeMenu}>Contact</NavLink>
           </div>
         </div>
       </div>
