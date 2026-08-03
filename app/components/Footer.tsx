@@ -71,10 +71,12 @@ const Footer: React.FC = () => {
               <a href="/places-to-stay" className="hover:text-[#C7A27C] transition">
                 Places To Stay
               </a>
-
-              
-              <a href="#" className="hover:text-[#C7A27C] transition">
+<a href="#" className="hover:text-[#C7A27C] transition">
                 Gallery
+              </a>
+
+              <a href="/blog" className="hover:text-[#C7A27C] transition">
+                Blog
               </a>
 
               <a href="#" className="hover:text-[#C7A27C] transition">

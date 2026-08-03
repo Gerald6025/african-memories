@@ -6,7 +6,7 @@ const colors = {
   bg: "#FFF7E5",
   heading: "#4B3621",
   body: "#5D4A37",
-  accent: "#E77B2A",
+  accent: "#ea580c",
   white: "#FFFFFF",
   muted: "#EDEBE9",
 };
