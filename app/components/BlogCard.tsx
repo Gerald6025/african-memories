@@ -6,6 +6,7 @@ import Image from "next/image";
 
 interface BlogCardProps {
   title: string;
+  excerpt: string;
   date: string;
   image: string;
   slug: string;
@@ -14,9 +15,11 @@ interface BlogCardProps {
 
 export default function BlogCard({
   title,
+  excerpt,
   date,
   image,
   slug,
+  category,
 }: BlogCardProps) {
   return (
     <motion.article
@@ -40,6 +43,7 @@ export default function BlogCard({
           <h3 className="text-2xl font-semibold tracking-tight text-[#1f1f1f] leading-tight">
             {title}
           </h3>
+          <p className="text-sm text-slate-700">{excerpt}</p>
           <p className="text-sm uppercase tracking-[0.24em] text-slate-500">
             {date}
           </p>
