@@ -5,6 +5,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { accommodations as accommodationCatalog } from '../data/accommodations';
 import Navbar from './Navbar';
+import AccommodationFacilitiesSection from './AccommodationFacilities';
+import AccommodationMainTitlesSection from './AccommodationMainTitles';
 
 export default function AccommodationDetail({ accommodationId }: { accommodationId: number }) {
   const accommodation = accommodationCatalog.find((item) => item.id === accommodationId);
@@ -46,15 +48,20 @@ export default function AccommodationDetail({ accommodationId }: { accommodation
 
       <AccommodationDetailFeature accommodation={accommodation} />
       <AccommodationImageCarousel accommodation={accommodation} />
+      <AccommodationFacilitiesSection accommodation={accommodation} />
+      <div className="bg-[#f8efe6] py-6">
+        <div className="mx-auto h-px w-[94%] bg-[#3b2b18] opacity-70" />
+      </div>
+      <AccommodationMainTitlesSection accommodation={accommodation} />
     </main>
   );
 }
 
 function AccommodationDetailFeature({ accommodation }: { accommodation: (typeof accommodationCatalog)[0] }) {
   return (
-    <section className="bg-[#f8efe6] text-stone-800">
-      <div className="container mx-auto px-6 py-16 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+    <section className="bg-[#f8efe6] text-stone-800 py-[150px]">
+      <div className="container mx-auto px-6 py-0 lg:px-8">
+        <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-stretch">
           <div className="max-w-2xl">
             <h2 className="text-4xl font-semibold leading-tight text-[#3b2b18] sm:text-5xl">
               Explore {accommodation.title}
@@ -85,7 +92,7 @@ function AccommodationDetailFeature({ accommodation }: { accommodation: (typeof 
             </div>
           </div>
 
-          <div className="overflow-hidden bg-white shadow-2xl ring-1 ring-black/5">
+          <div className="overflow-hidden bg-white shadow-2xl ring-1 ring-black/5 h-full">
             <Image
               src={accommodation.image}
               alt={accommodation.title}
@@ -108,6 +115,7 @@ function AccommodationImageCarousel({ accommodation }: { accommodation: (typeof 
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [startX, setStartX] = useState(0);
   const [savedScrollLeft, setSavedScrollLeft] = useState(0);
+  const [pointerId, setPointerId] = useState<number | null>(null);
 
   const carouselImages = [
     { src: accommodation.image, alt: `${accommodation.title} overview`, minWidth: 540 },
@@ -116,76 +124,54 @@ function AccommodationImageCarousel({ accommodation }: { accommodation: (typeof 
     { src: accommodationCatalog.find((item) => item.id !== accommodation.id && item.image !== accommodation.image && item.id !== accommodation.id + 1)?.image ?? accommodation.image, alt: 'Dining view', minWidth: 520 },
   ];
 
-  const handleMouseEnter = () => {
+  const handlePointerEnter = () => {
     setIsHovering(true);
   };
 
-  const handleMouseLeave = () => {
+  const handlePointerLeave = () => {
     if (!isDragging) {
       setIsHovering(false);
     }
   };
 
-  const handleCircleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     event.preventDefault();
     if (!carouselRef.current) return;
     setIsDragging(true);
-    setStartX(event.clientX - carouselRef.current.getBoundingClientRect().left);
+    setPointerId(event.pointerId);
+    setStartX(event.clientX);
     setSavedScrollLeft(carouselRef.current.scrollLeft);
+    setIsHovering(true);
+    event.currentTarget.setPointerCapture(event.pointerId);
   };
 
-  const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
     if (!carouselRef.current) return;
-    const rect = carouselRef.current.getBoundingClientRect();
-    setCursorPos({ x: event.clientX - rect.left, y: event.clientY - rect.top });
+    setCursorPos({ x: event.clientX, y: event.clientY });
 
-    if (isDragging) {
-      const x = event.clientX - rect.left;
-      const walk = x - startX;
+    if (isDragging && event.pointerId === pointerId) {
+      const walk = event.clientX - startX;
       carouselRef.current.scrollLeft = savedScrollLeft - walk;
     }
   };
 
-  const handleMouseUp = () => {
+  const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
     setIsDragging(false);
+    setPointerId(null);
+    event.currentTarget.releasePointerCapture(event.pointerId);
   };
-
-  const handleDocumentMouseMove = (event: MouseEvent) => {
-    if (!carouselRef.current || !isDragging) return;
-    const rect = carouselRef.current.getBoundingClientRect();
-    setCursorPos({ x: event.clientX - rect.left, y: event.clientY - rect.top });
-
-    const x = event.clientX - rect.left;
-    const walk = x - startX;
-    carouselRef.current.scrollLeft = savedScrollLeft - walk;
-  };
-
-  const handleDocumentMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  useEffect(() => {
-    if (!isDragging) return;
-
-    document.addEventListener('mousemove', handleDocumentMouseMove);
-    document.addEventListener('mouseup', handleDocumentMouseUp);
-
-    return () => {
-      document.removeEventListener('mousemove', handleDocumentMouseMove);
-      document.removeEventListener('mouseup', handleDocumentMouseUp);
-    };
-  }, [isDragging, startX, savedScrollLeft]);
 
   return (
     <section className="bg-[#f8efe6] text-[#3b2b18] w-full pt-5">
       <div className="w-full overflow-hidden pb-16">
         <div
           ref={carouselRef}
-          className="relative flex gap-6 overflow-x-scroll overflow-y-hidden pb-6 pr-6 scroll-smooth w-screen no-scrollbar"
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
+          className="relative flex gap-6 overflow-x-scroll overflow-y-hidden pb-6 pr-6 scroll-smooth w-screen no-scrollbar cursor-none select-none"
+          onPointerEnter={handlePointerEnter}
+          onPointerLeave={handlePointerLeave}
+          onPointerMove={handlePointerMove}
+          onPointerDown={handlePointerDown}
+          onPointerUp={handlePointerUp}
           style={{ cursor: 'none', WebkitOverflowScrolling: 'touch', minHeight: '460px' }}
         >
           {carouselImages.map((image, index) => (
@@ -194,20 +180,23 @@ function AccommodationImageCarousel({ accommodation }: { accommodation: (typeof 
               className="snap-start flex-shrink-0 overflow-hidden bg-white shadow-2xl ring-1 ring-black/5"
               style={{ minWidth: `${image.minWidth}px`, height: '470px' }}
             >
-              <img src={image.src} alt={image.alt} className="h-full w-full object-cover" />
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="h-full w-full object-cover"
+                draggable={false}
+                onDragStart={(event) => event.preventDefault()}
+              />
             </div>
           ))}
 
           <div
-            className="absolute z-20 flex h-20 w-20 items-center justify-center rounded-full bg-[#3b2b18] text-[10px] uppercase tracking-[0.35em] text-white shadow-lg transition-transform duration-200 pointer-events-auto"
-            onMouseDown={handleCircleMouseDown}
-            onMouseUp={handleMouseUp}
+            className="fixed z-50 flex h-20 w-20 items-center justify-center rounded-full bg-[#3b2b18] text-[10px] uppercase tracking-[0.35em] text-white shadow-lg transition-transform duration-200 pointer-events-none"
             style={{
               display: isHovering || isDragging ? 'flex' : 'none',
               left: cursorPos.x,
               top: cursorPos.y,
               transform: 'translate(-50%, -50%)',
-              cursor: isDragging ? 'grabbing' : 'pointer',
             }}
           >
             drag
