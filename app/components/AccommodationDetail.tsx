@@ -53,6 +53,21 @@ export default function AccommodationDetail({ accommodationId }: { accommodation
         <div className="mx-auto h-px w-[94%] bg-[#3b2b18] opacity-70" />
       </div>
       <AccommodationMainTitlesSection accommodation={accommodation} />
+
+      <section className="bg-[#f8efe6] py-12">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="flex justify-center">
+            <Image
+              src={accommodation.foodImage ?? accommodation.image}
+              alt="Dining at accommodation"
+              width={1350}
+              height={900}
+              className="w-[86.4vw] max-w-none object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
     </main>
   );
 }

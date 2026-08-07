@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import BlogHero from "../components/BlogHero";
@@ -9,7 +8,7 @@ import BlogCard from "../components/BlogCard";
 const blogPosts = [
   {
     title: "A Day in the Life of a Safari Explorer Experiencing Africa's Untamed Beauty",
-    excerpt: "From sunrise game drives to sunset boat cruises, discover what a typical day looks like for a safari enthusiast exploring the vast African wilderness.",
+    excerpt: "From sunrise game drives to sunset boat cruises, discover what a typical day looks like for a safari enthusiast exploring the vast African wilderness. Every moment brings a new wonder, from the golden light of dawn painting the savanna to the star-filled African sky at night.",
     date: "May 13, 2025",
     image: "https://ik.imagekit.io/c0x52ylk1/New%20folder/ban.jpg",
     slug: "a-day-in-the-life-of-a-safari-explorer",
@@ -57,52 +56,84 @@ const blogPosts = [
   },
 ];
 
+const categories = Array.from(new Set(blogPosts.map((post) => post.category)));
+
 export default function BlogPage() {
+  const [featuredPost, ...otherPosts] = blogPosts;
+
   return (
     <div className="min-h-screen">
       <Navbar />
       <BlogHero />
 
-      <section className="py-16 sm:py-20 bg-white">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, index) => (
-              <BlogCard
-                key={post.slug}
-                title={post.title}
-                excerpt={post.excerpt}
-                date={post.date}
-                image={post.image}
-                slug={post.slug}
-                category={post.category}
-              />
-            ))}
-          </div>
+      {/* Featured Post - Full Width */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-[1280px] px-4 md:px-0 lg:px-0 pt-14 pb-18">
+          {featuredPost && (
+            <BlogCard
+              title={featuredPost.title}
+              excerpt={featuredPost.excerpt}
+              date={featuredPost.date}
+              image={featuredPost.image}
+              slug={featuredPost.slug}
+              category={featuredPost.category}
+              featured
+            />
+          )}
+        </div>
+      </section>
 
-          <div className="mt-12 text-center">
-            <motion.button
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="inline-flex items-center gap-2 bg-[#3b2b18] text-white px-8 py-3 rounded-md font-medium hover:bg-orange-600 transition-colors duration-300"
-            >
-              Load More
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </motion.button>
+      {/* Smaller Posts with Sidebar */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-[1280px] px-4 md:px-0 lg:px-0">
+          <div className="flex flex-col lg:flex-row gap-5 lg:gap-7 pt-9 pb-18">
+            {/* Sidebar */}
+            <aside className="w-full lg:w-64 flex-shrink-0">
+              <div className="lg:sticky lg:top-8">
+                <div className="mb-10">
+                  <h2 className="font-serif text-lg font-semibold text-[#4B3621] mb-4">
+                    Search
+                  </h2>
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    className="w-full rounded-md border border-gray-200 bg-white px-4 py-3 text-sm text-[#5D4A37] placeholder:text-gray-400 focus:border-[#ea580c] focus:outline-none"
+                  />
+                </div>
+
+                <div>
+                  <h2 className="font-serif text-lg font-semibold text-[#4B3621] mb-4">
+                    Select category
+                  </h2>
+                  <div className="flex flex-row lg:flex-col items-start gap-2 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0">
+                    {categories.map((cat) => (
+                      <button
+                        key={cat}
+                        className="whitespace-nowrap px-4 py-2 text-sm text-[#5D4A37] transition-colors hover:text-[#ea580c]"
+                      >
+                        {cat}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </aside>
+
+            {/* Blog Grid */}
+            <div className="flex-1">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {otherPosts.map((post) => (
+                  <BlogCard
+                    key={post.slug}
+                    title={post.title}
+                    date={post.date}
+                    image={post.image}
+                    slug={post.slug}
+                    category={post.category}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>

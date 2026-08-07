@@ -23,6 +23,16 @@ const nextConfig: NextConfig = {
         hostname: 'www.ilalalodge.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.palmriverhotel.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'source.unsplash.com',
+        pathname: '/**',
+      },
     ],
   },
 };

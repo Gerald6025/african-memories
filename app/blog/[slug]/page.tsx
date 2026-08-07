@@ -95,27 +95,30 @@ export default function BlogPostPage() {
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/40" />
         <div className="absolute bottom-8 left-6 right-6 md:left-12 md:right-12 z-10">
-          <span className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-500">
-            {post.category}
-          </span>
-          <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-sm font-medium tracking-wide text-[#ea580c]">
+              {post.category}
+            </span>
+            <span className="inline-block h-1 w-1 rounded-full bg-white" />
+            <span className="text-sm text-white/80">{post.date}</span>
+          </div>
+          <h1 className="font-serif text-3xl md:text-5xl font-normal text-white leading-tight">
             {post.title}
           </h1>
-          <p className="mt-3 text-white/70 text-sm">{post.date}</p>
         </div>
       </motion.section>
 
-      <article className="container mx-auto px-6 lg:px-8 py-16 max-w-4xl">
+      <article className="mx-auto max-w-[1280px] px-6 md:px-8 lg:px-12 py-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="max-w-none text-[#3b2b18]"
+          className="max-w-3xl"
         >
           {post.content.split("\n\n").map((paragraph, i) => (
-            <p key={i} className="mb-6 leading-relaxed text-gray-700">
+            <p key={i} className="mb-6 leading-[1.8] text-[#5D4A37] text-base md:text-lg">
               {paragraph}
             </p>
           ))}
@@ -129,7 +132,7 @@ export default function BlogPostPage() {
         >
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-orange-500 font-semibold hover:text-orange-600 transition-colors"
+            className="inline-flex items-center gap-2 text-[#ea580c] font-semibold hover:text-[#3b2b18] transition-colors"
           >
             <svg
               className="w-4 h-4"
