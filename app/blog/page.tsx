@@ -106,7 +106,7 @@ export default function BlogPage() {
       <Navbar />
       <BlogHero />
 
-      {/* Featured Post - Full Width */}
+   
       <section className="bg-white">
         <div className="mx-auto max-w-[1280px] px-4 md:px-0 lg:px-0 pt-14 pb-18">
           {featuredPost && (
@@ -123,11 +123,11 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Smaller Posts with Sidebar */}
+     
       <section className="bg-white">
         <div className="mx-auto max-w-[1280px] px-4 md:px-0 lg:px-0">
           <div className="flex flex-col lg:flex-row gap-5 lg:gap-7 pt-9 pb-18">
-            {/* Sidebar */}
+           
             <aside className="w-full lg:w-64 flex-shrink-0">
               <div className="lg:sticky lg:top-8">
                 <div className="mb-10">

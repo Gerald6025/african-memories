@@ -53,7 +53,7 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-8">
 <NavLink href="/" onClick={closeMenu}>Home</NavLink>
-           <NavLink href="#" onClick={closeMenu}>Things To Do</NavLink>
+           <NavLink href="/adventures" onClick={closeMenu}>Things To Do</NavLink>
           <NavLink href="/places-to-stay" onClick={closeMenu}>Places To Stay</NavLink>
              <NavLink href="/about" onClick={closeMenu}>About</NavLink>
           <NavLink href="/blog" onClick={closeMenu}>Blog</NavLink>
@@ -151,7 +151,7 @@ export default function Navbar() {
             isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
           }`}>
             <NavLink href="/" onClick={closeMenu}>Home</NavLink>
-            <NavLink href="#" onClick={closeMenu}>Things To Do</NavLink>
+            <NavLink href="/adventures" onClick={closeMenu}>Things To Do</NavLink>
             <NavLink href="/places-to-stay" onClick={closeMenu}>Places To Stay</NavLink>
           <NavLink href="/about" onClick={closeMenu}>About</NavLink>
 <NavLink href="/blog" onClick={closeMenu}>Blog</NavLink>
