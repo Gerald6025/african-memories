@@ -5,7 +5,7 @@ export default function AboutHero() {
     <section className="relative h-[72vh] md:h-[84vh] lg:h-[120vh] overflow-hidden">
       <div className="absolute inset-0">
         <img
-          src="https://ik.imagekit.io/c0x52ylk1/New%20folder/waterfall.jpg?updatedAt=1780424930629"
+          src="https://ik.imagekit.io/c0x52ylk1/Dennis/WhatsApp%20Image%202026-08-13%20at%2010.06.13.jpeg?updatedAt=1786610597358"
           alt="About African Memories"
           className="h-full w-full object-cover"
         />
