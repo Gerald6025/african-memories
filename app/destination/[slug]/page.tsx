@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, MapPin } from "lucide-react";
 import Navbar from "../../components/Navbar";
+import { accommodations } from "../../data/accommodations";
 
 type PageProps = {
   params: Promise<{
@@ -10,9 +11,10 @@ type PageProps = {
 
 const destinations = [
   {
-    slug: "victoria-falls",
+     slug: "victoria-falls",
     name: "Victoria Falls",
     image: "https://images.pexels.com/photos/21631113/pexels-photo-21631113.jpeg",
+    statement: "Witness one of the world's seven natural wonders here today",
     description:
       "Witness the awe-inspiring Victoria Falls, one of the Seven Natural Wonders of the World. Feel the mist on your face as the Zambezi River plunges into a deep gorge, creating a thunderous spectacle of water and light.",
     highlights: [
@@ -23,9 +25,10 @@ const destinations = [
     ],
   },
   {
-    slug: "kariba",
+     slug: "kariba",
     name: "Kariba",
     image: "https://images.pexels.com/photos/16083420/pexels-photo-16083420.jpeg",
+    statement: "Discover a serene lakeside paradise nestled between Zimbabwe and Zambia",
     description:
       "Discover Kariba, a tranquil lakeside paradise nestled between Zimbabwe and Zambia. Home to the world's largest man-made lake and the legendary tiger fish, Kariba offers unforgettable sunsets and serene island escapes.",
     highlights: [
@@ -36,9 +39,10 @@ const destinations = [
     ],
   },
   {
-    slug: "hwange",
+     slug: "hwange",
     name: "Hwange",
     image: "https://images.pexels.com/photos/18386171/pexels-photo-18386171.jpeg",
+    statement: "Explore Zimbabwe's largest national park with vast savannas and wildlife",
     description:
       "Explore Zimbabwe's largest national park, Hwange, where vast savannas, ancient woodlands, and abundant wildlife converge. Spot elephants, lions, and rare wild dogs in their natural habitat.",
     highlights: [
@@ -49,9 +53,10 @@ const destinations = [
     ],
   },
   {
-    slug: "nyanga",
+     slug: "nyanga",
     name: "Nyanga",
     image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/f7/12/a6/aberfoyle-lodge.jpg?w=1200&h=-1&s=1",
+    statement: "Escape to Nyanga's lush highlands with cool mountain air today",
     description:
       "Escape to Nyanga's lush highlands and rolling green hills. Zimbabwe's premier mountain destination offers trout fishing, ancient rock art, hiking trails, and cool mountain air.",
     highlights: [
@@ -62,9 +67,10 @@ const destinations = [
     ],
   },
   {
-    slug: "masvingo",
+     slug: "masvingo",
     name: "Masvingo",
     image: "https://images.pexels.com/photos/1105754/pexels-photo-1105754.jpeg",
+    statement: "Step back in time at ancient medieval kingdom stone ruins",
     description:
       "Step back in time at Masvingo, home to the majestic Great Zimbabwe Ruins. A UNESCO World Heritage Site, this ancient city tells the story of a once-great medieval kingdom through its stone ruins and rich history.",
     highlights: [
@@ -74,14 +80,6 @@ const destinations = [
       "Traditional storytelling tours",
     ],
   },
-];
-
-const activities = [
-  { id: 1, name: 'Wildlife And Safari', image: 'https://ik.imagekit.io/c0x52ylk1/New%20folder/wildlife%20and%20safari.jpg' },
-  { id: 2, name: 'Special Tours', image: 'https://ik.imagekit.io/c0x52ylk1/New%20folder/special%20tours.jpg' },
-  { id: 3, name: 'Scenic', image: 'https://ik.imagekit.io/c0x52ylk1/New%20folder/scenic.jpg' },
-  { id: 4, name: 'Cultural', image: 'https://ik.imagekit.io/c0x52ylk1/New%20folder/cultural.jpg' },
-  { id: 5, name: 'Adrenaline', image: 'https://ik.imagekit.io/c0x52ylk1/New%20folder/adrenaline.jpg' },
 ];
 
 export default async function DestinationPage({ params }: PageProps) {
@@ -109,16 +107,6 @@ export default async function DestinationPage({ params }: PageProps) {
   return (
     <main className="relative bg-[#f7ede0] min-h-screen">
       <Navbar />
-      <section className="bg-[#f7ede0]">
-        <div className="container mx-auto px-6 pt-36 pb-16 text-center mb-[50px]">
-          <h1 className="text-4xl font-extrabold text-[#3b2b18] sm:text-5xl">
-            {destination.name}
-          </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg text-[#3b2b18]/80">
-            {destination.description}
-          </p>
-        </div>
-      </section>
       <section className="relative h-[78vh] overflow-hidden">
         <img
           src={destination.image}
@@ -126,61 +114,52 @@ export default async function DestinationPage({ params }: PageProps) {
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-black/40" />
-      </section>
-
-      <section className="container mx-auto px-6 pt-16 pb-20">
-        <h2 className="text-center text-3xl font-semibold text-[#3b2b18] mb-6">
-          Overview
-        </h2>
-        <div className="max-w-3xl">
-          <p className="mx-auto text-center text-lg text-[#3b2b18]/80 leading-relaxed mb-10">
-            {destination.description}
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+          <h1 className="text-4xl font-extrabold text-white sm:text-5xl">
+            {destination.name}
+          </h1>
+          <p className="mt-4 max-w-2xl text-lg text-white/90">
+            {destination.statement}
           </p>
-
-          <h3 className="text-center text-2xl font-semibold text-[#3b2b18] mb-4">
-            Top Experiences
-          </h3>
-          <ul className="grid gap-3 sm:grid-cols-2">
-            {destination.highlights.map((item) => (
-              <li
-                key={item}
-                className="flex items-center gap-3 rounded-xl border border-[#3b2b18]/10 bg-white/60 px-4 py-3 text-center text-[#3b2b18]"
-              >
-                <span className="mt-0.5 h-2.5 w-2.5 shrink-0 rounded-full bg-orange-500" />
-                {item}
-              </li>
-            ))}
-          </ul>
+          <button className="mt-6 inline-flex items-center gap-2 border border-white bg-transparent px-8 py-3 text-sm font-semibold text-white transition-transform duration-300 hover:scale-105">
+            <MapPin size={18} />
+            View Map
+          </button>
         </div>
       </section>
 
-      <section className="bg-[#f7ede0] py-14 sm:py-20">
-        <div className="container mx-auto px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-600">
-              THINGS TO DO
-            </p>
-            <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-[#3b2b18] sm:text-5xl">
-              Things To Do In {destination.name}
-            </h2>
-          </div>
+      <section className="container mx-auto px-6 pt-16 pb-20 text-center">
+        <h2 className="text-3xl font-semibold text-[#3b2b18] mb-6">
+          About {destination.name}
+        </h2>
+        <p className="mx-auto max-w-2xl text-center text-lg text-[#3b2b18]/70 leading-relaxed mb-12">
+          {destination.description}
+        </p>
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
-            {activities.map((activity) => (
-              <Link key={activity.id} href="/adventures" className="group block text-center">
-                <div className="aspect-[4/5] overflow-hidden rounded-lg lg:rounded-none bg-white/10 backdrop-blur-sm">
-                  <img
-                    src={activity.image}
-                    alt={activity.name}
-                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <span className="mt-2 block text-sm font-medium text-[#3b2b18] group-hover:text-orange-500 transition-colors">
-                  {activity.name}
-                </span>
-              </Link>
+        <h3 className="text-2xl font-semibold text-[#3b2b18] mb-4">
+          Top Experiences
+        </h3>
+        <p className="mx-auto max-w-2xl text-[#3b2b18]/70 leading-relaxed mb-12">
+          {destination.highlights.join(" • ")}
+        </p>
+
+        <h3 className="text-2xl font-semibold text-[#3b2b18] mb-4">
+          Where To Stay In {destination.name}
+        </h3>
+        <div className="mx-auto max-w-2xl space-y-6">
+          {accommodations
+            .filter((a) => a.location === destination.name)
+            .map((accommodation) => (
+              <p
+                key={accommodation.id}
+                className="text-[#3b2b18]/70 leading-relaxed"
+              >
+                <span className="font-semibold text-[#3b2b18]">
+                  {accommodation.title}
+                </span>{" "}
+                ({accommodation.type}) — {accommodation.description}
+              </p>
             ))}
-          </div>
         </div>
       </section>
     </main>
