@@ -76,6 +76,14 @@ const destinations = [
   },
 ];
 
+const activities = [
+  { id: 1, name: 'Wildlife And Safari', image: 'https://ik.imagekit.io/c0x52ylk1/New%20folder/wildlife%20and%20safari.jpg' },
+  { id: 2, name: 'Special Tours', image: 'https://ik.imagekit.io/c0x52ylk1/New%20folder/special%20tours.jpg' },
+  { id: 3, name: 'Scenic', image: 'https://ik.imagekit.io/c0x52ylk1/New%20folder/scenic.jpg' },
+  { id: 4, name: 'Cultural', image: 'https://ik.imagekit.io/c0x52ylk1/New%20folder/cultural.jpg' },
+  { id: 5, name: 'Adrenaline', image: 'https://ik.imagekit.io/c0x52ylk1/New%20folder/adrenaline.jpg' },
+];
+
 export default async function DestinationPage({ params }: PageProps) {
   const { slug } = await params;
   const destination = destinations.find((d) => d.slug === slug);
@@ -143,6 +151,36 @@ export default async function DestinationPage({ params }: PageProps) {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section className="bg-[#f7ede0] py-14 sm:py-20">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-600">
+              THINGS TO DO
+            </p>
+            <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-[#3b2b18] sm:text-5xl">
+              Things To Do In {destination.name}
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+            {activities.map((activity) => (
+              <Link key={activity.id} href="/adventures" className="group block text-center">
+                <div className="aspect-[4/5] overflow-hidden rounded-lg lg:rounded-none bg-white/10 backdrop-blur-sm">
+                  <img
+                    src={activity.image}
+                    alt={activity.name}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <span className="mt-2 block text-sm font-medium text-[#3b2b18] group-hover:text-orange-500 transition-colors">
+                  {activity.name}
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
     </main>

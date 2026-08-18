@@ -1,7 +1,8 @@
 'use client';
 
-import Image from 'next/image';
-import { imagekitUrl } from '../../lib/imagekit';
+  import Image from 'next/image';
+  import Link from 'next/link';
+  import { imagekitUrl } from '../../lib/imagekit';
 import { useEffect, useRef } from 'react';
 import {  FaMapMarkerAlt } from 'react-icons/fa'
 import { RiFacebookFill, RiWhatsappFill, RiInstagramFill } from 'react-icons/ri'
@@ -105,12 +106,14 @@ export default function Banner({ title, subtitle, backgroundImage = '/ban.jpg', 
               {subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 lg:flex-nowrap">
-              <button className="bg-orange-500 text-white w-full lg:w-[193px] h-[50px] rounded-lg px-8 py-3 font-medium hover:opacity-90 transition-opacity">
+              <button className="bg-orange-500 text-white w-full lg:w-[193px] h-[50px] px-8 py-3 font-medium hover:opacity-90 transition-opacity">
                 Explore
               </button>
-              <button className="border-2 border-white text-white w-full lg:w-[193px] h-[50px] rounded-lg px-8 py-3 font-medium hover:bg-white/10 transition-colors">
-                Choose Activity
-              </button>
+              <Link href="/adventures">
+                <button className="border-2 border-white text-white w-full lg:w-[193px] h-[50px] px-8 py-3 font-medium hover:bg-white/10 transition-colors">
+                  Choose Activity
+                </button>
+              </Link>
             </div>
             
             {/* Mobile Social Icons - Only visible on mobile */}
@@ -146,7 +149,7 @@ export default function Banner({ title, subtitle, backgroundImage = '/ban.jpg', 
             {/* Activity Icons */}
             <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-3 sm:pb-4 w-full lg:w-auto lg:flex-wrap lg:overflow-visible lg:pb-0">
               {activities.map((activity) => (
-                <div key={activity.id} className="text-center cursor-pointer group flex-shrink-0">
+                <Link key={activity.id} href="/adventures" className="text-center cursor-pointer group flex-shrink-0 block">
                   <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-[136px] lg:h-[146px] rounded-lg lg:rounded-none bg-white/10 backdrop-blur-sm flex items-center justify-center mb-1 sm:mb-2 group-hover:bg-amber-500 transition-colors overflow-hidden">
                     <div className="w-full h-full rounded-lg lg:rounded-none overflow-hidden">
                       <Image 
@@ -159,7 +162,7 @@ export default function Banner({ title, subtitle, backgroundImage = '/ban.jpg', 
                     </div>
                   </div>
                   <span className="text-[10px] xs:text-xs lg:text-sm text-white group-hover:text-orange-500 transition-colors">{activity.name}</span>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

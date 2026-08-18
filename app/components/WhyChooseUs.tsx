@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { RiPlayCircleFill, RiCloseLine } from 'react-icons/ri';
+import { RiPlayCircleFill, RiCloseLine, RiLeafLine, RiCarLine, RiStarLine, RiShieldCheckLine } from 'react-icons/ri';
 
 export default function WhyChooseUs() {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
@@ -47,23 +47,27 @@ export default function WhyChooseUs() {
     {
       title: 'Journey with Care',
       description: 'We prioritize low-impact travel, supporting eco-conscious practices to protect the environment while you explore the beauty.',
+      icon: <RiLeafLine className="text-3xl text-[#3b2b18]" />,
     },
     {
       title: 'Any Route',
       description: 'Explore Zimbabwe on your terms with our flexible itineraries, allowing you to customize your adventure and discover hidden gems beyond the usual paths.',
+      icon: <RiCarLine className="text-3xl text-[#3b2b18]" />,
     },
     {
       title: 'Your Dream',
       description: 'We turn your dream safari into reality, crafting personalized journeys that reflect your unique vision and desires for an unforgettable African experience.',
+      icon: <RiStarLine className="text-3xl text-[#3b2b18]" />,
     },
     {
       title: 'Our Guarantee',
       description: 'We guarantee an unforgettable experience, ensuring your safari exceeds expectations with exceptional service, unique adventures, and cherished memories that last a lifetime.',
+      icon: <RiShieldCheckLine className="text-3xl text-[#3b2b18]" />,
     },
   ];
 
   return (
-    <section className="bg-[#f7ede0] py-14 sm:py-20">
+    <section className="bg-[#f7ede0] py-12 sm:py-16">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="grid gap-3 lg:grid-cols-[0.9fr_1.1fr] items-center">
           <div className="space-y-10">
@@ -92,19 +96,22 @@ export default function WhyChooseUs() {
           </div>
 
           <div className="space-y-10">
-            <div className="flex justify-start sm:justify-end mt-16">
-              <button className="inline-flex items-center justify-center rounded-lg border border-[#3b2b18] bg-transparent px-5 py-4 text-sm font-semibold text-[#3b2b18] transition-all duration-300 hover:border-orange-500 hover:bg-orange-500 hover:text-white hover:px-4">
+            <div className="flex justify-start sm:justify-end mt-6 sm:mt-16">
+              <button className="inline-flex items-center justify-center rounded-none border border-[#3b2b18] bg-transparent px-5 py-4 text-sm font-semibold text-[#3b2b18] transition-all duration-300 hover:border-orange-500 hover:bg-orange-500 hover:text-white hover:px-4">
                 Plan Your Next Adventures
               </button>
             </div>
 
-            <div className="grid gap-6 sm:grid-cols-2 mt-50">
+            <div className="grid gap-6 sm:grid-cols-2 mt-8 sm:mt-50">
               {reasons.map((reason) => {
                 return (
-                  <div key={reason.title} className="rounded-[28px] p-6">
+                <div key={reason.title} className="rounded-[28px] p-6">
+                  <div className="flex justify-start mb-3">{reason.icon}</div>
+                  <div>
                     <h3 className="text-[1.5rem] font-semibold text-[#3b2b18] mb-2">{reason.title}</h3>
                     <p className="text-[1.05rem] leading-8 text-[#7a6855]">{reason.description}</p>
                   </div>
+                </div>
                 );
               })}
             </div>

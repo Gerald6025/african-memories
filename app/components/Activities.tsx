@@ -38,7 +38,7 @@ export default function Activities() {
         "https://hideawaysafrica.com/wp-content/uploads/2026/05/Helicopter-Transfers-to-Bumbusi-Wilderness-Camp.webp",
       alt: "Evening campfire under stars",
       carImage:
-        "https://images.unsplash.com/photo-1520975911480-dc327891e1fad?q=80&w=800&auto=format&fit=crop",
+        "https://media-cdn.tripadvisor.com/media/attractions-splice-spp-540x360/09/b3/09/a1.jpg",
       description: "Aerial adventure with breathtaking aerial views of Victoria Falls.",
     },
     {
@@ -49,7 +49,7 @@ export default function Activities() {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCTv84Aweoc6ITAdCi38xfK4p-iD7HpcTRlVmzzhuGeA&s=10",
       alt: "Walking safari guide tracking",
       carImage:
-        "https://images.unsplash.com/photo-1544551763-46a0d32945f6?q=80&w=800&auto=format&fit=crop",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/1b/36/da/prepare-to-get-wet-while.jpg?w=300&h=300&s=1",
       description: "Exciting rapids adventure through the Zambezi River.",
     },
   ];
@@ -68,7 +68,7 @@ export default function Activities() {
           </div>
           <div className="flex gap-3">
             <Link
-              href="/activities"
+              href="/adventures"
               className="flex items-center gap-2 text-[#3b2b18] transition-all duration-300 bg-gradient-to-r from-[#3b2b18] to-[#3b2b18] bg-no-repeat bg-left-bottom bg-[length:0_2px] hover:bg-[length:100%_2px]"
             >
               View All →
