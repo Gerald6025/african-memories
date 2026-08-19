@@ -85,6 +85,76 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'palmriverhotel.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ilalalodge.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'pamusha.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'mbanomanorhotel.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'explorersvillage.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lokuthula.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'fothergill.travel',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'hwangesafarilodge.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'victoria-falls-safari-collection.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'elephanthillshotel.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'chundu.co.za',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn-ileieij.nitrocdn.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'matetsivictoriafalls.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.victoriafallshotel.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'www.wonderfulzimbabwe.com',
         pathname: '/**',
       },

@@ -33,7 +33,7 @@ export default function PlacesToStay() {
       <Navbar />
 
       {/* Hero Carousel */}
-      <div className="relative h-[60vh] md:h-[70vh] lg:h-screen overflow-hidden">
+      <div className="relative h-screen overflow-hidden">
         {/* Sliding Images */}
         <div
           className="flex h-full transition-transform duration-1000 ease-out"
