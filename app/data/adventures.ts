@@ -40,5 +40,89 @@ export const adventures = [
     description: "Navigate the rapids of the mighty Zambezi River on an exhilarating white-water rafting adventure.",
     image: "https://ik.imagekit.io/c0x52ylk1/New%20folder/rafting.jpg",
     category: "Water Activities"
+  },
+  {
+    id: 7,
+    title: "Houseboat Safari",
+    description: "Drift along Lake Kariba's tranquil shoreline on a luxury houseboat, watching elephants swim between islands and hippos surfacing at sunset.",
+    image: "https://karibahouseboats.com/wp-content/uploads/2024/01/The-Catalina__zoom.jpg",
+    category: "Water Activities"
+  },
+  {
+    id: 8,
+    title: "Tiger Fishing",
+    description: "Cast your line for the legendary tiger fish on Lake Kariba, one of Africa's most exciting freshwater game fish.",
+    image: "https://hideawaysafrica.com/wp-content/uploads/2023/02/Fothergill-Island-2222-1-1920x1280.jpg",
+    category: "Fishing"
+  },
+  {
+    id: 9,
+    title: "Lake Cruise",
+    description: "Sail the expansive waters of Lake Kariba on a peaceful sunset cruise, spotting wildlife along the shoreline and soaking in golden horizons.",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpvIHppM6sQDt4rT0zkhccUN-AzVBRYBmHTBHv0voDqGoq_KJZjjRQiV4&s=10",
+    category: "Water Activities"
+  },
+  {
+    id: 10,
+    title: "Walking Safari",
+    description: "Experience the African bush on foot with an expert guide, tracking wildlife and learning about the ecosystem up close.",
+    image: "https://www.naturalhighsafaris.com/wp-content/uploads/2020/12/walking-safaris-zimbabwe-4.jpg",
+    category: "Wildlife"
+  },
+  {
+    id: 11,
+    title: "Bird Watching",
+    description: "Discover Hwange's incredible birdlife, from majestic raptors to colorful species, with guided walks through diverse habitats.",
+    image: "https://ik.imagekit.io/c0x52ylk1/Dennis/WhatsApp%20Image%202026-08-13%20at%2010.06.27%20(2).jpeg?updatedAt=1786610590481",
+    category: "Wildlife"
+  },
+  {
+    id: 12,
+    title: "Night Drive",
+    description: "Venture into the African wilderness after dark on a guided night drive to spot nocturnal creatures in their natural habitat.",
+    image: "https://www.masaimara.travel/images/evening-game-drive-eagle-view-camp.jpg",
+    category: "Wildlife"
+  },
+  {
+    id: 13,
+    title: "Mountain Hiking",
+    description: "Trek through Nyanga's lush highlands and rolling green hills, discovering hidden waterfalls and panoramic mountain views.",
+    image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/ae/8f/54/aberfoyle-lodge.jpg?w=1200&h=-1&s=1",
+    category: "Adventure"
+  },
+  {
+    id: 14,
+    title: "Trout Fishing",
+    description: "Cast your line in crystal-clear mountain streams and lakes, surrounded by the breathtaking scenery of Zimbabwe's Eastern Highlands.",
+    image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/9c/d1/b4/troutbeck-resort.jpg?w=1200&h=-1&s=1",
+    category: "Fishing"
+  },
+  {
+    id: 15,
+    title: "Rock Art Tour",
+    description: "Explore ancient San rock paintings hidden in Nyanga's caves and cliffs, uncovering thousands of years of cultural heritage.",
+    image: "https://www.robinpopesafaris.net/wp-content/uploads/chimanimani-scaled-1000x500.jpg",
+    category: "Culture"
+  },
+  {
+    id: 16,
+    title: "Great Zimbabwe Tour",
+    description: "Walk among the towering stone walls of the Great Enclosure and explore the ruins of Africa's greatest medieval kingdom.",
+    image: "https://cdn.britannica.com/15/153415-050-86C6DBCB/Ruins-Great-Zimbabwe.jpg",
+    category: "Heritage"
+  },
+  {
+    id: 17,
+    title: "Cultural Storytelling",
+    description: "Experience authentic local traditions through storytelling, music, and dance, connecting with the rich heritage of the Shona people.",
+    image: "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/27/d2/5a/the-main-enclosure-from.jpg?w=1000&h=-1&s=1",
+    category: "Culture"
+  },
+  {
+    id: 18,
+    title: "Ancient Architecture",
+    description: "Marvel at the remarkable stone craftsmanship of Great Zimbabwe, a UNESCO World Heritage Site built without mortar.",
+    image: "https://smarthistory.org/wp-content/uploads/2023/03/Great-zim-aerial-looking-West-copy-scaled.jpg",
+    category: "Heritage"
   }
 ];

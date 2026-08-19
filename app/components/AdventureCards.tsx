@@ -14,13 +14,14 @@ interface Adventure {
 
 interface AdventureCardsProps {
   adventures: Adventure[];
+  className?: string;
 }
 
-export default function AdventureCards({ adventures }: AdventureCardsProps) {
+export default function AdventureCards({ adventures, className }: AdventureCardsProps) {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
 
   return (
-    <section className="bg-white py-16 md:py-20 lg:py-24">
+    <section className={`bg-white py-16 md:py-20 lg:py-24 ${className || ''}`}>
       <div className="container mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {adventures.map((adventure) => (

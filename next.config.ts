@@ -83,6 +83,96 @@ const nextConfig: NextConfig = {
         hostname: 'www.tripsavvy.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.wonderfulzimbabwe.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.africaendeavours.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cf.bstatic.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.audleytravel.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.visitkariba.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'karibahouseboats.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'hideawaysafrica.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'wildhorizons.co.za',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'roxannereid.co.za',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.roxannereid.co.za',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'shearwatervictoriafalls.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.shearwatervictoriafalls.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.expertafrica.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.naturalhighsafaris.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.andbeyond.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'machabasafaris.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.masaimara.travel',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'static.wixstatic.com',
+        pathname: '/**',
+      },
     ],
   },
 };
