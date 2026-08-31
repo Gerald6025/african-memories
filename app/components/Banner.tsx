@@ -97,7 +97,7 @@ export default function Banner({ title, subtitle, backgroundImage = '/ban.jpg', 
           </a>
         </div>
         
-        <div className="flex flex-col justify-between h-full pt-16 md:pt-20 lg:pt-32 pb-6 md:pb-8 lg:pb-12 lg:mb-[100px]">
+        <div className="flex flex-col justify-between h-full pt-16 md:pt-20 lg:pt-32 pb-6 md:pb-8 lg:pb-12 lg:mb-[200px]">
           <div className="max-w-2xl">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight pt-0 lg:pt-[150px]">
               {title}
