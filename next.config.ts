@@ -5,12 +5,47 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'batonkaguestlodge.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.jacadatravel.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'tvfh.c2.co.zw',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'ik.imagekit.io',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com',
+        hostname: 'www.victoriafallshotel.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'matetsivictoriafalls.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.go2africa.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.chundu.co.za',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'wildhorizons.co.za',
         pathname: '/**',
       },
       {
@@ -40,26 +75,6 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'fzs.org',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn.britannica.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'smarthistory.org',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'www.robinpopesafaris.net',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
         hostname: 'encrypted-tbn0.gstatic.com',
         pathname: '/**',
       },
@@ -85,22 +100,12 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'palmriverhotel.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'ilalalodge.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
         hostname: 'pamusha.com',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'mbanomanorhotel.com',
+        hostname: 'www.mbanomanorhotel.com',
         pathname: '/**',
       },
       {
@@ -135,22 +140,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'chundu.co.za',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
         hostname: 'cdn-ileieij.nitrocdn.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'matetsivictoriafalls.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'www.victoriafallshotel.com',
         pathname: '/**',
       },
       {
@@ -190,27 +180,12 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'wildhorizons.co.za',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
         hostname: 'roxannereid.co.za',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'www.roxannereid.co.za',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
         hostname: 'shearwatervictoriafalls.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'www.shearwatervictoriafalls.com',
         pathname: '/**',
       },
       {
@@ -236,6 +211,21 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'www.masaimara.travel',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'africansun.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'www.dzimbahweguestlodge.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
         pathname: '/**',
       },
       {
