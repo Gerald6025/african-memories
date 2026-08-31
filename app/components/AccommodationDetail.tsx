@@ -63,7 +63,7 @@ export default function AccommodationDetail({ accommodationId }: { accommodation
         )}
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
 
-        <div className="absolute inset-0 z-10 flex items-center justify-center px-6 lg:mb-[100px]">
+        <div className="absolute inset-0 z-10 flex items-center justify-center px-6">
           <div className="w-full max-w-4xl text-center">
             <h1 className="text-4xl font-semibold text-white sm:text-5xl lg:text-7xl">
               {accommodation.title}

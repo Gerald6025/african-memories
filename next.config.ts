@@ -20,6 +20,21 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'www.robinpopesafaris.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.britannica.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'fzs.org',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'ik.imagekit.io',
         pathname: '/**',
       },
