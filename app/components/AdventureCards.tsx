@@ -45,7 +45,7 @@ export default function AdventureCards({ adventures, className }: AdventureCards
                 style={{
                   backgroundColor:
                     hoveredId === adventure.id
-                      ? "rgba(225, 119, 45, 0.45)"
+                      ? "rgba(0, 0, 0, 0.4)"
                       : "rgba(0, 0, 0, 0.4)",
                 }}
               />

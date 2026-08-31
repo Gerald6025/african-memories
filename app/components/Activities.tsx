@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Activities() {
   const [flippedId, setFlippedId] = useState<string | null>(null);
-  
+   
   const activities = [
     {
       id: "01",

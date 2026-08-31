@@ -27,6 +27,7 @@ const lodges = [
     image:
       "https://ik.imagekit.io/c0x52ylk1/African%20Memories%20Resources/Palm%20River%20Lodge/Swimming-Pool-1350x900.jpeg?updatedAt=1778156387582",
     logo: "https://www.palmriverhotel.com/wp-content/themes/_palmriverhotel/images/the-palm-river-hotel-logo-web.png",
+    hoverColor: "#4C827A",
   },
   {
     id: 2,
@@ -41,6 +42,7 @@ const lodges = [
     image:
       "https://ik.imagekit.io/c0x52ylk1/Safari%20Lodge/victoria-falls-safari-lodge-21.webp?updatedAt=1778529081755",
     logo: "https://ik.imagekit.io/c0x52ylk1/logo-dark-removebg-preview.png",
+    hoverColor: "#C47457",
   },
   {
     id: 3,
@@ -55,6 +57,7 @@ const lodges = [
     image:
       "https://www.ilalalodge.com/wp-content/uploads/2017/03/KLRS2091-1-1500x957.jpg",
     logo: "https://www.ilalalodge.com/wp-content/themes/_ilalalodge/images/ilala-lodge-logo.png",
+    hoverColor: "#636D49",
   },
   {
     id: 4,
@@ -69,6 +72,7 @@ const lodges = [
     image:
       "https://ik.imagekit.io/c0x52ylk1/Pamusha%20Lodge/Pamusha-familynew-768x600.jpg?updatedAt=1778529149773",
     logo: "https://www.pamusha.com/wp-content/uploads/2025/11/pamushalogo.svg",
+    hoverColor: "#684F3E",
   },
   {
     id: 5,
@@ -83,6 +87,7 @@ const lodges = [
     image:
       "https://ik.imagekit.io/c0x52ylk1/Pioneer%20Lodge/unnamed%20(1).jpg?updatedAt=1778529636152",
     logo: "https://ik.imagekit.io/c0x52ylk1/PioneersLogo-RGB-removebg-preview.png",
+    hoverColor: "#CC5500",
   },
   {
     id: 6,
@@ -97,6 +102,7 @@ const lodges = [
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/d3/35/f4/caption.jpg?w=900&h=-1&s=1",
     logo: "https://ik.imagekit.io/c0x52ylk1/Troutback.png-removebg-preview.png",
+    hoverColor: "#F66024",
   },
   {
     id: 7,
@@ -111,6 +117,7 @@ const lodges = [
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/15/fb/c7/e8/photo0jpg.jpg?w=900&h=500&s=1",
     logo: "https://www.elephanthillshotel.com/wp-content/uploads/ehh-main-logo-horizontal-white-239x59.png",
+    hoverColor: "#C65D3B",
   },
   {
     id: 8,
@@ -125,6 +132,7 @@ const lodges = [
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/25/37/3d/mbano-manor-hotel-victoria.jpg?w=900&h=500&s=1",
     logo: "https://www.mbanomanorhotel.com/wp-content/uploads/2025/11/MbanoLogoWeb.png",
+    hoverColor: "#3E2723",
   },
   {
     id: 9,
@@ -139,6 +147,7 @@ const lodges = [
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/f4/74/c7/caption.jpg?w=900&h=500&s=1 ",
     logo: "https://ik.imagekit.io/c0x52ylk1/Shearwater-Explorers-Village-removebg-preview.png",
+    hoverColor: "#D2691E",
   },
   {
     id: 10,
@@ -153,6 +162,7 @@ const lodges = [
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/14/b4/cf/7a/dzimbahwe-guest-lodge.jpg?w=1000&h=-1&s=1",
     logo: "https://ik.imagekit.io/c0x52ylk1/dzimbahwe-guesstlogo-removebg-preview.png",
+    hoverColor: "#8B4513",
   },
   {
     id: 11,
@@ -167,6 +177,7 @@ const lodges = [
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/17/03/03/30/at-old-drift-lodge-each.jpg?w=1000&h=-1&s=1",
     logo: "https://ik.imagekit.io/c0x52ylk1/Group-262-removebg-preview.png",
+    hoverColor: "#DEB887",
   },
   {
     id: 12,
@@ -176,11 +187,12 @@ const lodges = [
     feature1: "29 Plantation Rooms",
     feature2: "Coffee Estate",
     description:
-      "Private and peaceful, a birdlover’s paradise bounded by wildlife, here you will find the best of Africa’s natural offerings from a seasonal beach and flooded marshes to lush wetlands and open grasslands",
+      "Private and peaceful, a birdlover's paradise bounded by wildlife, here you will find the best of Africa's natural offerings from a seasonal beach and flooded marshes to lush wetlands and open grasslands",
     button: "Discover",
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/65/42/79/chundu-island.jpg?w=1000&h=-1&s=1",
     logo: "https://www.chundu.co.za/wp-content/uploads/al_opt_content/IMAGE/chundu.co.za/wp-content/uploads/2020/02/chundu-island-mobile-logo-retina.png.bv.webp?bv_host=chundu.co.za",
+    hoverColor: "#008080",
   },
   {
     id: 13,
@@ -195,6 +207,7 @@ const lodges = [
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/e9/a3/15/lodge-lap-pool.jpg?w=900&h=500&s=1",
     logo: "https://matetsivictoriafalls.com/app/uploads/2020/06/Matetsi_logo_white.svg",
+    hoverColor: "#4682B4",
   },
   {
     id: 14,
@@ -204,11 +217,12 @@ const lodges = [
     feature1: "21 Garden Rooms",
     feature2: "Mountain Views",
     description:
-      "EDWARDIAN STYLE HOTEL Established in 1904, The Victoria Falls Hotel overlooks the magnificent Batoka Gorge with the Victoria Falls only a 10 minute walk away through the hotel’s path, 22km from Victoria Falls Airport. The hotel is set in lush gardens, with three restaurants, a swimming pool, spa, hair salon, gym, mini golf (putt putt), in addition assortment of local art throughout the hotel grounds. ",
+      "EDWARDIAN STYLE HOTEL Established in 1904, The Victoria Falls Hotel overlooks the magnificent Batoka Gorge with the Victoria Falls only a 10 minute walk away through the hotel's path, 22km from Victoria Falls Airport. The hotel is set in lush gardens, with three restaurants, a swimming pool, spa, hair salon, gym, mini golf (putt putt), in addition assortment of local art throughout the hotel grounds. ",
     button: "Discover",
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/02/4b/55/c9/the-grande-dame-of-victoria.jpg?w=800&h=500&s=1",
     logo: "https://ik.imagekit.io/c0x52ylk1/logo-3-removebg-preview.png",
+    hoverColor: "#DAA520",
   },
   {
     id: 15,
@@ -223,8 +237,8 @@ const lodges = [
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/16/5e/a4/b7/batonka-guest-lodge.jpg?w=1000&h=-1&s=1",
     logo: "https://ik.imagekit.io/c0x52ylk1/Batonka-Guest-Lodge-Logo-copy-300x77-removebg-preview.png",
+    hoverColor: "#6B8E23",
   },
-
   {
     id: 16,
     title: "Wallow Lodge",
@@ -233,11 +247,12 @@ const lodges = [
     feature1: "12 Beach Villas",
     feature2: "Private Beach",
     description:
-      "Situated overlooking the Masuwe River, The Wallow Lodge offers an intimate safari getaway in the heart of a private concession within Victoria Falls National Park. The lodge is set along the banks of the Masuwe River, surrounded by 4,500 acres of wilderness that stretches into the horizon, where a cloud of mist from the ‘Mosi-Au-Tunya’ commands the skyline.",
+      "Situated overlooking the Masuwe River, The Wallow Lodge offers an intimate safari getaway in the heart of a private concession within Victoria Falls National Park. The lodge is set along the banks of the Masuwe River, surrounded by 4,500 acres of wilderness that stretches into the horizon, where a cloud of mist from the Mosi-Au-Tunya commands the skyline.",
     button: "Connect",
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1f/32/fa/c2/panoramic-views-of-the.jpg?w=800&h=500&s=1",
     logo: "https://ik.imagekit.io/c0x52ylk1/Group-262-removebg-preview.png",
+    hoverColor: "#4A7C59",
   },
   {
     id: 17,
@@ -252,10 +267,9 @@ const lodges = [
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/44/c8/dd/free-loungers-at-lokuthula.jpg?w=900&h=500&s=1",
     logo: "https://ik.imagekit.io/c0x52ylk1/logo-dark-removebg-preview.png",
+    hoverColor: "#CC7722",
   },
-
-  
-   {
+  {
     id: 18,
     title: "Rainbow Hotel",
     price: "FROM US$1100 PER PERSON PER NIGHT",
@@ -268,8 +282,9 @@ const lodges = [
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/02/cd/4c/70/rainbow-hotel-victoria.jpg?w=900&h=500&s=1",
     logo: "https://ik.imagekit.io/c0x52ylk1/images-removebg-preview.png",
+    hoverColor: "#9370DB",
   },
-   {
+  {
     id: 19,
     title: "Fothergill Island",
     price: "FROM US$1100 PER PERSON PER NIGHT",
@@ -282,8 +297,9 @@ const lodges = [
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/23/f2/a2/f1/main-entertainment-area.jpg?w=1000&h=-1&s=1",
     logo: "https://fothergill.travel/wp-content/themes/fothergill/images/logo.svg",
+    hoverColor: "#5F9EA0",
   },
-   {
+  {
     id: 20,
     title: "Spurwing Island",
     price: "FROM US$1100 PER PERSON PER NIGHT",
@@ -291,11 +307,12 @@ const lodges = [
     feature1: "12 Beach Villas",
     feature2: "Private Beach",
     description:
-      "Situated on Lake Kariba in the middle of one of Africa’s most spectacular lakes, overlooked by the majestic Matusadona Mountains, Spurwing Island Lodge is the perfect place for a tranquil getaway for the wildlife enthusiast, serious fisherman and holiday maker alike.",
+      "Situated on Lake Kariba in the middle of one of Africa's most spectacular lakes, overlooked by the majestic Matusadona Mountains, Spurwing Island Lodge is the perfect place for a tranquil getaway for the wildlife enthusiast, serious fisherman and holiday maker alike.",
     button: "Connect",
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/96/b2/4b/spurwing-island.jpg?w=900&h=500&s=1",
     logo: "https://ik.imagekit.io/c0x52ylk1/Spurwing-Island-Lodge-Logo-removebg-preview.png",
+    hoverColor: "#20B2AA",
   },
   {
     id: 21,
@@ -310,9 +327,9 @@ const lodges = [
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/45/ae/2f/sunset-over-the-iconic.jpg?w=900&h=500&s=1",
     logo: "https://cdn-ileieij.nitrocdn.com/sDgFFEAOxknYDznnqCsxErFonOSAAYlc/assets/images/optimized/rev-e70b6ed/africanbushcamps.com/wp-content/themes/african-bush-camps/img/header-logo.svg",
+    hoverColor: "#E07020",
   },
-
-   {
+  {
     id: 22,
     title: "Caribean Bay Hotel",
     price: "FROM US$1100 PER PERSON PER NIGHT",
@@ -325,6 +342,7 @@ const lodges = [
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/ff/0a/85/caribbea-bay-hotel-casino.jpg?w=900&h=500&s=1",
     logo: "https://www.visitkariba.com/images/accommodation/caribbea-bay-hotel/0019.png",
+    hoverColor: "#00CED1",
   },
   {
     id: 23,
@@ -339,6 +357,7 @@ const lodges = [
     image:
       "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/12/d0/b9/df/20180411-090930-largejpg.jpg?w=1000&h=-1&s=1",
     logo: "https://ik.imagekit.io/c0x52ylk1/images-removebg-preview%20(1).png",
+    hoverColor: "#DAA520",
   },
 ];
 
@@ -387,17 +406,17 @@ export default function SafariCards({ heading }: { heading?: string }) {
             >
               <article className="flex h-full flex-col">
                 {/* Image */}
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-hidden" style={{ backgroundColor: lodge.hoverColor }}>
                   <img
                     src={lodge.image}
                     alt={lodge.title}
-                    className="h-[520px] w-full object-cover transition duration-500 group-hover:scale-105"
+                    className="h-[520px] w-full object-cover transition duration-500 opacity-100 group-hover:opacity-0"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-100 group-hover:opacity-0" />
 
                   {lodge.logo ? (
-                    <div className="absolute bottom-8 left-1/2 h-32 w-auto max-w-[80%] -translate-x-1/2 transition-opacity duration-300 group-hover:opacity-0">
+                    <div className="absolute bottom-8 left-1/2 h-32 w-auto max-w-[80%] -translate-x-1/2 transition-opacity duration-300 opacity-100 group-hover:opacity-0">
                       <img
                         src={lodge.logo}
                         alt={`${lodge.title} logo`}
@@ -406,7 +425,7 @@ export default function SafariCards({ heading }: { heading?: string }) {
                       />
                     </div>
                   ) : (
-                    <div className="absolute bottom-8 left-8 right-8 text-center transition-opacity duration-300 group-hover:opacity-0">
+                    <div className="absolute bottom-8 left-8 right-8 text-center transition-opacity duration-300 opacity-100 group-hover:opacity-0">
                       <h2 className="text-4xl font-serif">{lodge.title}</h2>
                     </div>
                   )}
