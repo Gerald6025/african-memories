@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { accommodations as accommodationCatalog } from '../data/accommodations';
@@ -8,6 +9,7 @@ import Footer from './Footer';
 
 export default function AccommodationDetail({ accommodationId }: { accommodationId: number }) {
   const accommodation = accommodationCatalog.find((item) => item.id === accommodationId);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   if (!accommodation) {
     return (
@@ -114,7 +116,7 @@ export default function AccommodationDetail({ accommodationId }: { accommodation
           <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
             <div className="overflow-hidden lg:h-[528px]">
               <Image
-                src={accommodation.overviewImage ?? accommodation.image}
+                src={accommodation.locationImage ?? accommodation.overviewImage ?? accommodation.image}
                 alt={accommodation.title}
                 width={1400}
                 height={900}
@@ -144,6 +146,55 @@ export default function AccommodationDetail({ accommodationId }: { accommodation
               >
                 View Larger Map
               </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-white py-20">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+            <div className="max-w-xl">
+              <h2 className="text-2xl font-semibold text-orange-600">
+                Accommodation
+              </h2>
+              <p className="mt-6 text-lg leading-8 text-stone-600">
+                {accommodation.description}
+              </p>
+              <p className="mt-4 text-lg leading-8 text-stone-600">
+                Each room and suite has been thoughtfully designed to provide the utmost comfort, blending modern amenities with the natural beauty of the surrounding landscape.
+              </p>
+            </div>
+
+            <div className="relative overflow-hidden lg:h-[528px]">
+              <Image
+                src={accommodation.roomImages?.[currentImageIndex] ?? accommodation.image}
+                alt={`${accommodation.title} room`}
+                width={1400}
+                height={900}
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute right-4 top-4 flex gap-2">
+                <button
+                  onClick={() => setCurrentImageIndex((prev) => (prev === 0 ? (accommodation.roomImages?.length ?? 1) - 1 : prev - 1))}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white bg-black/30 text-white backdrop-blur-sm transition hover:bg-black/50"
+                >
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={() => setCurrentImageIndex((prev) => (prev === (accommodation.roomImages?.length ?? 1) - 1 ? 0 : prev + 1))}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white bg-black/30 text-white backdrop-blur-sm transition hover:bg-black/50"
+                >
+                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
+              <div className="absolute bottom-4 right-4 bg-black/50 px-3 py-1 text-sm text-white">
+                {currentImageIndex + 1} / {accommodation.roomImages?.length ?? 1}
+              </div>
             </div>
           </div>
         </div>

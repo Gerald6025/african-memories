@@ -70,6 +70,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'www.swaindestinations.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'www.ilalalodge.com',
         pathname: '/**',
       },
