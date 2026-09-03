@@ -8,6 +8,7 @@ import { accommodations as accommodationCatalog } from '../data/accommodations';
 import { getHotelData } from '../data/hotelInfoData';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import ActivitiesSection, { Activity } from './ActivitiesSection';
 import {
   Bus, Droplet, Car, PawPrint, Bird, Scissors, Utensils, Waves, Home, Map,
   BedSingle, BedDouble, MapPin, Clock, Shield, CheckCircle, Trees, Binoculars,
@@ -31,6 +32,173 @@ function IconRenderer({ name }: { name: string }) {
   const Icon = iconMap[name] || MapPin;
   return <Icon className="h-5 w-5 shrink-0 text-stone-400" />;
 }
+
+const activityTextMap: Record<number, string> = {
+  1: "Palm River Lodge offers riverfront game drives, sunset river cruises, and expert-led safari walks through the Zambezi National Park, plus premium spa treatments and guided bird watching tours.",
+  2: "Victoria Falls Safari Lodge provides game-viewing access with full and half-day game drives, walking safaris, cultural village visits, and unforgettable sunset cruises along the Zambezi River.",
+  3: "Ilala Lodge, ideally located near the Falls, offers helicopter flights over Victoria Falls, guided walking tours, Cultural Community Visits, and sunset dinner cruises on the Zambezi River.",
+  4: "Pamusha Lodge features guided game drives into nearby reserves, cultural tours, sunset viewpoints, bird watching excursions, and adventure activities including canopy tours and nature walks.",
+  5: "Pioneer Camp offers guided walking safaris, game drives in open 4x4s, cultural visits to local communities, bird watching, and sunset river experiences on the Zambezi.",
+  6: "Troutbeck Resort in Nyanga provides hiking trails through the Eastern Highlands, trout fishing on site, horseback riding, guided nature walks, and bird watching in the montane forest.",
+  7: "Elephant Hills Resort features golf on the championship course, guided game drives in nearby parks, sunset cruises, spa treatments, and cultural experiences with local artisans.",
+  8: "Mbano Manor offers guided nature walks, cultural community visits, bird watching in the surrounding forests, helicopter flights over Victoria Falls, and sunset viewpoints.",
+  9: "Explorers Village provides guided city tours, adventure activities including zip-lining and white-water rafting, cultural visits, and sunset cruises on the Zambezi River.",
+  10: "Dzimbahwe Guest Lodge offers guided tours to Victoria Falls, cultural village visits, bird watching excursions, sunset viewpoints, and walking safaris in the surrounding area.",
+  11: "Old Drift Lodge features sunrise and sunset game drives in Zambezi National Park, canoeing safaris on the Zambezi River, walking safaris, fishing excursions, and cultural visits to local communities.",
+  12: "Chundu Island offers exclusive island experiences including river canoeing on the Zambezi, guided walking safaris, sunset boat cruises, catch-and-release tiger fishing, and bird watching on the private island.",
+  13: "Matetsi Victoria Falls provides private game drives in the Matetsi Private Game Reserve, white-breasted rhino tracking, Zambezi River safaris, cultural visits to local communities, and guided bush walks.",
+  14: "Victoria Falls Hotel offers helicopter flights over the Falls (Flight of the Angels), guided Falls tours, sunset cruises, cultural village visits, and white-water rafting on the Zambezi River.",
+  15: "Batonka Guest Lodge features guided walking tours to Victoria Falls, cultural community visits, bird watching excursions, sunset viewpoints, and adventure activities including zip-line and gorge swings.",
+  16: "Wallow Lodge, set in the Wild Horizons Elephant Sanctuary, offers elephant interaction experiences, guided walking safaris, game drives in Victoria Falls National Park, bird watching, and sunset viewpoints.",
+  17: "Lokuthula Lodges provides easy access to Victoria Falls National Park with guided walking safaris, cultural visits, bird watching, sunset viewpoints, and game drives in the surrounding wilderness.",
+  18: "Rainbow Hotel offers guided tours to Victoria Falls, cultural visits to local communities, bird watching in the surrounding area, helicopter flights over the Falls, and sunset cruises on the Zambezi.",
+  19: "Fothergill Island offers exclusive island experiences including boat transfers, game viewing from the island, bird watching, fishing expeditions, and sunset cruises on Lake Kariba.",
+  20: "Spurwing Island, on Lake Kariba, provides fishing expeditions, boat safaris, game drives in Matusadona National Park, bird watching, sunset cruises, and wilderness adventures on the pristine lake.",
+  21: "Bumi Hills Safari Lodge features game drives in the surrounding wilderness, tiger fishing on Lake Kariba, walking safaris, bird watching, sunset cruises, and cultural visits to local communities.",
+  22: "Caribbean Bay Hotel offers water sports on Lake Kariba, fishing expeditions, boat cruises, cultural village visits, bird watching, and sunset viewpoints over the tranquil lake.",
+  23: "Hwange Safari Lodge provides game drives in Hwange National Park, bird watching, night safaris, walking safaris, fishing, and cultural experiences with local communities.",
+};
+
+const activityImagesMap: Record<number, Activity[]> = {
+  1: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190116/pexels-photo-6190116.jpeg", imageAlt: "Game drive at Palm River Lodge", title: "RIVERFRONT GAME DRIVES", description: "Expert-guided safaris through Zambezi National Park" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190117/pexels-photo-6190117.jpeg", imageAlt: "Sunset cruise on Zambezi", title: "SUNSET RIVER CRUISES", description: "Scenic boat trips along the Zambezi River" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190118/pexels-photo-6190118.jpeg", imageAlt: "Bird watching", title: "BIRD WATCHING", description: "Spot over 400 bird species with expert guides" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190119/pexels-photo-6190119.jpeg", imageAlt: "Spa treatment", title: "SPA TREATMENTS", description: "Relax with luxury spa treatments" },
+  ],
+  2: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190120/pexels-photo-6190120.jpeg", imageAlt: "Game drive", title: "GAME DRIVES", description: "Full and half-day safaris in Victoria Falls National Park" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190121/pexels-photo-6190121.jpeg", imageAlt: "Cultural visit", title: "CULTURAL VILLAGE VISITS", description: "Experience local Zimbabwean culture" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190122/pexels-photo-6190122.jpeg", imageAlt: "Sunset cruise", "title": "SUNSET CRUISES", description: "Unforgettable boat trips along the Zambezi River" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190123/pexels-photo-6190123.jpeg", imageAlt: "Walking safari", title: "WALKING SAFARIS", description: "Guided walks through the African bush" },
+  ],
+  3: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190124/pexels-photo-6190124.jpeg", imageAlt: "Helicopter over Falls", title: "HELICOPTER FLIGHTS", description: "Flight of the Angels over Victoria Falls" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190125/pexels-photo-6190125.jpeg", imageAlt: "Walking tour", title: "GUIDED WALKING TOURS", description: "Explore the Falls with expert guides" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190126/pexels-photo-6190126.jpeg", imageAlt: "Cultural visit", title: "CULTURAL COMMUNITY VISITS", description: "Traditional village experiences" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190127/pexels-photo-6190127.jpeg", imageAlt: "Sunset cruise", title: "SUNSET DINNER CRUISES", description: "Cruise the river at sunset with dinner" },
+  ],
+  4: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190128/pexels-photo-6190128.jpeg", imageAlt: "Game drive", title: "GAME DRIVES", description: "Guided safaris in nearby reserves" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190129/pexels-photo-6190129.jpeg", imageAlt: "Cultural tour", title: "CULTURAL TOURS", description: "Experience local traditions" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190130/pexels-photo-6190130.jpeg", imageAlt: "Bird watching", title: "BIRD WATCHING", description: "Spot diverse birdlife" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190131/pexels-photo-6190131.jpeg", imageAlt: "Nature walk", title: "NATURE WALKS", description: "Guided walks through the bushveld" },
+  ],
+  5: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190132/pexels-photo-6190132.jpeg", imageAlt: "Walking safari", title: "WALKING SAFARIS", description: "Open 4x4 game drives and guided walks" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190133/pexels-photo-6190133.jpeg", imageAlt: "Cultural visit", title: "CULTURAL VISITS", description: "Local community experiences" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190134/pexels-photo-6190134.jpeg", imageAlt: "Bird watching", title: "BIRD WATCHING", description: "Diverse birdlife on guided tours" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190135/pexels-photo-6190135.jpeg", imageAlt: "Sunset cruise", title: "SUNSET RIVER EXPERIENCES", description: "Evening cruises on the Zambezi" },
+  ],
+  6: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190136/pexels-photo-6190136.jpeg", imageAlt: "Hiking trail", title: "MOUNTAIN HIKING", description: "Trails through the Eastern Highlands" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190137/pexels-photo-6190137.jpeg", imageAlt: "Trout fishing", title: "TROUT FISHING", description: "Fishing on the private estate's lake" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190138/pexels-photo-6190138.jpeg", imageAlt: "Horseback riding", title: "HORSEBACK RIDING", description: "Trail rides through the hills" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190139/pexels-photo-6190139.jpeg", imageAlt: "Nature walk", title: "NATURE WALKS", description: "Guided walks in montane forest" },
+  ],
+  7: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190140/pexels-photo-6190140.jpeg", imageAlt: "Golf course", title: "GOLF", description: "18-hole championship golf course" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190141/pexels-photo-6190141.jpeg", imageAlt: "Game drive", title: "GAME DRIVES", description: "Guided safaris in nearby parks" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190142/pexels-photo-6190142.jpeg", imageAlt: "Sunset cruise", title: "SUNSET CRUISES", description: "Scenic river experiences" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190143/pexels-photo-6190143.jpeg", imageAlt: "Spa treatment", title: "SPA TREATMENTS", description: "Luxury wellness experiences" },
+  ],
+  8: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190144/pexels-photo-6190144.jpeg", imageAlt: "Nature walk", title: "NATURE WALKS", description: "Guided walks in surrounding forests" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190145/pexels-photo-6190145.jpeg", imageAlt: "Cultural visit", title: "CULTURAL VISITS", description: "Community experiences" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190146/pexels-photo-6190146.jpeg", imageAlt: "Bird watching", title: "BIRD WATCHING", description: "Diverse forest birdlife" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190147/pexels-photo-6190147.jpeg", imageAlt: "Helicopter flight", title: "HELICOPTER FLIGHTS", description: "Aerial views of Victoria Falls" },
+  ],
+  9: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190148/pexels-photo-6190148.jpeg", imageAlt: "City tour", title: "CITY TOURS", description: "Guided tours of Victoria Falls town" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190149/pexels-photo-6190149.jpeg", imageAlt: "Zip line", title: "ZIP-LINING", description: "Thrilling canopy tours" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190150/pexels-photo-6190150.jpeg", imageAlt: "Rafting", title: "WHITE-WATER RAFTING", description: "Adrenaline-pumping river adventures" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190151/pexels-photo-6190151.jpeg", imageAlt: "Sunset cruise", title: "SUNSET CRUISES", description: "Relaxing river experiences" },
+  ],
+  10: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190152/pexels-photo-6190152.jpeg", imageAlt: "Victoria Falls tour", title: "VICTORIA FALLS TOURS", description: "Guided visits to the mighty Falls" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190153/pexels-photo-6190153.jpeg", imageAlt: "Cultural village", title: "CULTURAL VILLAGE VISITS", description: "Traditional village experiences" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190154/pexels-photo-6190154.jpeg", imageAlt: "Bird watching", title: "BIRD WATCHING", description: "Local birdlife excursions" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190155/pexels-photo-6190155.jpeg", imageAlt: "Walking safari", title: "WALKING SAFARIS", description: "Explore the African bush on foot" },
+  ],
+  11: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190156/pexels-photo-6190156.jpeg", imageAlt: "Sunrise game drive", title: "SUNRISE GAME DRIVES", description: "Morning safaris in Zambezi National Park" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190157/pexels-photo-6190157.jpeg", imageAlt: "Canoeing safari", title: "CANOEING SAFARIS", description: "River adventures on the Zambezi" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190158/pexels-photo-6190158.jpeg", imageAlt: "Walking safari", title: "WALKING SAFARIS", description: "Guided bush walks" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190159/pexels-photo-6190159.jpeg", imageAlt: "Fishing excursion", title: "FISHING EXCURSIONS", description: "Catch-and-release fishing on the river" },
+  ],
+  12: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190160/pexels-photo-6190160.jpeg", imageAlt: "River canoeing", title: "RIVER CANOEING", description: "Paddle the Zambezi on guided canoe trips" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190161/pexels-photo-6190161.jpeg", imageAlt: "Walking safari", title: "WALKING SAFARIS", description: "Island and riverbank guided walks" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190162/pexels-photo-6190162.jpeg", imageAlt: "Sunset cruise", title: "SUNSET BOAT CRUISES", description: "Island sunset experiences" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190163/pexels-photo-6190163.jpeg", imageAlt: "Bird watching", title: "BIRD WATCHING", description: "Island birdlife observation" },
+  ],
+  13: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190164/pexels-photo-6190164.jpeg", imageAlt: "Private game drive", title: "PRIVATE GAME DRIVES", description: "Exclusive safaris in Matetsi Reserve" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190165/pexels-photo-6190165.jpeg", imageAlt: "Rhino tracking", title: "RHINO TRACKING", description: "White-breasted rhino conservation experiences" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190166/pexels-photo-6190166.jpeg", imageAlt: "River safari", title: "ZAMBEZI RIVER SAFARIS", description: "River-based wildlife viewing" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190167/pexels-photo-6190167.jpeg", imageAlt: "Bush walk", title: "GUIDED BUSH WALKS", description: "Expert-led nature walks" },
+  ],
+  14: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190168/pexels-photo-6190168.jpeg", imageAlt: "Helicopter flight", title: "HELICOPTER FLIGHTS", description: "Flight of the Angels over the Falls" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190169/pexels-photo-6190169.jpeg", imageAlt: "Falls tour", title: "GUIDED FALLS TOURS", description: "Walk to the Thundering Smoke" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190170/pexels-photo-6190170.jpeg", imageAlt: "Sunset cruise", title: "SUNSET CRUISES", description: "Elegant river experiences" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190171/pexels-photo-6190171.jpeg", imageAlt: "Whitewater rafting", title: "WHITE-WATER RAFTING", description: "Adventure on the Zambezi Rapids" },
+  ],
+  15: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190172/pexels-photo-6190172.jpeg", imageAlt: "Walking tour", title: "WALKING TOURS", description: "Guided walks to Victoria Falls" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190173/pexels-photo-6190173.jpeg", imageAlt: "Cultural visit", title: "CULTURAL VISITS", description: "Community experiences" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190174/pexels-photo-6190174.jpeg", imageAlt: "Bird watching", title: "BIRD WATCHING", description: "Local birdlife excursions" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190175/pexels-photo-6190175.jpeg", imageAlt: "Adventure activities", title: "ADVENTURE ACTIVITIES", description: "Zip-line and gorge swings" },
+  ],
+  16: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190176/pexels-photo-6190176.jpeg", imageAlt: "Elephant encounter", title: "ELEPHANT INTERACTIONS", description: "Ethical elephant experiences at Wild Horizons" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190177/pexels-photo-6190177.jpeg", imageAlt: "Walking safari", title: "WALKING SAFARIS", description: "Guided walks in Victoria Falls NP" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190178/pexels-photo-6190178.jpeg", imageAlt: "Game drive", title: "GAME DRIVES", description: "Wildlife viewing in the National Park" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190179/pexels-photo-6190179.jpeg", imageAlt: "Bird watching", title: "BIRD WATCHING", description: "Diverse birdlife observation" },
+  ],
+  17: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190180/pexels-photo-6190180.jpeg", imageAlt: "Walking safari", title: "WALKING SAFARIS", description: "National Park guided walks" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190181/pexels-photo-6190181.jpeg", imageAlt: "Cultural visit", title: "CULTURAL VISITS", description: "Traditional community experiences" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190182/pexels-photo-6190182.jpeg", imageAlt: "Bird watching", title: "BIRD WATCHING", description: "Park birdlife excursions" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190183/pexels-photo-6190183.jpeg", imageAlt: "Sunset viewpoint", title: "SUNSET VIEWPOINTS", description: "Spectacular Falls sunsets" },
+  ],
+  18: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190184/pexels-photo-6190184.jpeg", imageAlt: "Falls tour", title: "FALLS TOURS", description: "Guided tours to Victoria Falls" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190185/pexels-photo-6190185.jpeg", imageAlt: "Cultural visit", title: "CULTURAL VISITS", description: "Community experiences" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190186/pexels-photo-6190186.jpeg", imageAlt: "Bird watching", title: "BIRD WATCHING", description: "Local birdlife excursions" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190187/pexels-photo-6190187.jpeg", imageAlt: "Helicopter flight", title: "HELICOPTER FLIGHTS", description: "Aerial views of the Falls" },
+  ],
+  19: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190188/pexels-photo-6190188.jpeg", imageAlt: "Boat transfer", title: "BOAT TRANSFERS", description: "Scenic transfers to the island" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190189/pexels-photo-6190189.jpeg", imageAlt: "Island game viewing", title: "ISLAND GAME VIEWING", description: "Wildlife observation from the island" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190190/pexels-photo-6190190.jpeg", imageAlt: "Bird watching", title: "BIRD WATCHING", description: "Lake Kariba birdlife" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190191/pexels-photo-6190191.jpeg", imageAlt: "Fishing expedition", title: "FISHING EXPEDITIONS", description: "Lake fishing with guides" },
+  ],
+  20: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190192/pexels-photo-6190192.jpeg", imageAlt: "Fishing expedition", title: "FISHING EXPEDITIONS", description: "Tiger and bream fishing on Lake Kariba" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190193/pexels-photo-6190193.jpeg", imageAlt: "Boat safari", title: "BOAT SAFARIS", description: "Explore the lake by boat" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190194/pexels-photo-6190194.jpeg", imageAlt: "Game drive", title: "GAME DRIVES", description: "Matusadona National Park safaris" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190195/pexels-photo-6190195.jpeg", imageAlt: "Bird watching", title: "BIRD WATCHING", description: "Prolific birdlife observation" },
+  ],
+  21: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190196/pexels-photo-6190196.jpeg", imageAlt: "Game drive", title: "GAME DRIVES", description: "Wilderness safaris around Lake Kariba" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190197/pexels-photo-6190197.jpeg", imageAlt: "Tiger fishing", title: "TIGER FISHING", description: "Catch-and-release fishing on the lake" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190198/pexels-photo-6190198.jpeg", imageAlt: "Walking safari", title: "WALKING SAFARIS", description: "Guided nature walks" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190199/pexels-photo-6190199.jpeg", imageAlt: "Sunset cruise", title: "SUNSET CRUISES", description: "Lake Kariba sunset experiences" },
+  ],
+  22: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190200/pexels-photo-6190200.jpeg", imageAlt: "Water sports", title: "WATER SPORTS", description: "Activities on Lake Kariba" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190201/pexels-photo-6190201.jpeg", imageAlt: "Fishing expedition", title: "FISHING EXPEDITIONS", description: "Lake fishing excursions" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190202/pexels-photo-6190202.jpeg", imageAlt: "Boat cruise", title: "BOAT CRUISES", description: "Scenic lake cruises" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190203/pexels-photo-6190203.jpeg", imageAlt: "Bird watching", title: "BIRD WATCHING", description: "Lakeside birdlife observation" },
+  ],
+23: [
+    { id: 1, imageSrc: "https://images.pexels.com/photos/6190204/pexels-photo-6190204.jpeg", imageAlt: "Game drive", title: "GAME DRIVES", description: "Hwange National Park safaris" },
+    { id: 2, imageSrc: "https://images.pexels.com/photos/6190205/pexels-photo-6190205.jpeg", imageAlt: "Bird watching", title: "BIRD WATCHING", description: "Diverse park birdlife" },
+    { id: 3, imageSrc: "https://images.pexels.com/photos/6190206/pexels-photo-6190206.jpeg", imageAlt: "Night safari", title: "NIGHT SAFARIS", description: "Nocturnal wildlife experiences" },
+    { id: 4, imageSrc: "https://images.pexels.com/photos/6190207/pexels-photo-6190207.jpeg", imageAlt: "Walking safari", title: "WALKING SAFARIS", description: "Guided bush walks" },
+  ],
+};
 
 export default function AccommodationDetail({ accommodationId }: { accommodationId: number }) {
   const accommodation = accommodationCatalog.find((item) => item.id === accommodationId);
@@ -277,6 +445,11 @@ export default function AccommodationDetail({ accommodationId }: { accommodation
           </div>
         </div>
       </section>
+
+      <ActivitiesSection
+        activityText={activityTextMap[accommodationId]}
+        activities={activityImagesMap[accommodationId]}
+      />
 
       <Footer />
     </main>
