@@ -1,15 +1,43 @@
 'use client';
 
 import { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { accommodations as accommodationCatalog } from '../data/accommodations';
+import { getHotelData } from '../data/hotelInfoData';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import {
+  Bus, Droplet, Car, PawPrint, Bird, Scissors, Utensils, Waves, Home, Map,
+  BedSingle, BedDouble, MapPin, Clock, Shield, CheckCircle, Trees, Binoculars,
+  Footprints, Wifi, Coffee, Bell, Sun, Tv, GlassWater, Flame, Club, Fish,
+  Dumbbell, Briefcase, Bath, ShoppingBasket, Tent, Wind, Users, Sailboat, Leaf,
+  Wine, Camera, Church, Crown, Accessibility, Fan, Plane,
+} from 'lucide-react';
+
+const iconMap: Record<string, React.ElementType> = {
+  Bus, Droplet, Car, PawPrint, Bird, Scissors, Utensils, Waves, Home, Map,
+  BedSingle, BedDouble, MapPin, Clock, Shield, CheckCircle, Trees, Binoculars,
+  Footprints, Wifi, Coffee, Bell, Sun, Tv,
+  Water: GlassWater, Fire: Flame, Golf: Club, Fish,
+  Dumbbell, Briefcase,
+  Bathtub: Bath,
+  Shopping: ShoppingBasket, Tent, Wind, Users, Sailboat, Leaf, Wine, Camera, Church, Crown,
+  Accessibility, Fan, Plane,
+};
+
+function IconRenderer({ name }: { name: string }) {
+  const Icon = iconMap[name] || MapPin;
+  return <Icon className="h-5 w-5 shrink-0 text-stone-400" />;
+}
 
 export default function AccommodationDetail({ accommodationId }: { accommodationId: number }) {
   const accommodation = accommodationCatalog.find((item) => item.id === accommodationId);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [activeTab, setActiveTab] = useState('need-to-know');
+
+  const hotelData = getHotelData(accommodation?.id ?? 0);
 
   if (!accommodation) {
     return (
@@ -138,7 +166,7 @@ export default function AccommodationDetail({ accommodationId }: { accommodation
                 </p>
               </div>
               <p className="mt-4 text-lg leading-8 text-stone-600">
-                Nestled in the heart of {accommodation.location}, this property offers convenient access to the region's top attractions while providing a tranquil retreat from the everyday hustle.
+                Nestled in the heart of {accommodation.location}, this property offers convenient access to the region&rsquo;s top attractions while providing a tranquil retreat from the everyday hustle.
               </p>
               <Link
                 href="/contact"
@@ -200,7 +228,58 @@ export default function AccommodationDetail({ accommodationId }: { accommodation
         </div>
       </section>
 
+      <section className="bg-white py-20">
+        <div className="container mx-auto px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <div className="overflow-hidden lg:h-[528px]">
+              <Image
+                src={accommodation.image}
+                alt={accommodation.title}
+                width={1400}
+                height={900}
+                className="h-full w-full object-cover"
+              />
+            </div>
+
+            <div>
+              <h2 className="text-2xl font-semibold text-orange-600">
+                {accommodation.title}
+              </h2>
+              <p className="text-lg leading-8 text-stone-600 mt-6">
+                Lodge Information
+              </p>
+
+              <div className="mt-8 flex flex-wrap items-center gap-2 border-b border-stone-200 pb-4 text-sm font-medium text-stone-500 uppercase tracking-wider">
+                {hotelData.tabs.map((tab) => (
+                  <React.Fragment key={tab.id}>
+                    <button
+                      onClick={() => setActiveTab(tab.id)}
+                      className={`pb-3 ${activeTab === tab.id ? 'text-orange-600' : 'hover:text-stone-800'}`}
+                    >
+                      {tab.label}
+                    </button>
+                    {hotelData.tabs.indexOf(tab) < hotelData.tabs.length - 1 && (
+                      <span className="text-stone-300">|</span>
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
+
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+                {hotelData.tabsData[activeTab]?.map((item) => (
+                  <div key={item.id} className={`flex items-center gap-3 border-b border-stone-100 pb-3 ${item.fullSpan ? 'sm:col-span-2' : ''}`}>
+                    <IconRenderer name={item.icon} />
+                    <span className="text-sm text-stone-600">{item.text}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </main>
   );
 }
+
