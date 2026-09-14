@@ -45,6 +45,7 @@ export const palmRiverHotelData: HotelData = {
     { id: 'amenities', label: 'AMENITIES' },
     { id: 'accommodations', label: 'ACCOMMODATIONS' },
     { id: 'villa', label: 'THE VILLA' },
+    { id: 'activities', label: 'ACTIVITIES' },
   ],
   tabsData: {
     'need-to-know': [
@@ -69,6 +70,12 @@ export const palmRiverHotelData: HotelData = {
     'villa': [
       { id: 'pr-14', icon: 'Home', text: '1 Private 3-Bedroom Villa' },
       { id: 'pr-15', icon: 'Waves', text: 'Private Plunge Pool', fullSpan: true },
+    ],
+    'activities': [
+      { id: 'pr-ac1', icon: 'Camera', text: 'Historic Bridge Tour' },
+      { id: 'pr-ac2', icon: 'Waves', text: 'White Water Rafting' },
+      { id: 'pr-ac3', icon: 'Bird', text: 'Birdwatching Cruise' },
+      { id: 'pr-ac4', icon: 'Sun', text: 'Ra-Ikane Luxury Sunset Cruise' },
     ],
   },
 };
@@ -163,6 +170,7 @@ export const ilalaLodgeData: HotelData = {
     { id: 'amenities', label: 'AMENITIES' },
     { id: 'accommodations', label: 'ACCOMMODATIONS' },
     { id: 'cruises', label: 'RA-IKANE CRUISES' },
+    { id: 'activities', label: 'ACTIVITIES' },
   ],
   tabsData: {
     'need-to-know': [
@@ -195,6 +203,12 @@ export const ilalaLodgeData: HotelData = {
     'cruises': [
       { id: 'il-c1', icon: 'Bus', text: 'Ra-Ikane River Cruises' },
       { id: 'il-c2', icon: 'PawPrint', text: 'Exclusive Zambezi Experience', fullSpan: true },
+    ],
+    'activities': [
+      { id: 'il-ac1', icon: 'Coffee', text: 'High Tea Experience' },
+      { id: 'il-ac2', icon: 'Plane', text: 'Scenic Flights' },
+      { id: 'il-ac3', icon: 'Sailboat', text: 'Ra-Ikane River Cruise' },
+      { id: 'il-ac4', icon: 'Car', text: 'Game Drive' },
     ],
   },
 };
@@ -272,6 +286,7 @@ export const victoriaFallsSafariLodgeData: HotelData = {
     { id: 'amenities', label: 'AMENITIES' },
     { id: 'accommodations', label: 'ACCOMMODATIONS' },
     { id: 'boma', label: 'THE BOMA' },
+    { id: 'activities', label: 'ACTIVITIES' },
   ],
   tabsData: {
     'need-to-know': [
@@ -304,6 +319,12 @@ export const victoriaFallsSafariLodgeData: HotelData = {
     'boma': [
       { id: 'vfs-b1', icon: 'Utensils', text: 'The Boma Restaurant Experience' },
       { id: 'vfs-b2', icon: 'PawPrint', text: 'Boma Night Game Viewing', fullSpan: true },
+    ],
+    'activities': [
+      { id: 'vfs-ac1', icon: 'Bird', text: 'Vulture Culture Experience: Watch and learn during the daily conservation feeding at 1:00 PM from the viewing deck.', fullSpan: true },
+      { id: 'vfs-ac2', icon: 'Utensils', text: 'The Boma – Dinner & Drum Show: Feast on local dishes while enjoying traditional dancing and interactive drumming.', fullSpan: true },
+      { id: 'vfs-ac3', icon: 'Binoculars', text: 'Siduli Hide Sit: Watch free-roaming wildlife quietly from a specialized underground or concealed blind.', fullSpan: true },
+      { id: 'vfs-ac4', icon: 'Scissors', text: 'Relaxation at the Spa: Book treatments at the Victoria Falls Safari Spa located directly on the estate.', fullSpan: true },
     ],
   },
 };

@@ -4,16 +4,6 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'batonkaguestlodge.com',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'cdn.jacadatravel.com',
-        pathname: '/**',
-      },
-      {
         protocol: 'http',
         hostname: 'tvfh.c2.co.zw',
         pathname: '/**',
@@ -65,7 +55,12 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'dynamic-media-cdn.tripadvisor.com',
+        hostname: '**.tripadvisor.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'batonkaguestlodge.com',
         pathname: '/**',
       },
       {
@@ -120,7 +115,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'pamusha.com',
+        hostname: '**.pamusha.com',
         pathname: '/**',
       },
       {
@@ -251,6 +246,11 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'static.wixstatic.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'victoria-falls-hotels.net',
         pathname: '/**',
       },
     ],
