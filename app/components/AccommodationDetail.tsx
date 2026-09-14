@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -9,6 +9,7 @@ import { getHotelData } from '../data/hotelInfoData';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import ActivitiesSection, { Activity } from './ActivitiesSection';
+import LodgeGalleryAndVideo from './LodgeGalleryAndVideo';
 import {
   Bus, Droplet, Car, PawPrint, Bird, Scissors, Utensils, Waves, Home, Map,
   BedSingle, BedDouble, MapPin, Clock, Shield, CheckCircle, Trees, Binoculars,
@@ -206,6 +207,17 @@ export default function AccommodationDetail({ accommodationId }: { accommodation
   const accommodation = accommodationCatalog.find((item) => item.id === accommodationId);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState('need-to-know');
+  const [isMapModalOpen, setIsMapModalOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setIsMapModalOpen(false);
+    };
+    if (isMapModalOpen) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isMapModalOpen]);
 
   const hotelData = getHotelData(accommodation?.id ?? 0);
 
@@ -338,12 +350,13 @@ export default function AccommodationDetail({ accommodationId }: { accommodation
               <p className="mt-4 text-lg leading-8 text-stone-600">
                 Nestled in the heart of {accommodation.location}, this property offers convenient access to the region&rsquo;s top attractions while providing a tranquil retreat from the everyday hustle.
               </p>
-              <Link
-                href="/contact"
-                className="mt-8 inline-flex items-center justify-center border border-[#3b2b18] px-8 py-4 text-sm font-semibold uppercase tracking-[0.25em] text-[#3b2b18] transition hover:bg-[#3b2b18] hover:text-white"
+              <button
+                type="button"
+                onClick={() => setIsMapModalOpen(true)}
+                className="mt-8 inline-flex items-center justify-center border border-[#3b2b18] px-8 py-4 text-sm font-semibold uppercase tracking-[0.25em] text-[#3b2b18] transition hover:bg-[#3b2b18] hover:text-white cursor-pointer"
               >
                 View Larger Map
-              </Link>
+              </button>
             </div>
           </div>
         </div>
@@ -452,6 +465,100 @@ export default function AccommodationDetail({ accommodationId }: { accommodation
         activityText={activityTextMap[accommodationId]}
         activities={activityImagesMap[accommodationId]}
       />
+
+      <LodgeGalleryAndVideo
+        accommodation={accommodation}
+        activities={activityImagesMap[accommodationId]}
+      />
+
+      {/* Interactive Location Map Modal */}
+      {isMapModalOpen && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 sm:p-6"
+          onClick={() => setIsMapModalOpen(false)}
+        >
+          <div
+            className="relative w-full max-w-5xl overflow-hidden bg-white shadow-2xl transition-all"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between border-b border-stone-200 bg-stone-50 px-6 py-4">
+              <div>
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-orange-600">
+                  Location Map
+                </span>
+                <h3 className="text-lg font-semibold text-stone-900">
+                  {accommodation.title}
+                </h3>
+                <p className="text-xs text-stone-500">
+                  {accommodation.location}, Zimbabwe
+                </p>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                    `${accommodation.title}, ${accommodation.location}, Zimbabwe`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden sm:inline-flex items-center gap-1.5 border border-stone-300 bg-white px-3 py-1.5 text-xs font-medium uppercase tracking-wider text-stone-700 transition hover:border-orange-600 hover:text-orange-600"
+                >
+                  <span>Open in Google Maps</span>
+                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+
+                <button
+                  onClick={() => setIsMapModalOpen(false)}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-stone-300 bg-white text-stone-600 transition hover:bg-stone-100 hover:text-stone-900"
+                  aria-label="Close map"
+                >
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            {/* Map Iframe */}
+            <div className="h-[420px] sm:h-[520px] md:h-[600px] w-full bg-stone-100">
+              <iframe
+                title={`${accommodation.title} location map`}
+                className="h-full w-full border-0"
+                src={`https://maps.google.com/maps?q=${encodeURIComponent(
+                  `${accommodation.title}, ${accommodation.location}, Zimbabwe`
+                )}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
+                loading="lazy"
+                allowFullScreen
+              />
+            </div>
+
+            {/* Modal Footer */}
+            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-stone-200 bg-stone-50 px-6 py-3">
+              <div className="flex items-center gap-2 text-xs text-stone-600">
+                <svg className="h-4 w-4 text-orange-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>Interactive map view • Scroll or pinch to zoom</span>
+              </div>
+
+              <a
+                href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
+                  `${accommodation.title}, ${accommodation.location}, Zimbabwe`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-semibold uppercase tracking-wider text-orange-600 hover:underline"
+              >
+                Get Directions →
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </main>
