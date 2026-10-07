@@ -26,7 +26,7 @@ export default async function AdventuresPage() {
   return (
     <div className="min-h-screen">
       <Navbar />
-      <AdventureHero count={adventures.length} />
+      <AdventureHero />
       <AdventureCards
         adventures={error ? null : adventureCards}
         loading={false}
