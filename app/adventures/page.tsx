@@ -3,6 +3,7 @@ import Footer from "../components/Footer";
 import AdventureHero from "../components/AdventureHero";
 import AdventureCards from "../components/AdventureCards";
 import { apiGet, Activity } from "../../lib/api";
+import { experienceCard } from "../../lib/experiences";
 
 export const metadata = {
   title: "Adventures & Things to Do - African Memories",
@@ -15,23 +16,17 @@ export default async function AdventuresPage() {
 
   try {
     adventures = await apiGet<Activity[]>('/activities');
-  } catch (err) {
-    error = (err as Error).message;
+  } catch {
+    error = 'Experiences are temporarily unavailable.';
   }
 
-  const adventureCards = adventures.map((activity) => ({
-    id: activity.id,
-    title: activity.name,
-    description: activity.description || '',
-    image: activity.image || '',
-    category: activity.category,
-    slug: activity.slug,
-  }));
+  const now = Date.now();
+  const adventureCards = adventures.map(activity => experienceCard(activity, now));
 
   return (
     <div className="min-h-screen">
       <Navbar />
-      <AdventureHero />
+      <AdventureHero count={adventures.length} />
       <AdventureCards
         adventures={error ? null : adventureCards}
         loading={false}

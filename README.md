@@ -58,6 +58,7 @@ From the repository root:
 
 ```sh
 node scripts/check-api-fetch.cjs
+node scripts/check-experience-data.cjs
 npm run build
 ```
 

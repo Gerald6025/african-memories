@@ -1,186 +1,42 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { ArrowUpRight, Menu, X } from 'lucide-react';
 import { imagekitUrl } from '../../lib/imagekit';
 
+const links = [
+  ['/', 'Home'], ['/adventures', 'Things to do'], ['/places-to-stay', 'Places to stay'],
+  ['/about', 'About'], ['/blog', 'Blog'], ['/contact', 'Contact'],
+];
+
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const update = () => setScrolled(window.scrollY > 40);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    return () => window.removeEventListener('scroll', update);
   }, []);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
-
-  const logoSrc = process.env.NEXT_PUBLIC_IMAGEKIT_URL
-    ? imagekitUrl('/logo.png')
-    : '/logo.png';
-
-  return (
-    <div className="relative">
-      <div 
-        className="absolute w-full h-px bg-white z-50"
-        style={{
-          top: isScrolled ? '74px' : '98px',
-          boxShadow: '0 1px 2px rgba(0, 0, 0, 0.1)'
-        }}
-      />
-      <nav 
-        className={`absolute top-0 left-0 w-full z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-white shadow-md py-4' : 'bg-transparent py-6'
-        }`}
-      >
-      <div className="container mx-auto px-6 flex justify-between items-center">
-        
-        <Link href="/" className="-ml-8 text-2xl font-bold text-white">
-          <Image src={logoSrc} alt="Logo" width={200} height={50} />
-        </Link>
-
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex space-x-8">
-<NavLink href="/" onClick={closeMenu}>Home</NavLink>
-           <NavLink href="/adventures" onClick={closeMenu}>Things To Do</NavLink>
-          <NavLink href="/places-to-stay" onClick={closeMenu}>Places To Stay</NavLink>
-             <NavLink href="/about" onClick={closeMenu}>About</NavLink>
-          <NavLink href="/blog" onClick={closeMenu}>Blog</NavLink>
-          <NavLink href="/contact" onClick={closeMenu}>Contact</NavLink>
-        </div>
-
-        {/* Mobile menu button */}
-        <button 
-          className="md:hidden text-white focus:outline-none" 
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? (
-            <svg 
-              className="w-6 h-6" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24" 
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M6 18L18 6M6 6l12 12" 
-              />
-            </svg>
-          ) : (
-            <svg 
-              className="w-6 h-6" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24" 
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M4 6h16M4 12h16m-7 6h7" 
-              />
-            </svg>
-          )}
-        </button>
-
-        {/* Mobile menu */}
-        <div 
-          className={`fixed inset-0 bg-black bg-opacity-90 z-40 flex flex-col items-center justify-center transition-all duration-500 ease-out transform ${
-            isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
-          } md:hidden`}
-        >
-          {/* Logo - positioned at top center */}
-          <div className={`absolute top-8 transform transition-all duration-500 ${
-            isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
-          }`}>
-              <Link href="/" onClick={closeMenu} className="block">
-              <Image 
-                src={logoSrc} 
-                alt="Logo" 
-                width={160} 
-                height={40} 
-                className="w-auto h-10 object-contain"
-                priority
-              />
-            </Link>
-          </div>
-
-          {/* Close button - positioned at top right */}
-          <button 
-            onClick={closeMenu}
-            className={`absolute top-6 right-6 p-2 text-white hover:text-orange-400 transition-all duration-300 transform ${
-              isMenuOpen ? 'rotate-0 scale-100' : 'rotate-90 scale-90 opacity-0'
-            }`}
-            aria-label="Close menu"
-          >
-            <svg 
-              className="w-10 h-10" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24" 
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={1.5} 
-                d="M6 18L18 6M6 6l12 12" 
-                className="transition-all duration-300"
-              />
-            </svg>
-          </button>
-
-          {/* Navigation Links */}
-          <div className={`flex flex-col items-center space-y-8 text-white text-xl transform transition-all duration-500 ${
-            isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-          }`}>
-            <NavLink href="/" onClick={closeMenu}>Home</NavLink>
-            <NavLink href="/adventures" onClick={closeMenu}>Things To Do</NavLink>
-            <NavLink href="/places-to-stay" onClick={closeMenu}>Places To Stay</NavLink>
-          <NavLink href="/about" onClick={closeMenu}>About</NavLink>
-<NavLink href="/blog" onClick={closeMenu}>Blog</NavLink>
-            <NavLink href="/contact" onClick={closeMenu}>Contact</NavLink>
-          </div>
-        </div>
-      </div>
-    </nav>
+  useEffect(() => {
+    if (!open) return;
+    const close = (event: KeyboardEvent) => { if (event.key === 'Escape') setOpen(false); };
+    window.addEventListener('keydown', close);
+    return () => window.removeEventListener('keydown', close);
+  }, [open]);
+  const logo = process.env.NEXT_PUBLIC_IMAGEKIT_URL ? imagekitUrl('/logo.png') : null;
+  const solid = scrolled || open;
+  return <header className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${solid ? 'border-[#e3dacd] bg-[#faf7f1]/95 text-[#30281e] shadow-sm backdrop-blur-md' : 'border-white/20 bg-transparent text-white'}`}>
+    <div className="mx-auto flex h-24 max-w-7xl items-center justify-between gap-5 px-5 sm:px-8">
+      <Link href="/" aria-label="African Memories home" onClick={() => setOpen(false)} className="shrink-0">{logo ? <Image src={logo} alt="African Memories Safaris" width={170} height={60} priority className="h-14 w-auto max-w-40 object-contain sm:max-w-44" /> : <span className="block"><span className="block font-serif text-[23px] leading-none tracking-tight">African<br />Memories</span><span className="mt-1.5 block text-[8px] font-medium uppercase tracking-[0.35em] opacity-75">Safaris · Victoria Falls</span></span>}</Link>
+      <nav aria-label="Main navigation" className="hidden items-center gap-1 lg:flex">{links.map(([href, label]) => <Link key={href} href={href} aria-current={(href === '/' ? pathname === '/' : pathname.startsWith(href)) ? 'page' : undefined} className="rounded-full px-3 py-2 text-sm font-medium transition hover:text-[#df995b] aria-[current=page]:underline aria-[current=page]:decoration-[#c8864d] aria-[current=page]:underline-offset-8">{label}</Link>)}</nav>
+      <Link href="/contact" className="hidden items-center gap-2 rounded-full bg-[#99441f] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#7b3518] lg:inline-flex">Plan your trip <ArrowUpRight size={16} aria-hidden="true" /></Link>
+      <button type="button" onClick={() => setOpen(value => !value)} aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? 'Close navigation menu' : 'Open navigation menu'} className="rounded-lg p-2 focus-visible:outline-2 focus-visible:outline-offset-4 lg:hidden">{open ? <X size={26} aria-hidden="true" /> : <Menu size={26} aria-hidden="true" />}</button>
     </div>
-  );
-}
-
-
-function NavLink({ 
-  href, 
-  children, 
-  onClick 
-}: { 
-  href: string; 
-  children: React.ReactNode;
-  onClick?: () => void;
-}) {
-  return (
-    <Link 
-      href={href}
-      onClick={onClick}
-      className="text-white hover:text-orange-400 transition-colors duration-200 px-4 py-2"
-    >
-      {children}
-    </Link>
-  );
+    {open && <nav id="mobile-navigation" aria-label="Mobile navigation" className="border-t border-[#ded2c1] bg-[#faf7f1] px-5 pb-6 pt-3 text-[#30281e] lg:hidden">{links.map(([href, label]) => <Link key={href} href={href} onClick={() => setOpen(false)} aria-current={(href === '/' ? pathname === '/' : pathname.startsWith(href)) ? 'page' : undefined} className="block rounded-lg px-3 py-3 text-base transition hover:bg-[#eee7dc]">{label}</Link>)}<Link href="/contact" onClick={() => setOpen(false)} className="experience-button mt-4 w-full">Plan your trip <ArrowUpRight size={16} aria-hidden="true" /></Link></nav>}
+  </header>;
 }
