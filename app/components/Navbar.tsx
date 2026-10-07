@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { imagekitUrl } from '../../lib/imagekit';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -13,7 +12,7 @@ export default function Navbar() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -26,28 +25,26 @@ export default function Navbar() {
     setIsMenuOpen(false);
   };
 
-  const logoSrc = process.env.NEXT_PUBLIC_IMAGEKIT_URL
-    ? imagekitUrl('/logo.png')
-    : '/logo.png';
+  const logoSrc = '/logo/logo.webp';
 
   return (
     <div className="relative">
-      <div 
+      <div
         className="absolute w-full h-px bg-white z-50"
         style={{
           top: isScrolled ? '74px' : '98px',
           boxShadow: '0 1px 2px rgba(0, 0, 0, 0.1)'
         }}
       />
-      <nav 
+      <nav
         className={`absolute top-0 left-0 w-full z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-white shadow-md py-4' : 'bg-transparent py-6'
+          isScrolled ? 'bg-stone-800 shadow-md py-4' : 'bg-transparent py-6'
         }`}
       >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        
+
         <Link href="/" className="-ml-8 text-2xl font-bold text-white">
-          <Image src={logoSrc} alt="Logo" width={200} height={50} />
+          <Image src={logoSrc} alt="Logo" width={200} height={66} priority className="h-[50px] w-[200px] object-contain" />
         </Link>
 
         {/* Desktop Navigation */}
@@ -61,46 +58,46 @@ export default function Navbar() {
         </div>
 
         {/* Mobile menu button */}
-        <button 
-          className="md:hidden text-white focus:outline-none" 
+        <button
+          className="md:hidden text-white focus:outline-none"
           onClick={toggleMenu}
           aria-label="Toggle menu"
         >
           {isMenuOpen ? (
-            <svg 
-              className="w-6 h-6" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24" 
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M6 18L18 6M6 6l12 12" 
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
               />
             </svg>
           ) : (
-            <svg 
-              className="w-6 h-6" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24" 
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M4 6h16M4 12h16m-7 6h7" 
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16m-7 6h7"
               />
             </svg>
           )}
         </button>
 
         {/* Mobile menu */}
-        <div 
+        <div
           className={`fixed inset-0 bg-black bg-opacity-90 z-40 flex flex-col items-center justify-center transition-all duration-500 ease-out transform ${
             isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
           } md:hidden`}
@@ -110,11 +107,11 @@ export default function Navbar() {
             isMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-8'
           }`}>
               <Link href="/" onClick={closeMenu} className="block">
-              <Image 
-                src={logoSrc} 
-                alt="Logo" 
-                width={160} 
-                height={40} 
+              <Image
+                src={logoSrc}
+                alt="Logo"
+                width={160}
+                height={40}
                 className="w-auto h-10 object-contain"
                 priority
               />
@@ -122,25 +119,25 @@ export default function Navbar() {
           </div>
 
           {/* Close button - positioned at top right */}
-          <button 
+          <button
             onClick={closeMenu}
             className={`absolute top-6 right-6 p-2 text-white hover:text-orange-400 transition-all duration-300 transform ${
               isMenuOpen ? 'rotate-0 scale-100' : 'rotate-90 scale-90 opacity-0'
             }`}
             aria-label="Close menu"
           >
-            <svg 
-              className="w-10 h-10" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24" 
+            <svg
+              className="w-10 h-10"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={1.5} 
-                d="M6 18L18 6M6 6l12 12" 
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M6 18L18 6M6 6l12 12"
                 className="transition-all duration-300"
               />
             </svg>
@@ -165,17 +162,17 @@ export default function Navbar() {
 }
 
 
-function NavLink({ 
-  href, 
-  children, 
-  onClick 
-}: { 
-  href: string; 
+function NavLink({
+  href,
+  children,
+  onClick
+}: {
+  href: string;
   children: React.ReactNode;
   onClick?: () => void;
 }) {
   return (
-    <Link 
+    <Link
       href={href}
       onClick={onClick}
       className="text-white hover:text-orange-400 transition-colors duration-200 px-4 py-2"

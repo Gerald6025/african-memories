@@ -1,6 +1,7 @@
 export interface AccommodationItem {
   id: number;
   title: string;
+  slug: string;
   location: string;
   price: string;
   type: string;
@@ -19,6 +20,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 1,
     title: 'Palm River Lodge',
+    slug: 'palm-river-lodge',
     location: 'Victoria Falls',
     price: 'From US$1,420 per person per night',
     type: 'Luxury',
@@ -42,6 +44,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 2,
     title: 'Victoria Falls Safari Lodge',
+    slug: 'victoria-falls-safari-lodge',
     location: 'Victoria Falls',
     price: 'From US$1,370 per person per night',
     type: 'Safari',
@@ -65,6 +68,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 3,
     title: 'Ilala Lodge Hotel',
+    slug: 'ilala-lodge-hotel',
     location: 'Victoria Falls',
     price: 'From US$9,870 per camp per night',
     type: 'Luxury',
@@ -88,6 +92,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 4,
     title: 'Pamusha Lodge',
+    slug: 'pamusha-lodge',
     location: 'Victoria Falls',
     price: 'From US$1,850 per person per night',
     type: 'Safari',
@@ -110,6 +115,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 5,
     title: 'Victoria Falls Pioneer Camp',
+    slug: 'victoria-falls-pioneer-camp',
     location: 'Victoria Falls',
     price: 'From US$2,100 per person per night',
     type: 'Luxury',
@@ -133,6 +139,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 6,
     title: 'Troutbeck Resort',
+    slug: 'troutbeck-resort',
     location: 'Nyanga',
     price: 'From US$950 per person per night',
     type: 'Mountain Escape',
@@ -156,6 +163,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 7,
     title: 'Elephant Hills Resort',
+    slug: 'elephant-hills-resort',
     location: 'Victoria Falls',
     price: 'From US$890 per person per night',
     type: 'Luxury',
@@ -179,6 +187,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 8,
     title: 'Mbano Manor Hotel',
+    slug: 'mbano-manor-hotel',
     location: 'Victoria Falls',
     price: 'From US$1,680 per person per night',
     type: 'Boutique',
@@ -202,6 +211,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 9,
     title: 'Explorers Village',
+    slug: 'explorers-village',
     location: 'Victoria Falls',
     price: 'From US$1,250 per person per night',
     type: 'Adventure',
@@ -225,6 +235,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 10,
     title: 'Dzimbawe Guest Lodge',
+    slug: 'dzimbahwe-guest-lodge',
     location: 'Victoria Falls',
     price: 'From US$107 per person per night',
     type: 'Budget',
@@ -248,6 +259,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 11,
     title: 'Old Drift Lodge',
+    slug: 'old-drift-lodge',
     location: 'Victoria Falls',
     price: 'From US$836 per person per night',
     type: 'Luxury',
@@ -273,6 +285,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 12,
     title: 'Chundu Island',
+    slug: 'chundu-island',
     location: 'Victoria Falls',
     price: 'From US$790 per person per night',
     type: 'Island Safari',
@@ -298,6 +311,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 13,
     title: 'Matetsi Victoria Falls',
+    slug: 'matetsi-river-lodge',
     location: 'Victoria Falls',
     price: 'From US$1,150 per person per night',
     type: 'Luxury',
@@ -323,6 +337,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 14,
     title: 'Victoria Falls Hotel',
+    slug: 'victoria-falls-hotel',
     location: 'Victoria Falls',
     price: 'From US$350 per person per night',
     type: 'Luxury',
@@ -348,6 +363,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 15,
     title: 'Batonka Guest Lodge',
+    slug: 'batonka-guest-lodge',
     location: 'Victoria Falls',
     price: 'From US$196 per person per night',
     type: 'Boutique',
@@ -373,6 +389,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 16,
     title: 'Wallow Lodge',
+    slug: 'wallow-lodge',
     location: 'Victoria Falls',
     price: 'From US$1,100 per person per night',
     type: 'Safari',
@@ -396,6 +413,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 17,
     title: 'Lokuthula Lodges',
+    slug: 'lokuthula-lodges',
     location: 'Victoria Falls',
     price: 'From US$1,100 per person per night',
     type: 'Safari',
@@ -420,6 +438,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 18,
     title: 'Rainbow Hotel',
+    slug: 'rainbow-hotel',
     location: 'Victoria Falls',
     price: 'From US$1,100 per person per night',
     type: 'Luxury',
@@ -443,6 +462,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 19,
     title: 'Fothergill Island',
+    slug: 'fothergill-island',
     location: 'Kariba',
     price: 'From US$1,100 per person per night',
     type: 'Island Escape',
@@ -468,6 +488,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 20,
     title: 'Spurwing Island Lodge',
+    slug: 'spurwing-island',
     location: 'Kariba',
     price: 'From US$1,100 per person per night',
     type: 'Remote Safari',
@@ -493,6 +514,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 21,
     title: 'Bumi Hills Safari Lodge',
+    slug: 'bumi-hills-safari-lodge',
     location: 'Kariba',
     price: 'From US$1,100 per person per night',
     type: 'Safari',
@@ -518,6 +540,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 22,
     title: 'Caribean Bay Hotel',
+    slug: 'caribean-bay-hotel',
     location: 'Kariba',
     price: 'From US$1,100 per person per night',
     type: 'Family Resort',
@@ -542,6 +565,7 @@ export const accommodations: AccommodationItem[] = [
   {
     id: 23,
     title: 'Hwange Safari Lodge',
+    slug: 'hwange-safari-lodge',
     location: 'Hwange',
     price: 'From US$1,100 per person per night',
     type: 'Safari',
@@ -564,4 +588,158 @@ export const accommodations: AccommodationItem[] = [
     highlights: ['National park access', 'Guided safaris', 'Bush luxury'],
     amenities: ['Pool', 'Free WiFi', 'Restaurant', 'Breakfast'],
   },
+{
+  "id": 24,
+  "title": "Katavi National Park Camp",
+  "slug": "katavi-national-park-camp",
+  "location": "Katavi National Park",
+  "price": "From US$2,400 per person per night",
+  "type": "Remote Safari",
+  "image": "https://ik.imagekit.io/c0x52ylk1/African%20Memories%20Resources/Katavi/katavi-national-park.jpg",
+  "foodImage": "https://source.unsplash.com/1350x900/?food&sig=10",
+  "description": "A true wilderness escape offering remoteness, wildlife intensity, and a private safari atmosphere far from the crowds.",
+  "highlights": [
+    "Remote safari",
+    "Fly-in access",
+    "Untouched nature"
+  ],
+  "amenities": [
+    "Pool",
+    "Free WiFi",
+    "Bar",
+    "Breakfast"
+  ]
+},
+{
+  "id": 25,
+  "title": "Mikumi Safari Lodge",
+  "slug": "mikumi-safari-lodge",
+  "location": "Mikumi National Park",
+  "price": "From US$780 per person per night",
+  "type": "Safari",
+  "image": "https://ik.imagekit.io/c0x52ylk1/African%20Memories%20Resources/Mikumi/mikumi-safari-lodge.jpg",
+  "foodImage": "https://source.unsplash.com/1350x900/?food&sig=11",
+  "description": "A comfortable stopover with stylish rooms, peaceful gardens, and easy access to the southern circuit.",
+  "highlights": [
+    "Gateway safari",
+    "Malaria-free options",
+    "Relaxed lounge"
+  ],
+  "amenities": [
+    "Pool",
+    "Free WiFi",
+    "Restaurant",
+    "Breakfast"
+  ]
+},
+{
+  "id": 26,
+  "title": "Arusha Coffee Lodge",
+  "slug": "arusha-coffee-lodge",
+  "location": "Arusha",
+  "price": "From US$650 per person per night",
+  "type": "Coffee Estate",
+  "image": "https://ik.imagekit.io/c0x52ylk1/African%20Memories%20Resources/Arusha/arusha-coffee-lodge.jpg",
+  "foodImage": "https://source.unsplash.com/1350x900/?food&sig=12",
+  "description": "Set on a working plantation, this lodge combines elegant rooms with coffee estate charm and scenic views over the hills.",
+  "highlights": [
+    "Coffee plantation",
+    "Relaxed luxury",
+    "Garden views"
+  ],
+  "amenities": [
+    "Pool",
+    "Free WiFi",
+    "Restaurant",
+    "Breakfast"
+  ]
+},
+{
+  "id": 27,
+  "title": "Mara Grand Migration Camp",
+  "slug": "mara-grand-migration-camp",
+  "location": "Serengeti Mara",
+  "price": "From US$1,750 per person per night",
+  "type": "Migration Camp",
+  "image": "https://ik.imagekit.io/c0x52ylk1/African%20Memories%20Resources/Serengeti%20Migration/mara-grand-migration.jpg",
+  "foodImage": "https://source.unsplash.com/1350x900/?food&sig=13",
+  "description": "A seasonal camp built for tracking the great migration with immersive safari comfort and unforgettable scenery.",
+  "highlights": [
+    "Migration season",
+    "Tent suites",
+    "Wildlife focus"
+  ],
+  "amenities": [
+    "Pool",
+    "Free WiFi",
+    "Bar",
+    "Breakfast"
+  ]
+},
+{
+  "id": 28,
+  "title": "Kilimanjaro View Lodge",
+  "slug": "kilimanjaro-view-lodge",
+  "location": "Moshi",
+  "price": "From US$920 per person per night",
+  "type": "Mountain Lodge",
+  "image": "https://ik.imagekit.io/c0x52ylk1/African%20Memories%20Resources/Kilimanjaro/kilimanjaro-view-lodge.jpg",
+  "foodImage": "https://source.unsplash.com/1350x900/?food&sig=14",
+  "description": "A serene stopover for climbers and travelers looking for comfort, mountain views, and a calm atmosphere before or after the ascent.",
+  "highlights": [
+    "Mountain views",
+    "Climb-friendly",
+    "Peaceful gardens"
+  ],
+  "amenities": [
+    "Pool",
+    "Free WiFi",
+    "Restaurant",
+    "Breakfast"
+  ]
+},
+{
+  "id": 29,
+  "title": "Zanzibar Beach Retreat",
+  "slug": "zanzibar-beach-retreat",
+  "location": "Zanzibar Island",
+  "price": "From US$1,100 per person per night",
+  "type": "Beach Escape",
+  "image": "https://ik.imagekit.io/c0x52ylk1/African%20Memories%20Resources/Zanzibar/zanzibar-beach-retreat.jpg",
+  "foodImage": "https://source.unsplash.com/1350x900/?food&sig=15",
+  "description": "White sands, crystal-clear water, and gentle luxury come together in this beachfront retreat designed for pure relaxation.",
+  "highlights": [
+    "Beachfront luxury",
+    "Private beach",
+    "Island escape"
+  ],
+  "amenities": [
+    "Pool",
+    "Free WiFi",
+    "Restaurant",
+    "Bar"
+  ]
+},
+{
+  "id": 30,
+  "title": "Spurwing Island Lodge",
+  "slug": "spurwing-island-lodge",
+  "location": "Kariba",
+  "price": "From US$1,100 per person per night",
+  "type": "Remote Safari",
+  "image": "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/96/b2/4b/spurwing-island.jpg?w=900&h=500&s=1",
+  "foodImage": "https://source.unsplash.com/1350x900/?food&sig=20",
+  "description": "Set on Lake Kariba with dramatic scenery and fishing opportunities, this lodge delivers a peaceful retreat for wildlife lovers and travelers alike.",
+  "highlights": [
+    "Lakefront location",
+    "Fishing access",
+    "Quiet luxury"
+  ],
+  "amenities": [
+    "Pool",
+    "Free WiFi",
+    "Restaurant",
+    "Breakfast"
+  ]
+},
 ];

@@ -1,14 +1,13 @@
+import { apiGet, Activity } from "../lib/api";
+import { experienceCard, experienceImage } from "../lib/experiences";
 import Navbar from './components/Navbar';
 import BannerCarousel from './components/BannerCarousel';
-import PopularActivities from './components/PopularActivities';
-import PopularHotelsAndLodges from './components/PopularHotelsAndLodges';
 import Footer from './components/Footer';
-import Welcome from './components/Welcome';
 import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
 import WhyChooseUs from './components/WhyChooseUs';
 import Destinations from './components/Destinations';
-import Places from './components/Places'; 
+import Places from './components/Places';
 import Activities from './components/Activities';
 
 
@@ -16,7 +15,11 @@ import Activities from './components/Activities';
 
 
 
-export default function Home() {
+export default async function Home() {
+  let activities: Activity[] = [];
+  let activitiesUnavailable = false;
+  try { activities = await apiGet<Activity[]>('/activities'); }
+  catch { activitiesUnavailable = true; }
   const bannerData = [
     {
       title: "Discover Victoria Falls",
@@ -36,7 +39,7 @@ export default function Home() {
     {
       title: "Wildlife Encounters",
       subtitle: "Authentic game drives led by experienced local guides, offering unforgettable wildlife encounters and deep insight into the African bush.",
-      backgroundImage: "/pool.png",
+      backgroundImage: experienceImage(activities.find(activity => activity.details?.categories.includes('wildlife'))?.image) || "https://ik.imagekit.io/c0x52ylk1/Dennis/WhatsApp%20Image%202026-08-13%20at%2010.06.13.jpeg?updatedAt=1786610597358",
       backgroundVideo: "https://ik.imagekit.io/c0x52ylk1/New%20folder/vid.mp4",
       locationTag: "Top wildlife safaris",
       locationName: "Wilderness Linkwasha Camp"
@@ -49,7 +52,8 @@ export default function Home() {
       <BannerCarousel banners={bannerData} />
      <Destinations/>
      <Places/>
-     <Activities/>
+     <Activities activities={[...activities].sort((a, b) => Number(b.details?.categories.includes('featured') || false) - Number(a.details?.categories.includes('featured') || false)).slice(0, 4).map(activity => experienceCard(activity))}/>
+     {activitiesUnavailable && <p className="bg-[#f8efe6] p-6 text-center text-[#3b2b18]">Experiences are temporarily unavailable. Please try again shortly.</p>}
       <WhyChooseUs />
       <Testimonials />
       <Gallery />

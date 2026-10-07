@@ -78,3 +78,22 @@ h6 {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+.experience-eyebrow {
+  font-size: 0.65rem;
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #99441f;
+}
+
+.experience-button { display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem; border-radius: 2rem; padding: 0.9rem 1.4rem; background: #99441f; color: white; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background 150ms; }
+.experience-button:hover { background: #7b3518; }
+.experience-button:focus-visible { outline: 2px solid #99441f; outline-offset: 4px; }
+.experience-empty { margin-top: 2rem; border: 1px solid #ded2c1; border-radius: 1rem; padding: 3rem 1.5rem; text-align: center; }
+.experience-section { scroll-margin-top: 7.5rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .group img, .group [class*="transition"], .experience-button { transition: none; }
+}

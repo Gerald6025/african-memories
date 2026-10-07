@@ -1,0 +1,72 @@
+[
+  {
+    "folder": "Boma Dinner_", "name": "Boma Dinner", "slug": "boma-dinner", "category": "CULTURE",
+    "cover": "IMG_0364.JPG", "source": "boma-dinner-menu-2025.pdf",
+    "description": "Enjoy an African dining experience at The Boma in Victoria Falls. The supplied menu describes a ceremonial hand washing and a taste of village beer, followed by starters, salads, grilled meats, traditional stews and vegetarian options. Contact our team to confirm the current menu, entertainment programme, dietary arrangements and dinner price."
+  },
+  {
+    "folder": "Bungee Jump_", "name": "Bungee Jump", "slug": "bungee-jump", "category": "ADRENALINE",
+    "cover": "Bungee-1-scaled.jpg", "source": "Bungee-Fact-Sheet-2024_page-0001.jpg", "referencePriceUSD": 168,
+    "description": "Take a bungee jump from Victoria Falls Bridge with views of the Zambezi gorge and the spray of the falls. The supplied operator fact sheet describes a 15-20 minute experience including the briefing. Photos and videos are available at an additional charge. Contact our team to confirm current participation requirements, transfers and pricing."
+  },
+  {
+    "folder": "Chobe Day Trip_", "name": "Chobe Day Trip", "slug": "chobe-day-trip", "category": "WILDLIFE",
+    "cover": "Chobe-1-1-scaled.jpg", "source": "Chobe-Day-Trip-Fact-Sheet-2024_page-0012.jpg", "referencePriceUSD": 185,
+    "description": "Travel from Victoria Falls to Chobe National Park in Botswana for a full day of wildlife viewing. The supplied itinerary combines a morning cruise along the Chobe River, lunch on the riverbank and an afternoon game drive before returning to Victoria Falls. Allow approximately ten hours. Contact our team to confirm the itinerary, border arrangements and current quote."
+  },
+  {
+    "folder": "Elephant Interaction_", "name": "Elephant Interaction", "slug": "elephant-interaction", "category": "WILDLIFE",
+    "cover": "Elecrew-02.jpg", "source": "eleCrew-TTEOE-Factsheet (1).pdf",
+    "description": "Discover Through the Eyes of an Elephant with eleCREW at Jafuta. The supplied programme begins with an educational talk, followed by an elephant encounter and a 20-minute walk with experienced handlers. Afterwards, observe the herd from the viewing deck with refreshments. The fact sheet gives an overall turnaround time of approximately two and a half hours, including hotel or lodge transfers. Children under ten use the viewing platform instead of joining the walk. Contact our team to confirm current arrangements and pricing."
+  },
+  {
+    "folder": "Flight of Angels", "name": "Flight of Angels", "slug": "flight-of-angels", "category": "SCENIC",
+    "cover": "Heli-1-1-scaled.jpg", "source": "Helicopter-Flights-Fact-Sheet-2024_page-0011.jpg", "referencePriceUSD": 150,
+    "description": "See Victoria Falls from above on the Flight of Angels helicopter experience. The supplied fact sheet describes a 13-15 minute flight, with longer scenic options taking in the Batoka Gorge and surrounding landscape. Lodge or hotel transfers are listed in the operator information. Flights depend on weather conditions. Contact our team to confirm your flight option, current fees and availability."
+  },
+  {
+    "folder": "Game Drive", "name": "Game Drive", "slug": "game-drive", "category": "WILDLIFE",
+    "cover": "Game-Drive-2-scaled.jpg", "source": "Game-Drive-Fact-Sheet-2024_page-0013.jpg", "referencePriceUSD": 70,
+    "description": "Explore the wildlife and landscapes of Zambezi National Park with a professional guide. The supplied operator fact sheet describes morning and afternoon drives lasting approximately three hours, with hotel or lodge transfers and light snacks. Wildlife sightings vary on every outing. Contact our team for current departure arrangements, park fees and pricing."
+  },
+  {
+    "folder": "Gorge Swing_", "name": "Gorge Swing (Victoria Falls Bridge)", "slug": "gorge-swing", "category": "ADRENALINE",
+    "cover": "Bridge-Swing-2-1-scaled.jpg", "source": "Bridge-Swing-Fact-Sheet-2024_page-0002.jpg", "referencePriceUSD": 168,
+    "description": "Swing out from Victoria Falls Bridge above the Zambezi gorge. The material supplied for this experience describes the Bridge Swing, with solo and tandem options and a briefing included in the approximately 15-20 minute experience. Contact our team to confirm the exact swing location, participation requirements and current quote."
+  },
+  {
+    "folder": "Guided Tour of the Falls_", "name": "Guided Tour of the Falls", "slug": "guided-tour-of-the-falls", "category": "SCENIC",
+    "cover": "Tour-of-the-Falls-1-scaled.jpg", "source": "Guided-Tour-Of-The-Falls-Fact-Sheet-2024_page-0005.jpg", "referencePriceUSD": 26,
+    "description": "Explore Victoria Falls with a guide who shares the history, natural surroundings and viewing points of this remarkable waterfall. The supplied itinerary describes a two-hour tour with photographic stops and raincoats when needed. Hotel or lodge transfers are listed in the fact sheet. Contact our team to confirm current departure times, entrance fees and pricing."
+  },
+  {
+    "folder": "Jet Boat Adventure_", "name": "Jet Boat Adventure", "slug": "jet-boat-adventure", "category": "ADRENALINE",
+    "cover": "DSC01087.jpg", "source": "JetBoat-Fact-Sheet-2024_page-0004.jpg", "referencePriceUSD": 116,
+    "description": "Experience speed, spins and views of the gorge on a jet boat adventure on the Zambezi River below Victoria Falls. The supplied fact sheet describes approximately 35-45 minutes on the boat within a two-and-a-half-hour outing, including transfers. Access involves a steep, rocky walk into and out of the gorge. Contact our team to confirm suitability, conditions and the current quote."
+  },
+  {
+    "folder": "Simunye_", "name": "Simunye: Spirit of Africa", "slug": "simunye", "category": "CULTURE",
+    "cover": "Simunye-Spirit-Of-Africa-31.jpg", "source": "Simunye-Spirit-Of-Africa-Fact-Sheet-2024_page-0007.jpg", "referencePriceUSD": 50,
+    "description": "Enjoy an evening theatre experience combining Zimbabwean music, acting, dance and storytelling. The supplied programme describes a one-hour performance at the Victoria Falls Theatre at Elephant Walk, presented in English in an open-air setting. Contact our team for the current performance schedule, ticket price and transfer options."
+  },
+  {
+    "folder": "Spa Treatments", "name": "Spa Treatments", "slug": "spa-treatments", "category": "WELLNESS",
+    "cover": "IMG_0375.PNG", "source": "Vic Falls Safari Spa - Treatment Menu Updated NOV 2025 (Online) FINAL.pdf",
+    "description": "Unwind at Victoria Falls Safari Spa in a peaceful woodland setting. The supplied treatment menu includes massages, facials, body scrubs, manicures, pedicures and half-day or full-day packages. Options range from shorter treatments to extended signature journeys, with couples' experiences available. Book ahead and discuss your preferred treatment with our team so we can confirm current durations, prices and appointment availability."
+  },
+  {
+    "folder": "Standard Cruise_", "name": "Standard Sunset Cruise", "slug": "standard-cruise", "category": "SCENIC",
+    "cover": "Standard-1-scaled.jpg", "source": "River-Cruise-Fact-Sheet-2024_page-0006.jpg", "referencePriceUSD": 40,
+    "description": "Enjoy a relaxed sunset cruise on the Zambezi River with views of the river landscape and opportunities to see wildlife. The supplied operator fact sheet describes a two-hour standard sunset cruise with snacks and lodge or hotel transfers. Departure times vary by season. Contact our team to confirm the current departure time, park fees and price."
+  },
+  {
+    "folder": "White Water Rafting_", "name": "White Water Rafting", "slug": "white-water-rafting", "category": "ADRENALINE",
+    "cover": "whitewater-rafting-images-2.jpg", "source": "White-Water-Rafting-Fact-Sheet-2024_page-0014.jpg", "referencePriceUSD": 132,
+    "description": "Explore the Zambezi rapids in the gorges below Victoria Falls on a white water rafting adventure. The supplied operator material describes an approximately six-hour experience with transfers, life jacket, helmet and paddle. The outing includes steep, rocky walks into and out of the gorge. Contact our team to confirm river conditions, participation requirements and current pricing."
+  },
+  {
+    "folder": "Zip Line_", "name": "Zip Line (Bridge Slide)", "slug": "zip-line", "category": "ADRENALINE",
+    "cover": "Bridge-Slide-1-scaled.jpg", "source": "Bridge-Slide-Fact-Sheet-2024_page-0003.jpg", "referencePriceUSD": 48,
+    "description": "Glide above the Zambezi with views of Victoria Falls on the Bridge Slide zip line experience. The supplied fact sheet describes solo and tandem options, with approximately 15-20 minutes including the briefing. Contact our team to confirm current participation requirements, transfer options and pricing."
+  }
+]

@@ -1,88 +1,37 @@
-"use client";
+'use client';
 
-import { FaArrowRight } from "react-icons/fa";
-import Image from "next/image";
-import { useState } from "react";
+import { useMemo, useState } from 'react';
+import Link from 'next/link';
+import ExperienceCard from './ExperienceCard';
+import { categoryLabel, type ExperienceCardData } from '../../lib/experiences';
 
-interface Adventure {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  category: string;
-}
-
-interface AdventureCardsProps {
-  adventures: Adventure[];
+interface Props {
+  adventures: ExperienceCardData[] | null;
   className?: string;
+  loading?: boolean;
+  error?: string | null;
+  compact?: boolean;
 }
 
-export default function AdventureCards({ adventures, className }: AdventureCardsProps) {
-  const [hoveredId, setHoveredId] = useState<number | null>(null);
+export default function AdventureCards({ adventures, className = '', loading = false, error = null, compact = false }: Props) {
+  const [category, setCategory] = useState('all');
+  const categories = useMemo(() => [...new Set((adventures || []).flatMap(item => item.categories))].filter(item => item !== 'featured').sort((a, b) => categoryLabel(a).localeCompare(categoryLabel(b))), [adventures]);
+  const filtered = (adventures || []).filter(item => category === 'all' || item.categories.includes(category));
 
-  return (
-    <section className={`bg-white py-16 md:py-20 lg:py-24 ${className || ''}`}>
-      <div className="container mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {adventures.map((adventure) => (
-            <div
-              key={adventure.id}
-              className="relative h-72 md:h-80 lg:h-96 overflow-hidden group cursor-pointer"
-              onMouseEnter={() => setHoveredId(adventure.id)}
-              onMouseLeave={() => setHoveredId(null)}
-            >
-              {/* Background Image */}
-              <div
-                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
-                style={{
-                  backgroundImage: `url('${adventure.image}')`,
-                }}
-              />
-
-              {/* Overlay */}
-              <div
-                className="absolute inset-0 transition-all duration-300"
-                style={{
-                  backgroundColor:
-                    hoveredId === adventure.id
-                      ? "rgba(0, 0, 0, 0.4)"
-                      : "rgba(0, 0, 0, 0.4)",
-                }}
-              />
-
-              {/* Text Readability Gradient */}
-              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent" />
-
-              {/* Content */}
-              <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-                <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:mb-3 transition-all duration-300">
-                    {adventure.title}
-                  </h3>
-                  <p
-                    className={`text-white text-sm md:text-base leading-relaxed transition-all duration-300 overflow-hidden ${
-                      hoveredId === adventure.id
-                        ? "max-h-40 opacity-100"
-                        : "max-h-0 opacity-0"
-                    }`}
-                  >
-                    {adventure.description}
-                  </p>
-                </div>
-                <div
-                  className={`transition-all duration-300 mt-3 self-end ${
-                    hoveredId === adventure.id
-                      ? "opacity-100 translate-x-0"
-                      : "opacity-0 translate-x-2"
-                  }`}
-                >
-                  <FaArrowRight className="text-white text-xl" />
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+  return <section id="experiences" className={'bg-white ' + (compact ? 'py-6 ' : 'py-16 md:py-20 lg:py-24 ') + className}>
+    <div className="container mx-auto px-6 lg:px-8">
+      <div className="mb-8 flex items-center justify-center gap-3">
+        <label className="text-sm font-medium text-[#5D4A37]">Filter:
+          <select value={category} onChange={event => setCategory(event.target.value)} className="ml-3 border-0 border-b border-gray-300 bg-transparent py-1 pr-8 text-sm text-[#5D4A37] focus:border-orange-600 focus:outline-none">
+            <option value="all">All</option>
+            {categories.map(item => <option key={item} value={item}>{categoryLabel(item)}</option>)}
+          </select>
+        </label>
       </div>
-    </section>
-  );
+      {loading ? <p role="status" className="py-12 text-center text-stone-600">Loading experiences...</p>
+        : error ? <div className="py-12 text-center text-stone-600"><p>Experiences are temporarily unavailable. Please try again shortly.</p><Link href="/contact" className="mt-4 inline-block text-orange-600 hover:underline">Contact our team</Link></div>
+        : filtered.length ? <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3">{filtered.map(experience => <ExperienceCard key={experience.id} experience={experience} />)}</div>
+        : <p role="status" className="py-12 text-center text-stone-600">No experiences in this category.</p>}
+    </div>
+  </section>;
 }

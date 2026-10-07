@@ -203,8 +203,8 @@ const activityImagesMap: Record<number, Activity[]> = {
   ],
 };
 
-export default function AccommodationDetail({ accommodationId }: { accommodationId: number }) {
-  const accommodation = accommodationCatalog.find((item) => item.id === accommodationId);
+export default function AccommodationDetail({ slug }: { slug: string }) {
+  const accommodation = accommodationCatalog.find((item) => item.slug === slug);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState('need-to-know');
   const [isMapModalOpen, setIsMapModalOpen] = useState(false);
@@ -462,13 +462,13 @@ export default function AccommodationDetail({ accommodationId }: { accommodation
       </section>
 
       <ActivitiesSection
-        activityText={activityTextMap[accommodationId]}
-        activities={activityImagesMap[accommodationId]}
+        activityText={activityTextMap[accommodation.id]}
+        activities={activityImagesMap[accommodation.id]}
       />
 
       <LodgeGalleryAndVideo
         accommodation={accommodation}
-        activities={activityImagesMap[accommodationId]}
+        activities={activityImagesMap[accommodation.id]}
       />
 
       {/* Interactive Location Map Modal */}
@@ -564,4 +564,3 @@ export default function AccommodationDetail({ accommodationId }: { accommodation
     </main>
   );
 }
-

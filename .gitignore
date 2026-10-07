@@ -1,5 +1,11 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# NestJS backend
+backend/node_modules/
+backend/dist/
+backend/.env
+backend/src/generated/prisma/
+
 # dependencies
 /node_modules
 /.pnp
@@ -19,6 +25,7 @@
 
 # production
 /build
+/artifacts/*.tar
 
 # misc
 .DS_Store
@@ -32,6 +39,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+!**/.env.example
 
 # vercel
 .vercel
@@ -39,3 +48,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.neon
+
+# Local agent settings and scratch files
+/.agents/
+/.codex/
+/.kilo/
+/tmp/
+/skills-lock.json
+/CODEX_RUN_REPORT.md
