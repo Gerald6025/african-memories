@@ -88,16 +88,6 @@ h6 {
   color: #99441f;
 }
 
-.experience-card { position: relative; display: block; min-width: 0; height: 18rem; overflow: hidden; color: white; }
-.experience-card:focus-visible { outline: 2px solid #ea580c; outline-offset: 4px; }
-.experience-card-description { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 300ms, opacity 300ms; }
-.experience-card-arrow { align-self: flex-end; margin-top: 0.75rem; opacity: 0; transform: translateX(0.5rem); transition: opacity 300ms, transform 300ms; }
-.experience-card:hover .experience-card-description, .experience-card:focus-visible .experience-card-description { max-height: 10rem; opacity: 1; }
-.experience-card:hover .experience-card-arrow, .experience-card:focus-visible .experience-card-arrow { opacity: 1; transform: translateX(0); }
-@media (min-width: 768px) { .experience-card { height: 20rem; } }
-@media (min-width: 1024px) { .experience-card { height: 24rem; } }
-@media (hover: none) { .experience-card-description { max-height: 10rem; opacity: 1; } .experience-card-arrow { opacity: 1; transform: none; } }
-
 .experience-button { display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem; border-radius: 2rem; padding: 0.9rem 1.4rem; background: #99441f; color: white; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background 150ms; }
 .experience-button:hover { background: #7b3518; }
 .experience-button:focus-visible { outline: 2px solid #99441f; outline-offset: 4px; }
@@ -105,6 +95,5 @@ h6 {
 .experience-section { scroll-margin-top: 7.5rem; }
 
 @media (prefers-reduced-motion: reduce) {
-  .experience-card, .experience-card img, .experience-card-description, .experience-card-arrow, .experience-button { transition: none; }
-  .experience-card:hover { transform: none; }
+  .group img, .group [class*="transition"], .experience-button { transition: none; }
 }

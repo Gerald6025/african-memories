@@ -1,20 +1,69 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { ArrowRight, MapPin } from 'lucide-react';
-import type { ExperienceCardData } from '../../lib/experiences';
+"use client";
 
-export default function ExperienceCard({ experience }: { experience: ExperienceCardData }) {
+import { FaArrowRight } from "react-icons/fa";
+import Link from "next/link";
+import type { ExperienceCardData } from "../../lib/experiences";
+import { useState } from "react";
+
+export default function ExperienceCard({ experience: adventure }: { experience: ExperienceCardData }) {
+  const [hovered, setHovered] = useState(false);
   return (
-    <Link href={'/adventures/' + experience.slug} className="experience-card group">
-      {experience.image ? <Image src={experience.image} alt={experience.title} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover transition-transform duration-500 group-hover:scale-110 group-focus-visible:scale-110" />
-        : <div className="absolute inset-0 flex items-center justify-center bg-[#5d4a37]"><MapPin size={36} aria-hidden="true" /></div>}
-      <div className="absolute inset-0 bg-black/40" />
-      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent" />
-      <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-        <h3 className="mb-2 text-2xl font-bold text-white transition-all duration-300 group-hover:mb-3 group-focus-visible:mb-3 md:text-3xl">{experience.title}</h3>
-        <p className="experience-card-description text-sm leading-relaxed text-white md:text-base">{experience.description}</p>
-        <ArrowRight className="experience-card-arrow text-white" size={24} aria-hidden="true" />
-      </div>
-    </Link>
+    <Link
+              href={'/adventures/' + adventure.slug}
+              className="relative block h-72 md:h-80 lg:h-96 overflow-hidden group cursor-pointer focus-visible:outline-2 focus-visible:outline-orange-600 focus-visible:outline-offset-4"
+              onMouseEnter={() => setHovered(true)}
+              onMouseLeave={() => setHovered(false)}
+              onFocus={() => setHovered(true)}
+              onBlur={() => setHovered(false)}
+            >
+              {/* Background Image */}
+              <div
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                style={{
+                  backgroundImage: `url('${adventure.image}')`,
+                }}
+              />
+
+              {/* Overlay */}
+              <div
+                className="absolute inset-0 transition-all duration-300"
+                style={{
+                  backgroundColor:
+                    hovered
+                      ? "rgba(0, 0, 0, 0.4)"
+                      : "rgba(0, 0, 0, 0.4)",
+                }}
+              />
+
+              {/* Text Readability Gradient */}
+              <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/70 to-transparent" />
+
+              {/* Content */}
+              <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-2 group-hover:mb-3 transition-all duration-300">
+                    {adventure.title}
+                  </h3>
+                  <p
+                    className={`text-white text-sm md:text-base leading-relaxed transition-all duration-300 overflow-hidden ${
+                      hovered
+                        ? "max-h-40 opacity-100"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    {adventure.description}
+                  </p>
+                </div>
+                <div
+                  className={`transition-all duration-300 mt-3 self-end ${
+                    hovered
+                      ? "opacity-100 translate-x-0"
+                      : "opacity-0 translate-x-2"
+                  }`}
+                >
+                  <FaArrowRight className="text-white text-xl" />
+                </div>
+              </div>
+            </Link>
   );
 }

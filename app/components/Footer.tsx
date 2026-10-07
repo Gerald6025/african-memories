@@ -118,7 +118,7 @@ const Footer: React.FC = () => {
             {/* LOGO */}
             <div className="mt-16 flex justify-center">
               <img
-                src="https://ik.imagekit.io/c0x52ylk1/African%20Memories%20Resources/logo.png?updatedAt=1778267349365"
+                src="/logo/logo.webp"
                 alt="African Memories"
                 className="h-28 w-auto object-contain opacity-90"
               />
