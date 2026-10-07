@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { RiPlayCircleFill, RiCloseLine, RiLeafLine, RiCarLine, RiStarLine, RiShieldCheckLine } from 'react-icons/ri';
+import Link from 'next/link';
 
 export default function WhyChooseUs() {
   const [isOverlayOpen, setIsOverlayOpen] = useState(false);
@@ -97,9 +98,12 @@ export default function WhyChooseUs() {
 
           <div className="space-y-10">
             <div className="flex justify-start sm:justify-end mt-6 sm:mt-16">
-              <button className="inline-flex items-center justify-center rounded-none border border-[#3b2b18] bg-transparent px-5 py-4 text-sm font-semibold text-[#3b2b18] transition-all duration-300 hover:border-orange-500 hover:bg-orange-500 hover:text-white hover:px-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center rounded-none border border-[#3b2b18] bg-transparent px-5 py-4 text-sm font-semibold text-[#3b2b18] transition-all duration-300 hover:border-orange-500 hover:bg-orange-500 hover:text-white hover:px-4"
+              >
                 Plan Your Next Adventures
-              </button>
+              </Link>
             </div>
 
             <div className="grid gap-6 sm:grid-cols-2 mt-8 sm:mt-50">
