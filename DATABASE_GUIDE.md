@@ -4,6 +4,8 @@ This guide matches this repository's Next.js frontend, NestJS API and Prisma 5 s
 
 ## 1. Understand the connection
 
+For cloud hosting and fetching from a deployed API, follow [CLOUD_DEPLOYMENT.md](./CLOUD_DEPLOYMENT.md). The local Docker steps below are still available for development.
+
 Browser -> Next.js (port 3000) -> NestJS API (port 3001) -> Prisma -> PostgreSQL in Docker (port 5432).
 
 Prisma migrations create the tables. Prisma Studio is your local visual editor for the records. The API reads those records and sends JSON to the frontend. Keep all three services running while using database-backed pages.
@@ -83,6 +85,10 @@ Invoke-RestMethod http://localhost:3001/api/v1/activities
 Readiness should report `database: connected`. An empty activity list means no PUBLISHED records exist yet.
 
 ## 6. Add your own information visually
+
+For the supplied `app/Experiences` folder, use the repeatable import described in
+[EXPERIENCES_IMPORT.md](./EXPERIENCES_IMPORT.md). It copies local photos and creates
+activities without inventing current prices or bookable seats.
 
 Open another terminal:
 

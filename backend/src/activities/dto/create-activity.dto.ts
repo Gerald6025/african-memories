@@ -5,7 +5,9 @@ import {
   IsUrl,
   Matches,
   MaxLength,
+  IsObject,
 } from "class-validator";
+import { Prisma } from "@prisma/client";
 
 export enum ActivityStatus {
   DRAFT = "DRAFT",
@@ -13,6 +15,10 @@ export enum ActivityStatus {
 }
 
 export class CreateActivityDto {
+  @IsOptional()
+  @IsObject()
+  details?: Prisma.InputJsonObject;
+
   @IsString()
   @MaxLength(200)
   name!: string;

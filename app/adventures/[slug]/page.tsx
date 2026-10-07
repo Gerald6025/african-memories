@@ -5,6 +5,7 @@ import { cache } from 'react';
 import { apiGet, ApiError, Activity } from '../../../lib/api';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
+import ExperienceDetails from '../../components/ExperienceDetails';
 
 interface PageProps { params: Promise<{ slug: string }> }
 const getActivity = cache(async (slug: string) => {
@@ -40,12 +41,13 @@ export default async function AdventureDetailPage({ params }: PageProps) {
       <article>
         <p className="text-sm uppercase tracking-[0.25em] text-orange-700">Your next African memory</p>
         <h2 className="mt-4 text-3xl sm:text-4xl">Experience {activity.name}</h2>
-        <p className="mt-8 whitespace-pre-line text-lg leading-8 text-[#5D4A37]">{activity.description || 'Contact our team for the full details of this experience.'}</p>
+        <p className="mt-8 whitespace-pre-line text-lg leading-8 text-[#5D4A37]">{activity.details?.fullOverview || activity.description || 'Contact our team for the full details of this experience.'}</p>
+        {activity.details && <ExperienceDetails details={activity.details} />}
         <Link href="/adventures" className="mt-10 inline-block border-b border-[#3b2b18] pb-1">Explore more adventures &rarr;</Link>
       </article>
       <aside className="self-start border border-[#3b2b18]/15 bg-white p-6 sm:p-8 lg:sticky lg:top-28">
         <h2 className="text-2xl">Plan your experience</h2>
-        {price ? <p className="mt-6 text-3xl">{price.currency} {Number(price.amount).toFixed(2)}</p> : <p className="mt-6 text-lg">Contact us for current pricing</p>}
+        {price ? <p className="mt-6 text-3xl">{price.currency} {Number(price.amount).toFixed(2)}</p> : <p className="mt-6 text-lg">{activity.details?.fromPrice || 'Contact us for current pricing'}</p>}
         <div className="my-6 border-t border-[#3b2b18]/15 pt-6">
           <h3 className="text-xl">Upcoming availability</h3>
           {slots.length ? <ul className="mt-4 space-y-4">{slots.map(slot => <li key={slot.id} className="text-sm leading-6">

@@ -21,9 +21,12 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json --runInBand",
     "migrate:test": "node test/run-prisma-test.js migrate deploy",
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node prisma/seed.ts",
+    "import:experiences": "ts-node prisma/import-experiences.ts",
+    "preview:experiences": "ts-node prisma/import-experiences.ts --preview"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.2.0",
     "@nestjs/common": "^10.2.10",
     "@nestjs/config": "^3.3.0",
     "@nestjs/core": "^10.2.10",

@@ -5,6 +5,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'african-memories-api-latest.onrender.com',
+        pathname: '/media/experiences/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'ik.imagekit.io',
         pathname: '/**',
       },
