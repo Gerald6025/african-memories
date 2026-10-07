@@ -12,7 +12,11 @@ const aliases = {
 const canonical = slug => aliases[slug] || slug;
 function prepareDetails() {
   const entries = JSON.parse(fs.readFileSync(path.resolve(root, 'backend/prisma/experience-details.json')));
-  const base = 'https://african-memories-api-latest.onrender.com/media/experiences';
+  const base = (process.env.MEDIA_BASE_URL || 'http://localhost:3001/media/experiences').replace(/\/+$/, '');
+  const url = new URL(base);
+  if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password) {
+    throw new Error('MEDIA_BASE_URL must be an HTTP(S) URL without credentials');
+  }
   return entries.map(entry => {
     const slug = canonical(entry.slug);
     function image(source, required = false) {

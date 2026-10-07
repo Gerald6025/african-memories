@@ -23,10 +23,12 @@
     "migrate:test": "node test/run-prisma-test.js migrate deploy",
     "seed": "ts-node prisma/seed.ts",
     "import:experiences": "ts-node prisma/import-experiences.ts",
-    "preview:experiences": "ts-node prisma/import-experiences.ts --preview"
+    "preview:experiences": "ts-node prisma/import-experiences.ts --preview",
+    "import:details": "node scripts/import-experience-details.cjs",
+    "preview:details": "node scripts/import-experience-details.cjs --preview",
+    "prepare:media": "node scripts/prepare-media.cjs"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^1.2.0",
     "@nestjs/common": "^10.2.10",
     "@nestjs/config": "^3.3.0",
     "@nestjs/core": "^10.2.10",
@@ -35,6 +37,7 @@
     "@prisma/client": "^5.7.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",
+    "dotenv": "^16.4.7",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^5.0.5",
     "rxjs": "^7.8.1"

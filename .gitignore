@@ -49,3 +49,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 .neon
+
+# Local agent settings and scratch files
+/.agents/
+/.codex/
+/.kilo/
+/tmp/
+/skills-lock.json
+/CODEX_RUN_REPORT.md
