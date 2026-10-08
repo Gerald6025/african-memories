@@ -7,3 +7,7 @@ if (!parsed.pathname.toLowerCase().includes("test")) {
 }
 process.env.DATABASE_URL = testDatabaseUrl;
 process.env.ADMIN_API_KEY = "integration-test-admin-key";
+// Integration tests never send real email, even when developer credentials exist.
+delete process.env.RESEND_API_KEY;
+delete process.env.ENQUIRY_EMAIL_FROM;
+delete process.env.ENQUIRY_EMAIL_TO;

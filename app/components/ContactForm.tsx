@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+'use client';
+
+import React, { useRef, useState } from "react";
 import {
   User,
   Phone,
@@ -38,7 +40,7 @@ const contactCards = [
     lines: [
       {
         text: "4920 Chinotimba, Victoria Falls, Zimbabwe",
-        href: "https://www.google.com/maps",
+        href: "https://www.google.com/maps/search/?api=1&query=4920%20Chinotimba%2C%20Victoria%20Falls%2C%20Zimbabwe",
       },
     ],
   },
@@ -47,7 +49,7 @@ const contactCards = [
     lines: [
       {
         text: "4920 Chinotimba, Victoria Falls, Zimbabwe",
-        href: "https://www.google.com/maps",
+        href: "https://www.google.com/maps/search/?api=1&query=4920%20Chinotimba%2C%20Victoria%20Falls%2C%20Zimbabwe",
       },
     ],
   },
@@ -59,6 +61,7 @@ interface FormState {
   email: string;
   destination: string;
   message: string;
+  website: string;
 }
 
 const initialForm: FormState = {
@@ -67,23 +70,49 @@ const initialForm: FormState = {
   email: "",
   destination: "",
   message: "",
+  website: "",
 };
 
-export default function ContactPage() {
-  const [form, setForm] = useState<FormState>(initialForm);
+export default function ContactPage({ initialMessage = "", initialDestination = "" }: { initialMessage?: string; initialDestination?: string }) {
+  const [form, setForm] = useState<FormState>({ ...initialForm, message: initialMessage, destination: initialDestination });
   const [submitted, setSubmitted] = useState(false);
+  const [pending, setPending] = useState(false);
+  const [error, setError] = useState('');
+  const [reference, setReference] = useState('');
+  const requestId = useRef<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
+    requestId.current = null;
+    setSubmitted(false);
+    setError('');
     setForm((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setForm(initialForm);
+    if (pending) return;
+    setPending(true);
+    setSubmitted(false);
+    setError('');
+    requestId.current ||= crypto.randomUUID();
+    try {
+      const response = await fetch('/api/enquiries', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...form, requestId: requestId.current }), signal: AbortSignal.timeout(20_000),
+      });
+      const result = await response.json();
+      if (!response.ok || result.received !== true) throw new Error(result.message || 'We could not save your enquiry. Please try again or contact us directly.');
+      setReference(result.id);
+      setSubmitted(true);
+      setForm(initialForm);
+      requestId.current = null;
+    } catch (failure) {
+      setError(failure instanceof Error && failure.name !== 'TimeoutError' && failure.name !== 'TypeError'
+        ? failure.message : 'We could not confirm your enquiry. Please try again or contact us by phone or email.');
+    } finally { setPending(false); }
   };
 
   return (
@@ -102,7 +131,7 @@ export default function ContactPage() {
                 Adventure Today!
               </p>
             </div>
-            <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl">
+            <div className="aspect-[4/3] w-full overflow-hidden rounded-none">
               <img
                 src="https://ik.imagekit.io/c0x52ylk1/African%20Memories%20Resources/Banner.jpg?updatedAt=1778156384582"
                 alt="Safari guide with guests"
@@ -112,7 +141,10 @@ export default function ContactPage() {
           </div>
 
           {/* Right: form */}
-          <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+          <form id="enquiry-form" onSubmit={handleSubmit} className="flex scroll-mt-28 flex-col gap-8">
+            <div className="hidden" aria-hidden="true">
+              <label>Website<input name="website" value={form.website} onChange={handleChange} autoComplete="off" tabIndex={-1} /></label>
+            </div>
             <div className="flex flex-col gap-6">
               <FormField
                 label="Full Name"
@@ -121,10 +153,13 @@ export default function ContactPage() {
                 <input
                   type="text"
                   name="name"
+                  autoComplete="name"
+                  minLength={2}
+                  maxLength={120}
                   required
                   value={form.name}
                   onChange={handleChange}
-                  placeholder="Gerald Chibanda"
+                  placeholder="Enter your full name"
                   className="w-full border-0 border-b bg-transparent pb-4 text-lg outline-none placeholder:text-[#6f5e4d]"
                   style={{ borderColor: COLORS.borderSoft, color: COLORS.textSoft }}
                 />
@@ -137,10 +172,13 @@ export default function ContactPage() {
                 <input
                   type="tel"
                   name="phone"
+                  autoComplete="tel"
+                  minLength={5}
+                  maxLength={40}
                   required
                   value={form.phone}
                   onChange={handleChange}
-                  placeholder="+263 787 247 501"
+                  placeholder="Enter your phone number, including country code"
                   className="w-full border-0 border-b bg-transparent pb-4 text-lg outline-none placeholder:text-[#6f5e4d]"
                   style={{ borderColor: COLORS.borderSoft, color: COLORS.textSoft }}
                 />
@@ -153,10 +191,12 @@ export default function ContactPage() {
                 <input
                   type="email"
                   name="email"
+                  autoComplete="email"
+                  maxLength={254}
                   required
                   value={form.email}
                   onChange={handleChange}
-                  placeholder="gerry@gmail.com"
+                  placeholder="Enter your email address"
                   className="w-full border-0 border-b bg-transparent pb-4 text-lg outline-none placeholder:text-[#6f5e4d]"
                   style={{ borderColor: COLORS.borderSoft, color: COLORS.textSoft }}
                 />
@@ -169,10 +209,12 @@ export default function ContactPage() {
                 <input
                   type="text"
                   name="destination"
+                  minLength={2}
+                  maxLength={160}
                   required
                   value={form.destination}
                   onChange={handleChange}
-                  placeholder="Kariba"
+                  placeholder="Enter your preferred destination"
                   className="w-full border-0 border-b bg-transparent pb-4 text-lg outline-none placeholder:text-[#6f5e4d]"
                   style={{ borderColor: COLORS.borderSoft, color: COLORS.textSoft }}
                 />
@@ -184,6 +226,8 @@ export default function ContactPage() {
               >
                 <textarea
                   name="message"
+                  minLength={10}
+                  maxLength={5000}
                   required
                   value={form.message}
                   onChange={handleChange}
@@ -197,17 +241,19 @@ export default function ContactPage() {
 
             <button
               type="submit"
-              className="w-fit rounded-full px-14 py-4 text-base font-semibold text-white shadow-sm transition-transform hover:scale-[1.02]"
+              disabled={pending}
+              className="w-fit rounded-none px-14 py-4 text-base font-semibold text-white shadow-sm transition-transform hover:scale-[1.02]"
               style={{ backgroundColor: COLORS.accent }}
             >
-              Send Message
+              {pending ? 'Sending...' : 'Send Message'}
             </button>
 
             {submitted && (
-              <p className="text-sm font-medium" style={{ color: COLORS.accent }}>
-                Thanks! Your message has been sent — we&apos;ll be in touch soon.
+              <p role="status" className="text-sm font-medium" style={{ color: COLORS.accent }}>
+                Thanks! Your enquiry has been received. We&apos;ll be in touch soon. Reference: {reference}
               </p>
             )}
+            {error && <p role="alert" className="text-sm text-red-700">{error}</p>}
           </form>
         </div>
 
@@ -241,9 +287,9 @@ export default function ContactPage() {
       <section className="w-full">
         <div className="h-[300px] w-full sm:h-[400px] md:h-[500px]">
           <iframe
-            title="Safario office location"
+            title="African Memories office in Victoria Falls"
             className="h-full w-full border-0"
-            src="https://maps.google.com/maps?q=Los%20Angeles&z=11&output=embed"
+            src="https://maps.google.com/maps?q=4920%20Chinotimba%2C%20Victoria%20Falls%2C%20Zimbabwe&z=14&output=embed"
           />
         </div>
       </section>
