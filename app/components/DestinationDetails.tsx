@@ -185,7 +185,7 @@ export default function DestinationDetails({ slug, experiences, error }: { slug:
           Top Experiences
         </h3>
         <p className="mx-auto max-w-2xl text-[#3b2b18]/70 leading-relaxed mb-12">
-          {destination.highlights.join(" â€¢ ")}
+          {destination.highlights.join(" • ")}
         </p>
 
         <h3 className="text-2xl font-semibold text-[#3b2b18] mb-4">
@@ -202,7 +202,7 @@ export default function DestinationDetails({ slug, experiences, error }: { slug:
                 <span className="font-semibold text-[#3b2b18]">
                   {accommodation.title}
                 </span>{" "}
-                ({accommodation.type}) â€” {accommodation.description}
+                ({accommodation.type}) — {accommodation.description}
               </p>
             ))}
         </div>
@@ -240,7 +240,7 @@ export default function DestinationDetails({ slug, experiences, error }: { slug:
                 className="absolute top-6 right-6 text-white"
                 onClick={() => setLightboxIndex(null)}
               >
-                âœ•
+                ×
               </button>
               <button
                 className="absolute left-4 top-1/2 -translate-y-1/2 text-white"
@@ -269,7 +269,7 @@ export default function DestinationDetails({ slug, experiences, error }: { slug:
           <h3 className="text-2xl font-semibold text-[#3b2b18] mb-8 text-center">
             Things To Do In {destination.name}
           </h3>
-          <AdventureCards adventures={slug === "victoria-falls" ? experiences : experiences.filter(item => item.location?.toLowerCase().includes(destination.name.toLowerCase()))} error={error} compact />
+          <AdventureCards adventures={slug === "victoria-falls" ? experiences.slice(0, 3) : experiences.filter(item => item.location?.toLowerCase().includes(destination.name.toLowerCase())).slice(0, 3)} error={error} compact />
         </section>
       </section>
 

@@ -6,6 +6,7 @@ import { PricingModule } from "./pricing/pricing.module.js";
 import { PrismaModule } from "./prisma/prisma.module.js";
 import { AppController } from "./app.controller.js";
 import { AppService } from "./app.service.js";
+import { EnquiriesModule } from "./enquiries/enquiries.module.js";
 
 function validateEnvironment(config: Record<string, unknown>) {
   const databaseUrl = String(config.DATABASE_URL ?? "");
@@ -31,6 +32,7 @@ function validateEnvironment(config: Record<string, unknown>) {
     ActivitiesModule,
     AvailabilityModule,
     PricingModule,
+    EnquiriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

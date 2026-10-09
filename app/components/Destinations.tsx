@@ -51,7 +51,7 @@ export default function Destinations() {
   const navigationNextRef = useRef<HTMLButtonElement>(null);
 
   return (
-    <section className="bg-[#f7ede0] py-14 sm:py-20">
+    <section className="bg-white py-14 sm:py-20">
       <div className="container mx-auto px-6 lg:px-8">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 import ExperienceCard from './ExperienceCard';
 import type { ExperienceCardData } from '../../lib/experiences';
 
@@ -11,7 +12,7 @@ export default function Activities({ activities = [] }: { activities?: Experienc
           <p className="text-sm font-semibold uppercase tracking-[0.35em] text-orange-600">THINGS TO DO</p>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-[#3b2b18] sm:text-5xl">Unforgettable Safari Experiences</h2>
         </div>
-        <Link href="/adventures" className="text-[#3b2b18] hover:underline">View All ?</Link>
+        <Link href="/adventures" className="inline-flex items-center gap-2 text-[#3b2b18] hover:underline">View All <ArrowRight size={18} aria-hidden="true" /></Link>
       </div>
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">{activities.map(experience => <ExperienceCard key={experience.id} experience={experience} />)}</div>
     </div>

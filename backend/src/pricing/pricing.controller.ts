@@ -1,7 +1,8 @@
 import { AdminApiKeyGuard } from "../auth/admin-api-key.guard.js";
-import { Controller, Get, Param, Post, Body, UseGuards } from "@nestjs/common";
+import { Controller, Delete, Get, Param, ParseUUIDPipe, Patch, Post, Body, UseGuards } from "@nestjs/common";
 import { PricingService } from "./pricing.service.js";
 import { CreatePriceDto } from "./dto/create-price.dto.js";
+import { UpdatePriceDto } from "./dto/update-price.dto.js";
 
 @Controller("pricing")
 export class PricingController {
@@ -14,7 +15,19 @@ export class PricingController {
   }
 
   @Get("activity/:activityId")
-  findByActivity(@Param("activityId") activityId: string) {
+  findByActivity(@Param("activityId", ParseUUIDPipe) activityId: string) {
     return this.pricingService.findByActivityId(activityId);
   }
+
+  @Get("admin/activity/:activityId")
+  @UseGuards(AdminApiKeyGuard)
+  findForAdmin(@Param("activityId", ParseUUIDPipe) activityId: string) { return this.pricingService.findForAdmin(activityId); }
+
+  @Patch(":id")
+  @UseGuards(AdminApiKeyGuard)
+  update(@Param("id", ParseUUIDPipe) id: string, @Body() dto: UpdatePriceDto) { return this.pricingService.update(id, dto); }
+
+  @Delete(":id")
+  @UseGuards(AdminApiKeyGuard)
+  remove(@Param("id", ParseUUIDPipe) id: string) { return this.pricingService.remove(id); }
 }

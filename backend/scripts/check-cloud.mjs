@@ -11,6 +11,14 @@ async function get(path) {
 }
 const ready = await get('/ready');
 if (ready.database !== 'connected') throw new Error('Database is not ready');
+// Invalid input verifies the public route without saving an enquiry or sending email.
+const enquiryResponse = await fetch(base + '/enquiries', {
+  method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}',
+  signal: AbortSignal.timeout(30000),
+});
+if (enquiryResponse.status !== 400) {
+  throw new Error('Enquiry endpoint is unavailable or misconfigured: expected validation HTTP 400, received HTTP ' + enquiryResponse.status);
+}
 const activities = await get('/activities');
 if (!Array.isArray(activities)) throw new Error('Activities endpoint did not return a list');
 if (activities.some(activity => activity.status !== 'PUBLISHED')) {
@@ -22,4 +30,4 @@ if (activities.length) {
     throw new Error('Activity detail does not match the list or is missing related data');
   }
 }
-console.log(`Cloud check passed: database connected; ${activities.length} published activities; ${activities.length ? 'detail fetching verified' : 'add a published activity to verify detail fetching'}.`);
+console.log(`Cloud check passed: database connected; enquiry endpoint verified; ${activities.length} published activities; ${activities.length ? 'detail fetching verified' : 'add a published activity to verify detail fetching'}.`);

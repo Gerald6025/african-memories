@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Param,
+  ParseUUIDPipe,
   Patch,
   Post,
   Query,
@@ -31,7 +32,7 @@ export class ActivitiesController {
 
   @Patch(":id")
   @UseGuards(AdminApiKeyGuard)
-  update(@Param("id") id: string, @Body() dto: UpdateActivityDto) {
+  update(@Param("id", ParseUUIDPipe) id: string, @Body() dto: UpdateActivityDto) {
     return this.activitiesService.update(id, dto);
   }
 

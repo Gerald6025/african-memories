@@ -24,6 +24,7 @@ function IsAfterProperty(
         async validate(value: any, args: ValidationArguments) {
           const [relatedPropertyName] = args.constraints;
           const relatedValue = (args.object as any)[relatedPropertyName];
+          if (relatedValue === undefined) return true;
           return typeof value === "string" && typeof relatedValue === "string"
             && Number.isFinite(Date.parse(value)) && Number.isFinite(Date.parse(relatedValue))
             && Date.parse(value) > Date.parse(relatedValue);
@@ -56,7 +57,4 @@ export class CreateAvailabilityDto {
   @Min(0)
   remaining!: number;
 
-  @IsOptional()
-  @IsUUID()
-  accommodationId?: string;
 }

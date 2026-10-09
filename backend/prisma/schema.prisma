@@ -36,8 +36,8 @@ model Price {
   validFrom  DateTime
   validTo    DateTime
   isActive   Boolean   @default(true)
-  activityId String?
-  activity   Activity? @relation(fields: [activityId], references: [id])
+  activityId String
+  activity   Activity @relation(fields: [activityId], references: [id], onDelete: Restrict)
   createdAt  DateTime  @default(now())
 
   @@index([activityId, isActive, validFrom])
@@ -49,9 +49,39 @@ model Availability {
   endsAt     DateTime
   capacity   Int
   remaining  Int
-  activityId String?
-  activity   Activity? @relation(fields: [activityId], references: [id])
+  activityId String
+  activity   Activity @relation(fields: [activityId], references: [id], onDelete: Restrict)
   createdAt  DateTime  @default(now())
 
   @@index([activityId, startsAt])
+}
+
+enum EnquiryStatus {
+  NEW
+  CONTACTED
+  CLOSED
+}
+
+model Enquiry {
+  id                   String        @id @default(uuid())
+  requestId            String        @unique
+  name                 String
+  email                String
+  phone                String
+  destination          String
+  message              String
+  source               String        @default("website-contact")
+  status               EnquiryStatus @default(NEW)
+  clientHash           String
+  notificationSentAt   DateTime?
+  notificationAttempts Int           @default(0)
+  notificationNextAt   DateTime      @default(now())
+  notificationError    String?
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+
+  @@index([createdAt, id])
+  @@index([email, createdAt])
+  @@index([clientHash, createdAt])
+  @@index([notificationSentAt, notificationNextAt])
 }
