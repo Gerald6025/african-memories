@@ -7,6 +7,7 @@ import { Prisma } from "@prisma/client";
 import { PrismaService } from "../prisma/prisma.service.js";
 import { CreateActivityDto } from "./dto/create-activity.dto.js";
 import { UpdateActivityDto } from "./dto/update-activity.dto.js";
+import { publicRelations } from "./public-relations.js";
 
 @Injectable()
 export class ActivitiesService {
@@ -15,10 +16,7 @@ export class ActivitiesService {
   findPublished(category?: string) {
     return this.prisma.activity.findMany({
       where: { status: "PUBLISHED", ...(category ? { category } : {}) },
-      include: {
-        prices: { where: { isActive: true } },
-        availabilities: true,
-      },
+      include: publicRelations(),
       orderBy: { name: "asc" },
     });
   }
@@ -42,7 +40,7 @@ export class ActivitiesService {
   async findBySlug(slug: string) {
     const activity = await this.prisma.activity.findUnique({
       where: { slug },
-      include: { prices: true, availabilities: true },
+      include: publicRelations(),
     });
     if (!activity || activity.status !== "PUBLISHED") throw new NotFoundException("Activity not found");
     return activity;

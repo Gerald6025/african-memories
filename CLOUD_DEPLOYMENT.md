@@ -49,3 +49,19 @@ node backend/scripts/check-cloud.mjs https://YOUR-BACKEND-HOST/api/v1
 ```
 
 Then open `/adventures` on the frontend and select an activity. Backend photos are bundled in `backend/public/experiences` and persist across container restarts. New uploads and booking checkout are not implemented.
+
+## Enquiry forms and email delivery
+
+Deploy the backend revision containing EnquiriesModule and the enquiry migration. An older deployment returns HTTP 404 for POST /api/v1/enquiries. The Docker startup applies migrations before launching.
+
+Set these variables in the backend Render environment, then redeploy:
+
+| Variable | Purpose |
+| --- | --- |
+| RESEND_API_KEY | Secret API key from the Resend account |
+| ENQUIRY_EMAIL_FROM | Sender on a verified Resend domain |
+| ENQUIRY_EMAIL_TO | Business inbox receiving enquiries |
+
+These belong on the backend, never in NEXT_PUBLIC variables. The visitor email is used as Reply-To. Saved enquiries are queued for notification, retried on failure, and marked sent only after the provider accepts the request. Without all three email settings, enquiries are saved but notification delivery is disabled. Provider acceptance does not verify inbox delivery.
+
+Run the cloud check after redeployment. It submits an empty, invalid payload and expects HTTP 400 to verify the public enquiry endpoint without creating records or sending email. For end-to-end verification, submit a real enquiry through the site and confirm its reference and receipt in the receiving inbox.
